@@ -4,6 +4,16 @@
 # sbt specific
 dist/*
 target/
+units/target/
+units-scalaz/target/
+units-spire/target/
+units-scalacheck/target/
+units-joda/target/
+
+# not supported yet
+units-breeze/
+units-saddle/
+
 lib_managed/
 src_managed/
 project/boot/

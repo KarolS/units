@@ -21,6 +21,15 @@ The goal I was aiming for when working on this library was to provide units of m
 
 The library is published under MIT License.
 
+[Build instructions.](doc/BUILD.md)
+
+Current version: 0.0.2
+----------------------
+
+[Changelog.](doc/CHANGELOG.md)
+
+[Plans for the nearest future.](doc/TODO.md)
+
 Why not any other implementation?
 ---------------------------------
 
@@ -49,8 +58,8 @@ All of the following implementations were either inefficient or inflexible:
 Quick showcase
 ==============
 
-    import stasiak.karol.units.Units._
-    import stasiak.karol.units.DefiningUnits._
+    import stasiak.karol.units._
+    import stasiak.karol.units.defining._
 
     type USD = DefineUnit[_U~:_S~:_D] 
     type EUR = DefineUnit[_E~:_U~:_R] 
@@ -91,18 +100,18 @@ Defining units
 
 You define a unit using `DefineUnit` type constructor with a type-level string as a parameter.
 
-    import stasiak.karol.units.Units._
-    import stasiak.karol.units.DefiningUnits._
+    import stasiak.karol.units._
+    import stasiak.karol.units.defining._
 
     type metre = DefineUnit[_m]
     type second = DefineUnit[_s]
     type kilogram = DefineUnit[ _k ~: _g ]
 
-All units are subtypes of trait `MUnit`. This includes type `Scalar` (alias: `_1`), which represents dimensionless unit 1.
+All units are subtypes of trait `MUnit`. This includes type `_1`, which represents dimensionless unit 1.
 
 This also automatically generates implicit names for those units: `"m"`, `"s"`, and `"kg"` respectively.
 
-You can define a derived unit with operators `×` and `/` (the ASCII alternative for × is ><) and type-level functions `square` and `cube`:
+You can define a derived unit with operators `×` and `/` (the ASCII alternative for `×` is `><`) and type-level functions `square` and `cube`:
 
     type newton = (metre × kilogram) / (second × second)
     type hertz  = _1 / second
@@ -138,7 +147,7 @@ Using values with units
 
 All code below assumes the following is imported:
 
-    import stasiak.karol.units.Units._
+    import stasiak.karol.units._
 
 You can create a value with a unit:
 
@@ -165,7 +174,7 @@ You can also compare values with the same units:
 
 Note: `DoubleU` does not support equality comparison.
 
-If you want to extract the raw scalar numeric value from the value with a unit, you can use value method:
+If you want to extract the raw dimensionless numeric value from the value with a unit, you can use value method:
 
     length.value // equals 2: Long
 
@@ -301,33 +310,18 @@ Affine values can be compared with relational operators, similarly to normal val
 Writing polymorphic functions using units of measure
 ----------------------------------------------------
 
-Writing a function that works only on a specific units is trivial:
-
-    def hypotenuse(a: DoubleU[metre], b: DoubleU[metre]) = (a.pow2 + b.pow2).sqrt
-
-Writing a function that works on any units requires type constraint:
-
-    def hypotenuse[U <: MUnit](a: DoubleU[U], b: DoubleU[U]) = (a.pow2 + b.pow2).sqrt
-
-If you want to convert units inside your polymorphic function, you need an implicit conversion ratio:
-
-    def hypotenuse[A <: MUnit, B <: MUnit](a: DoubleU[A], b: DoubleU[B])(implicit ratio: DoubleRatio[A,B]) = 
-      (a.convert[B].pow2 + b.pow2).sqrt
-
-Similarly with affine spaces:
-
-    def tempDifference[A <: AffineSpace](a: DoubleA[T], b: DoubleA[T]) = a -- b // return type is DoubleU[T#Unit]
-
-    def tempDifference[A1 <: AffineSpace, A2 <: AffineSpace](a: DoubleA[A1], b: DoubleA[A2])(
-        implicit converter: DoubleAffineSpaceConverter[A1,A2]
-        ) = a.convert[A2] -- b // return type is DoubleU[T2#Unit]
-
-Other kinds of implicit parameters are required for automatic unit coercion during addition and pretty-printing.
+[This section has been moved to a separate document.](doc/POLYMORPHISM.md)
 
 Using arrays
 ------------
 
-Sadly, Scala 2.10's arrays of value classes are boxed. As an alternative, `stasiak.karol.units.arrays` package provides classes `DoubleUArray[U]`, `DoubleAArray[A]`, `IntUArray[U]`, and `IntAArray[A]`.
+[This section has been moved to a separate document.](doc/ARRAYS.md)
+
+Third-party library support
+---------------------------
+
+[This section has been moved to a separate document.](doc/BINDINGS.md)
+
 
 Implementation details
 ======================
@@ -341,15 +335,3 @@ A basic unit is implemented as a pair of strings. One is an identifier that is u
 The main type for units (`MUnit`) is a linked list of pairs of basic units and integers, used to represent a type-level map.
 
 
-TODO:
-=====
-
-* find why the second compilation crashes `fsc`; `sbt`'s incremental compiler for some reason works perfectly
-
-* optimize compilation times
-
-* add more units
-
-* add more features
-
-* write more documentation
