@@ -26,7 +26,7 @@ The library is published under MIT License.
 Current version: 0.0.2
 ----------------------
 
-[Changelog.](doc/CHANGELOG.md)
+[Changelog.](CHANGELOG.md)
 
 [Plans for the nearest future.](doc/TODO.md)
 
