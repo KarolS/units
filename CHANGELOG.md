@@ -1,6 +1,25 @@
 units - CHANGELOG
 =================
 
+version 0.0.3
+-------------
+
+* General: Added 2D and 3D vectors and vector arrays.
+
+* General: Allowed to compare Double(U/A) for equality.
+
+* Units: Added conversions between binary prefixes for bytes.
+
+* Dependencies: Loosened dependencies.
+
+* ScalaZ integration: Added various typeclass instances for vectors.
+
+* Spire integration: Added various typeclass instances for vectors.
+
+* Testing: Added more type arithmetic tests.
+
+* FIXED: Some minor problems with unit arithmetics.
+
 version 0.0.2
 -------------
 

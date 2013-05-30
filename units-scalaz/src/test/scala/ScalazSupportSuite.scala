@@ -40,4 +40,15 @@ class ScalazSupportSuite extends FunSuite {
 		val l = 2.0.of[metre]
 		assert(4.0.of[metre] == (l |+| l))
 	}
+
+	test("Vector3U is a monoid") {
+		val l = (1,2,3).of[metre]
+		assert((2,4,6).of[metre] == (l |+| l))
+	}
+
+	test("Vector2U is a monoid") {
+		val l = (12,3).of[metre]
+		assert((24,6).of[metre] == (l |+| l))
+	}
+
 }

@@ -19,29 +19,37 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.karol.units.typelevel
 
-import language.higherKinds
-import language.implicitConversions
-import language.existentials
+import stasiak.karol.units.internal.Strings._
 import stasiak.karol.units.internal.Bools._
 import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
 import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
-import scala.math
+import stasiak.karol.units.internal.SingleUnits._
+import stasiak.karol.units._
+import stasiak.karol.units.defining._
+import stasiak.karol.units.SI._
+import stasiak.karol.units.USCustomary._
 
-/** Supertype of all units of measure. */
-trait MUnit {
-	type Invert <: MUnit
-	type Get[U<:TSingleUnit] <:TInteger
-	type MulSingle[S<:TUnitPowerPair] <: MUnit
-	type Mul[S<:MUnit] <: MUnit
-	type Sqrt <:MUnit
-	type Cbrt <:MUnit
-	type IsSquare <: TBool
-	type IsCube <: TBool
-	type ToPower[Exp<:TInteger] <: MUnit 
-	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
+// This trait has only to compile
+sealed trait UnitImplProofs{
+
+	implicitly[P1 =:= (_m^P1)#Get[_m]]
+	implicitly[P2 =:= (_m^P2)#Get[_m]]
+
+	implicitly[metre   =:= square[metre]#Sqrt]
+	implicitly[Nothing =:= (metre/second)#Sqrt]
+
+	implicitly[True  =:= cube[metre]#IsCube]
+	implicitly[False =:= square[metre]#IsCube]
+	implicitly[True  =:= cube[_1]#IsCube]
+
+	implicitly[True =:= ASingleUnit[_e]#LessEqualGreater[ASingleUnit[_f],True,False,False,TBool]]
+	implicitly[True =:= ASingleUnit[_f]#LessEqualGreater[ASingleUnit[_f],False,True,False,TBool]]
+	implicitly[True =:= ASingleUnit[_g]#LessEqualGreater[ASingleUnit[_f],False,False,True,TBool]]
+
+	implicitly[metre  =:= metre#Substitute[ASingleUnit[_e], second]]
+	implicitly[second =:= metre#Substitute[ASingleUnit[_m], second]]
+	implicitly[_1     =:= _1#Substitute[ASingleUnit[_m], second]]
+	implicitly[_1     =:= (metre/second)#Substitute[ASingleUnit[_s], metre]]
 }

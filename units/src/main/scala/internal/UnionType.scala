@@ -22,7 +22,7 @@ SOFTWARE.
 package stasiak.karol.units.internal
 
 object UnionType {
-	type ¬[A] = A => Nothing
-	type OR[T, U] = ¬[¬[T] with ¬[U]]
-	type ∨[T, U] = { type Union[X] = ¬[¬[X]] <:< OR[T,U] }
+	type NOT[A] = A => Nothing
+	type OR[T, U] = NOT[NOT[T] with NOT[U]]
+	type ∨[T, U] = { type Union[X] = NOT[NOT[X]] <:< OR[T,U] }
 }

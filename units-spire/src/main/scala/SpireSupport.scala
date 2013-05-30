@@ -29,7 +29,7 @@ import language.implicitConversions
 
 package object spireSupport {
 
-	implicit def doubleU[U<:MUnit] = new VectorSpace[DoubleU[U], Double] {
+	implicit def implicit__doubleU[U<:MUnit] = new VectorSpace[DoubleU[U], Double] {
 
 		implicit def scalar: Field[Double] = Field[Double]
 
@@ -65,7 +65,7 @@ package object spireSupport {
 		
 	}
 
-	implicit def intUL[U<:MUnit] = new Module[IntU[U], Long] {
+	implicit def implicit__intUL[U<:MUnit] = new Module[IntU[U], Long] {
 
 		implicit def scalar: Ring[Long] = Ring[Long]
 
@@ -82,4 +82,41 @@ package object spireSupport {
 		def timesl(d: Long, x: IntU[U]): IntU[U] = x times d
 		
 	}
+
+	implicit def implicit__vector3U[U<:MUnit] = new VectorSpace[Vector3U[U], Double] {
+
+		implicit def scalar: Field[Double] = Field[Double]
+
+		override def additive: AbGroup[Vector3U[U]] = new AbGroup[Vector3U[U]] {
+			def id = Vector3U.zero[U]
+			def op(x: Vector3U[U], y: Vector3U[U]) = x + y
+			def inverse(x: Vector3U[U]) = -x
+		}
+
+		def zero = Vector3U.zero[U]
+		def negate(x: Vector3U[U]) = -x
+		override def minus(x: Vector3U[U], y: Vector3U[U]) = x - y
+		def plus(x: Vector3U[U], y: Vector3U[U]) = x + y
+		def timesl(d: Double, x: Vector3U[U]) = x times d
+		override def divr(x: Vector3U[U], d: Double) = x dividedBy d
+	}
+
+	implicit def implicit__vector2U[U<:MUnit] = new VectorSpace[Vector2U[U], Double] {
+
+		implicit def scalar: Field[Double] = Field[Double]
+
+		override def additive: AbGroup[Vector2U[U]] = new AbGroup[Vector2U[U]] {
+			def id = Vector2U.zero[U]
+			def op(x: Vector2U[U], y: Vector2U[U]) = x + y
+			def inverse(x: Vector2U[U]) = -x
+		}
+
+		def zero = Vector2U.zero[U]
+		def negate(x: Vector2U[U]) = -x
+		override def minus(x: Vector2U[U], y: Vector2U[U]) = x - y
+		def plus(x: Vector2U[U], y: Vector2U[U]) = x + y
+		def timesl(d: Double, x: Vector2U[U]) = x times d
+		override def divr(x: Vector2U[U], d: Double) = x dividedBy d
+	}
+
 }

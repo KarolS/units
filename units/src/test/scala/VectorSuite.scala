@@ -21,27 +21,32 @@ SOFTWARE.
 */
 package stasiak.karol.units
 
-import language.higherKinds
-import language.implicitConversions
-import language.existentials
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
-import scala.math
+import org.scalatest.FunSuite
+import defining._
+import SI._
+import USCustomary._
+import arrays._
 
-/** Supertype of all units of measure. */
-trait MUnit {
-	type Invert <: MUnit
-	type Get[U<:TSingleUnit] <:TInteger
-	type MulSingle[S<:TUnitPowerPair] <: MUnit
-	type Mul[S<:MUnit] <: MUnit
-	type Sqrt <:MUnit
-	type Cbrt <:MUnit
-	type IsSquare <: TBool
-	type IsCube <: TBool
-	type ToPower[Exp<:TInteger] <: MUnit 
-	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
+class VectorSuite extends FunSuite {
+	
+	test("Dot product and norms for 3D vectors should work correctly") {
+		val v1 = (1,1,1).of[metre]
+		assert(3.of[square[metre]] == v1.absSq)
+		val v2 = (1,2,2).of[second]
+		assert((3.of[second] - v2.abs) < 1.nano[second])
+		assert((5.of[metre×second] - v1*v2) < 1.nano[metre×second])
+	}
+
+	test("Dot product and norms for 2D vectors should work correctly") {
+		val v1 = (1,1).of[metre]
+		assert(2.of[square[metre]] == v1.absSq)
+		val v2 = (3,4).of[second]
+		assert((5.of[second] - v2.abs) < 1.nano[second])
+		assert((7.of[metre×second] - v1*v2) < 1.nano[metre×second])
+	}
+	
+	test("Vector cross product should work correctly"){
+		assert(Vector3U.z[metre] == Vector3U.x[metre] *** Vector3U.y[metre])
+	}
+	
 }

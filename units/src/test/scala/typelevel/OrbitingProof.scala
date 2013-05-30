@@ -19,29 +19,37 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
 
-import language.higherKinds
-import language.implicitConversions
-import language.existentials
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
-import scala.math
+package stasiak.karol.units.typelevel
 
-/** Supertype of all units of measure. */
-trait MUnit {
-	type Invert <: MUnit
-	type Get[U<:TSingleUnit] <:TInteger
-	type MulSingle[S<:TUnitPowerPair] <: MUnit
-	type Mul[S<:MUnit] <: MUnit
-	type Sqrt <:MUnit
-	type Cbrt <:MUnit
-	type IsSquare <: TBool
-	type IsCube <: TBool
-	type ToPower[Exp<:TInteger] <: MUnit 
-	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
+import stasiak.karol.units._
+import stasiak.karol.units.defining._
+
+// This trait has only to compile
+sealed trait OrbitingProof {
+
+	//astronomical unit
+	type AU = DefineUnit[_A~:_U]
+	//year
+	type year = DefineUnit[_y~:_r]
+	//some undefined mass unit
+	type M = DefineUnit[_M]
+
+	val M = 1.of[M]
+
+	def a = (G * M / (sun-earth).lengthSq) * (sun-earth).unit
+
+	val G = (2*3.141592).pow2.of[cube[AU]/(M×square[year])]
+
+	// G M / r^2 = v^2 / r
+	// G = v^2 r / M
+
+	def advanceTime(t: DoubleU[year]) {
+		earth = earth + v*t
+		v = v + a*t
+	}
+
+	var sun = (0,0,0).of[AU]
+	var earth = (1,0,0).of[AU]
+	var v = Vector3U.y[_1] * (G * M / 1.of[AU]).sqrt
 }

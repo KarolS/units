@@ -4,6 +4,7 @@
 *.md~
 .gitignore~
 .scala~
+*.scala~
 
 # sbt specific
 dist/*
@@ -15,8 +16,12 @@ units-scalacheck/target/
 units-joda/target/
 
 # not supported yet
+units-algebird/
 units-breeze/
 units-saddle/
+units-shapeless/
+units-slick/
+units-squeryl/
 
 lib_managed/
 src_managed/

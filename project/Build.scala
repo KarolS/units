@@ -7,7 +7,7 @@ import sbt.Defaults._
 object UnitsBuild extends Build {
 	
 
-	val VERSION = "0.0.2"
+	val VERSION = "0.0.3-SNAPSHOT"
 	
 
 	type Sett = Project.Setting[_]
@@ -41,17 +41,17 @@ object UnitsBuild extends Build {
 
 	// dependencies
 
-	lazy val SCALACHECK = "org.scalacheck" %% "scalacheck" % "1.10.1"
+	lazy val SCALACHECK = "org.scalacheck" %% "scalacheck" % "[1.10.0,1.11)"
 
-	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "7.0.0-M9" 
+	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "[7.0.0,7.1)" 
 
-	lazy val SPIRE = "org.spire-math" %% "spire" % "0.3.0" 
+	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.3.0,0.4)" 
 	
-	lazy val JODA_TIME = "joda-time" % "joda-time" % "2.2"
+	lazy val JODA_TIME = "joda-time" % "joda-time" % "[2.1,3)"
 
-	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "1.2" % "provided"
+	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "[1.2,2)" % "provided"
 
-	lazy val SCALATEST_TEST = "org.scalatest" %% "scalatest" % "2.0.M5b" % "test"
+	lazy val SCALATEST_TEST = "org.scalatest" %% "scalatest" % "[2.0.M5b,2.1)" % "test"
 
 	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test" 
 

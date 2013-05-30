@@ -6,13 +6,21 @@ Scalaz
 
 [Scalaz project page.](https://github.com/scalaz/scalaz)
 
-Currently, only ScalaZ 7.0.0-M9 is supported.
+Currently, only ScalaZ 7.0.x is supported.
 
 Artefact `units-scalaz` provides implementation of following typeclasses:
 
-* for IntU: Monoid, Equal, Order, Show
+* for `IntU`: `Monoid`, `Equal`, `Order`, `Show`
 
-* for DoubleU: Monoid, Order, Show
+* for `DoubleU`: `Monoid`, `Equal`, `Order`, `Show`
+
+* for `IntA`: `Order`, `Equal`, `Show`
+
+* for `DoubleA`: `Order`, `Equal`, `Show`
+
+* for `Vector2U`: `Monoid`, `Equal`, `Show`
+
+* for `Vector3U`: `Monoid`, `Equal`, `Show`
 
 Usage: `import stasiak.karol.units.scalazSupport._`
 
@@ -21,13 +29,17 @@ Spire
 
 [Spire project page.](https://github.com/non/spire)
 
-Currently, only Spire 0.3.0 is supported.
+Currently, only Spire 0.3.x is supported.
 
 Artefact `units-spire` provides implementation of following typeclasses:
 
-* for IntU: Module[IntU[U], Int], Module[IntU[U], Long]
+* for `IntU`: `Module[IntU[U], Int]`, `Module[IntU[U], Long]`
 
-* for DoubleU: VectorSpace[DoubleU[U], Double]
+* for `DoubleU`: `VectorSpace[DoubleU[U], Double]`
+
+* for `Vector2U`: `VectorSpace[Vector2U[U], Double]`
+
+* for `Vector3U`: `VectorSpace[Vector3U[U], Double]`
 
 Usage: `import stasiak.karol.units.spireSupport._`
 
@@ -36,9 +48,9 @@ Scalacheck
 
 [Scalacheck project page.](https://github.com/rickynils/scalacheck)
 
-Currently, only Scalacheck 1.10.1 is supported.
+Currently, only Scalacheck 1.10.x is supported.
 
-Artefact `units-scalacheck` provides implementations of Choose[IntU[U]], Choose[DoubleU[U]], Choose[IntA[A]] and Choose[DoubleA[A]].
+Artefact `units-scalacheck` provides implementations of `Choose[IntU[U]]`, `Choose[DoubleU[U]]`, `Choose[IntA[A]]` and `Choose[DoubleA[A]]`.
 
 Usage: `import stasiak.karol.units.scalacheckSupport._`
 
@@ -47,7 +59,7 @@ Joda Time
 
 [Joda Time project page.](http://joda-time.sourceforge.net/)
 
-Currently, only Joda Time 2.2 is supported.
+Currently, only Joda Time 2.1 and above is supported.
 
 Artefact `units-joda` provides implicit conversions from and to `Duration`, `Seconds`, `Minutes`, and `Hours` classes.
 

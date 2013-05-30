@@ -22,7 +22,7 @@ SOFTWARE.
 
 package stasiak.karol.units
 
-import scalaz.{Ordering, Monoid, Show, Order}
+import scalaz.{Ordering, Monoid, Show, Order, Equal}
 
 package object scalazSupport {
 
@@ -81,5 +81,23 @@ package object scalazSupport {
 		def order(x: IntA[A], y: IntA[A]) = 
 			if (x < y) scalaz.Ordering.LT else if (x == y) scalaz.Ordering.EQ else scalaz.Ordering.GT
 	}
+
+	implicit def implicit__vector3UInstance[U<:MUnit] =
+		new Equal[Vector3U[U]] with Show[Vector3U[U]] with Monoid[Vector3U[U]] {
+			override def shows(f: Vector3U[U]) = f.toString
+			override def equalIsNatural: Boolean = true
+			def append(f1: Vector3U[U], f2: => Vector3U[U]) = f1 + f2
+			def zero: Vector3U[U] = Vector3U.zero[U]
+			def equal(f1: Vector3U[U], f2: Vector3U[U]) = f1 == f2
+		}
+
+	implicit def implicit__vector2UInstance[U<:MUnit] =
+		new Equal[Vector2U[U]] with Show[Vector2U[U]] with Monoid[Vector2U[U]] {
+			override def shows(f: Vector2U[U]) = f.toString
+			override def equalIsNatural: Boolean = true
+			def append(f1: Vector2U[U], f2: => Vector2U[U]) = f1 + f2
+			def zero: Vector2U[U] = Vector2U.zero[U]
+			def equal(f1: Vector2U[U], f2: Vector2U[U]) = f1 == f2
+		}
 
 }

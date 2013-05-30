@@ -1,4 +1,3 @@
-/*
 Copyright (c) 2013 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,30 +17,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-package stasiak.karol.units
-
-import language.higherKinds
-import language.implicitConversions
-import language.existentials
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
-import scala.math
-
-/** Supertype of all units of measure. */
-trait MUnit {
-	type Invert <: MUnit
-	type Get[U<:TSingleUnit] <:TInteger
-	type MulSingle[S<:TUnitPowerPair] <: MUnit
-	type Mul[S<:MUnit] <: MUnit
-	type Sqrt <:MUnit
-	type Cbrt <:MUnit
-	type IsSquare <: TBool
-	type IsCube <: TBool
-	type ToPower[Exp<:TInteger] <: MUnit 
-	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
-}

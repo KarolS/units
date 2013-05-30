@@ -85,22 +85,30 @@ package object units {
 	implicit def implicit_widening[U<:MUnit](i: IntU[U]) = i.toDouble
 
 	@inline
-	implicit def implicit_toScalarInt(i:Int) = new IntU[_1](i)
+	implicit def implicit_toDimensionlessInt(i:Int) = new IntU[_1](i)
 	@inline
-	implicit def implicit_toScalarLong(i:Long) = new IntU[_1](i)
+	implicit def implicit_toDimensionlessLong(i:Long) = new IntU[_1](i)
 	@inline
-	implicit def implicit_toScalarFloat(i:Float) = new DoubleU[_1](i)
+	implicit def implicit_toDimensionlessFloat(i:Float) = new DoubleU[_1](i)
 	@inline
-	implicit def implicit_toScalarDouble(i:Double) = new DoubleU[_1](i)
+	implicit def implicit_toDimensionlessDouble(i:Double) = new DoubleU[_1](i)
 	@inline
-	implicit def implicit_fromScalarInt(i:IntU[_1]) = i.value
-	@inline
-	implicit def implicit_fromScalarDouble(i:DoubleU[_1]) = i.value
+	implicit def implicit_toDimensionlessTupleDDD(i:(Double,Double,Double)) = 
+	Vector3U(i._1.of[_1], i._2.of[_1], i._3.of[_1])
 
+	@inline
+	implicit def implicit_toDimensionlessTupleIII(i:(Int,Int,Int)) = 
+	Vector3U(i._1.toDouble.of[_1], i._2.toDouble.of[_1], i._3.toDouble.of[_1])
+	@inline
+	implicit def implicit_fromDimensionlessInt(i:IntU[_1]) = i.value
+	@inline
+	implicit def implicit_fromDimensionlessDouble(i:DoubleU[_1]) = i.value
+	@inline 
+	implicit def implicit_fromDimensionlessTuple(i:Vector3U[_1]) = (i.x.value, i.y.value, i.z.value)
 	@inline
 	implicit def implicit_float2DoubleUBuilder(value: Float) =new DoubleUBuilder(value.toDouble)
 	@inline
-	implicit def implicit_scalar2DoubleUBuilder(value: DoubleU[_1]) =new DoubleUBuilder(value.value)
+	implicit def implicit_dimensionless2DoubleUBuilder(value: DoubleU[_1]) =new DoubleUBuilder(value.value)
 
 	/** Extention methods for Double. */
 	implicit final class DoubleUBuilder(val value: Double) extends AnyVal {
@@ -148,6 +156,35 @@ package object units {
 		def femto[U<:MUnit] = new DoubleU[U](value/1000000000000000.0)
 		@inline
 		def atto [U<:MUnit] = new DoubleU[U](value/1000000000000000000.0)
+	}
+
+	@inline
+	implicit def implicit_tupleIII2Vector3UBuilder(value: (Int, Int, Int)) =
+		new Vector3UBuilder(value._1, value._2, value._3)
+	@inline
+	implicit def implicit_tupleDDD2Vector3UBuilder(value: (Double, Double, Double)) =
+		new Vector3UBuilder(value._1, value._2, value._3)
+	@inline
+	implicit def implicit_dimensionless2Vector3UBuilder(value: Vector3U[_1]) =
+		new Vector3UBuilder(value.x.value, value.y.value, value.z.value)
+
+	class Vector3UBuilder(x: Double, y: Double, z: Double) {
+		@inline
+		def of[U<:MUnit] = Vector3U[U](x.of, y.of, z.of)
+	}
+	@inline
+	implicit def implicit_tupleII2Vector2UBuilder(value: (Int, Int)) =
+		new Vector2UBuilder(value._1, value._2)
+	@inline
+	implicit def implicit_tupleDD2Vector2UBuilder(value: (Double, Double)) =
+		new Vector2UBuilder(value._1, value._2)
+	@inline
+	implicit def implicit_dimensionless2Vector2UBuilder(value: Vector2U[_1]) =
+		new Vector2UBuilder(value.x.value, value.y.value)
+
+	class Vector2UBuilder(x: Double, y: Double) {
+		@inline
+		def of[U<:MUnit] = Vector2U[U](x.of, y.of)
 	}
 	@inline
 	implicit def implicit_int2IntUBuilder(value: Int) = new IntUBuilder(value.toLong)

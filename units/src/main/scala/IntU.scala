@@ -34,7 +34,7 @@ import stasiak.karol.units.internal.Conversions._
 import scala.math
 
 /** 64-bit signed integer representing a value with a unit of measure.*/
-class IntU[U<:MUnit](val value:Long) extends AnyVal {
+case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 
 	@inline def mkString(implicit name: UnitName[U]) = value.toString + name.toString
 
@@ -52,6 +52,12 @@ class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	@inline def -(i: DoubleU[U]) = new DoubleU[U](value - i.value)
 	/** Negate this value. */
 	@inline def unary_- = new IntU[U](-value)
+	
+	
+	@inline def   *  [V<:MUnit](i: Vector3U[V]) = i*this
+	@inline def times[V<:MUnit](i: Vector3U[V]) = i*this
+	@inline def   *  [V<:MUnit](i: Vector2U[V]) = i*this
+	@inline def times[V<:MUnit](i: Vector2U[V]) = i*this
 	
 	/** Multiply by a value with a unit. */
 	@inline def *[V<:MUnit](i: IntU[V])    = new IntU[U#Mul[V]](value * i.value)
@@ -163,9 +169,19 @@ class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	@inline
 	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		value*l.ratio != i.value*r.ratio
+	@inline
+	def ==(i: DoubleU[U]) = value == i.value
+	@inline
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio == i.value*r.ratio
+	@inline
+	def !=(i: DoubleU[U]) = value != i.value
+	@inline
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio != i.value*r.ratio
 
 	@inline
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit/*: (U∨V)#Union*/](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new IntU[W](value*l.ratio + i.value*r.ratio)
 	@inline
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 

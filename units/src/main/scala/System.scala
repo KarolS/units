@@ -30,7 +30,7 @@ import stasiak.karol.units.internal.SingleUnits._
 object System1 {
 	sealed trait Sys1
 	/**
-	Creates a system of units of measurements consisting of 1 unit. `U1` must be a simple type.
+	Creates a system of units of measurements consisting of 1 unit. `U1` must be a simple unit type.
 	*/
 	@inline def apply[U1<:TUnitPowerPair, V1<:MUnit](implicit ev1: U1#Power =:= P1) = 
 		new System1[U1#UnitName,V1](null)
@@ -111,6 +111,9 @@ object System2 {
 		new System2[U1#UnitName,V1,U2#UnitName,V2](null)
 }
 
+/**
+Represents a system of units of measurements consisting of 2 units.
+*/
 class System2[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit
@@ -181,6 +184,9 @@ object System3 {
 		new System3[U1#UnitName,V1,U2#UnitName,V2,U3#UnitName,V3](null)
 }
 
+/**
+Represents a system of units of measurements consisting of 3 units.
+*/
 class System3[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit,
@@ -256,6 +262,9 @@ object System4 {
 		](null)
 }
 
+/**
+Represents a system of units of measurements consisting of 4 units.
+*/
 class System4[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit,
@@ -332,6 +341,9 @@ object System5 {
 		](null)
 }
 
+/**
+Represents a system of units of measurements consisting of 5 units.
+*/
 class System5[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit,
@@ -411,6 +423,9 @@ object System6 {
 
 }
 
+/**
+Represents a system of units of measurements consisting of 6 units.
+*/
 class System6[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit,
@@ -490,6 +505,9 @@ object System7 {
 		](null)
 }
 
+/**
+Represents a system of units of measurements consisting of 7 units.
+*/
 class System7[
 	U1<:TSingleUnit, V1<:MUnit,
 	U2<:TSingleUnit, V2<:MUnit,

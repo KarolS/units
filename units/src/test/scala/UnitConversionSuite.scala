@@ -25,13 +25,16 @@ import org.scalatest.FunSuite
 import defining._
 import SI._
 import USCustomary._
+import stasiak.karol.units._
+import stasiak.karol.units.internal.UnionType._
 
 class UnitConversionSuite extends FunSuite {
 
 	test("Smaller units should be implicitly converted to bigger units") {
-		// assert(2.of[inch] + 1.of[foot] === 14.of[inch])
-		// assert(2.of[ounce] + 1.of[pound] === 18.of[ounce])
-		// assert(3.of[metre×metre] + 5.of[are] === 503.of[metre×metre])
+		implicitly[(inch ∨ foot)#Union[inch]]
+		assert(2.of[inch] + 1.of[foot] === 14.of[inch])
+		assert(2.of[ounce] + 1.of[pound] === 18.of[ounce])
+		assert(3.of[metre×metre] + 5.of[are] === 503.of[metre×metre])
 	}
 
 	test("Units should be correctly implicitly converted in comparisons") {

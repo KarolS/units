@@ -77,11 +77,14 @@ object USCustomary {
 	sealed trait FahrenheitZero
 	type FahrenheitScale = DefineAffineSpace[FahrenheitZero, fahrenheit_deg]
 
-	implicit val fromCelsiusToFahrenheit = convertAffineSpace[CelsiusScale,FahrenheitScale]{ 
-		x => x * (9/5.0) + 32 
-	}
-	implicit val fromFahrenheitToCelsius = convertAffineSpace[FahrenheitScale,CelsiusScale]{ 
-		x => (x - 32) * (5/9.0)
-	}
+	implicit val implicit__fromCelsiusToFahrenheit = 
+		convertAffineSpace[CelsiusScale,FahrenheitScale]{ 
+			x => x * (9/5.0) + 32 
+		}
+		
+	implicit val implicit__fromFahrenheitToCelsius = 
+		convertAffineSpace[FahrenheitScale,CelsiusScale]{ 
+			x => (x - 32) * (5/9.0)
+		}
 
 }

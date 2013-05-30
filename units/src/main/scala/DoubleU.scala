@@ -34,7 +34,7 @@ import stasiak.karol.units.internal.UnionType._
 import scala.math
 
 /** Double-precision floating-point value representing a value with a unit of measure.*/
-class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
+case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline
 	def mkString(implicit name: UnitName[U]) = value.toString + name.toString
 	@inline
@@ -50,6 +50,11 @@ class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline def -(i: DoubleU[U]) = new DoubleU[U](value - i.value)
 	/** Negate this value. */
 	@inline def unary_- = new DoubleU[U](-value)
+
+	@inline def   *  [V<:MUnit](i: Vector2U[V]) = i*this
+	@inline def times[V<:MUnit](i: Vector2U[V]) = i*this
+	@inline def   *  [V<:MUnit](i: Vector3U[V]) = i*this
+	@inline def times[V<:MUnit](i: Vector3U[V]) = i*this
 
 	/** Multiply by a value with a unit. */
 	@inline def *[V<:MUnit](i: IntU[V]) = new DoubleU[U#Mul[V]](value * i.value)
@@ -141,6 +146,28 @@ class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	def >~[V<:MUnit](i: DoubleU[V])(implicit ev:DoubleRatio[U,V]) = value*ev.ratio > i.value
 	@inline
 	def >=~[V<:MUnit](i: DoubleU[V])(implicit ev:DoubleRatio[U,V]) = value*ev.ratio >= i.value
+
+	@inline
+	def ==(i: IntU[U]) = value == i.value
+	@inline
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio == i.value*r.ratio
+	@inline
+	def !=(i: IntU[U]) = value != i.value
+	@inline
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio != i.value*r.ratio
+	@inline
+	def ==(i: DoubleU[U]) = value == i.value
+	@inline
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio == i.value*r.ratio
+	@inline
+	def !=(i: DoubleU[U]) = value != i.value
+	@inline
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+		value*l.ratio != i.value*r.ratio
+
 
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline

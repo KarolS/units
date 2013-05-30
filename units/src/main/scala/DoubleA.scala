@@ -32,7 +32,7 @@ import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
 
 /** Double-precision floating-point value representing a point in a 1-dimensional affine space.*/
-class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
+case class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
 
 	@inline def +(i: IntU[A#Unit])    = new DoubleA[A](value + i.value)
 	@inline def -(i: IntU[A#Unit])    = new DoubleA[A](value - i.value)

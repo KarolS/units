@@ -32,7 +32,7 @@ import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
 
 /** 64-bit signed integer representing a point in a 1-dimensional affine space.*/
-class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
+case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 
 	@inline def +(i: IntU[A#Unit])    = new IntA[A](value + i.value)
 	@inline def -(i: IntU[A#Unit])    = new IntA[A](value - i.value)

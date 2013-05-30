@@ -57,8 +57,16 @@ object UnitImpl {
 			TDimensionless,
 			U^(Exp#Mul[N]),
 		MUnit]
-		type Sqrt = U^(N#Half)
-		type Cbrt = U^(N#Third)
+		type Sqrt = If[IsSquare,
+			U^(N#Half),
+			Nothing,
+		MUnit]
+		type Cbrt = If[IsCube,
+			U^(N#Third),
+			Nothing,
+		MUnit]
+		type IsSquare = N#DivisibleByTwo
+		type IsCube   = N#DivisibleByThree
 		type Substitute[S<:TSingleUnit, V<:MUnit] = If[S====UnitName,
 			V#ToPower[N],
 			U^N,
@@ -72,6 +80,8 @@ object UnitImpl {
 		type ToPower[Exp<:TInteger] = TDimensionless
 		type Sqrt = TDimensionless
 		type Cbrt = TDimensionless
+		type IsSquare = True
+		type IsCube   = True
 		type Substitute[S<:TSingleUnit, V<:MUnit] = TDimensionless
 	}
 	sealed trait **[T<:MUnit,H<:TUnitPowerPair] extends MUnit {
@@ -97,8 +107,16 @@ object UnitImpl {
 			TDimensionless,
 			(T#ToPower[Exp]) ** (H#UnitName ^ H#Power#Mul[Exp]),
 		MUnit]
-		type Sqrt = (T#Sqrt)** (H#UnitName ^ H#Power#Half)
-		type Cbrt = (T#Cbrt)** (H#UnitName ^ H#Power#Third)
+		type Sqrt = If[IsSquare,
+			(T#Sqrt) ** (H#UnitName ^ H#Power#Half),
+			Nothing,
+		MUnit]
+		type Cbrt = If[IsCube,
+			(T#Cbrt) ** (H#UnitName ^ H#Power#Third),
+			Nothing,
+		MUnit]
+		type IsSquare = H#IsSquare#And[T#IsSquare]
+		type IsCube   = H#IsCube  #And[T#IsCube]
 		type Substitute[S<:TSingleUnit, V<:MUnit] = If[S====H#UnitName,
 			T#Mul[V#ToPower[H#Power]],
 			T#Substitute[S,V]#MulSingle[H],

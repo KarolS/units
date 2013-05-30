@@ -29,6 +29,8 @@ object Integers {
 		type Pred <: TInteger
 		type Half <: TInteger
 		type Third <: TInteger
+		type DivisibleByTwo <: TBool
+		type DivisibleByThree <: TBool
 		type Negate <: TInteger
 		type Add[X<:TInteger] <: TInteger
 		type RevSub[X<:TInteger] <: TInteger
@@ -47,6 +49,8 @@ object Integers {
 		type Pred = Dec[_0]
 		type Half = _0
 		type Third = _0
+		type DivisibleByTwo  = True
+		type DivisibleByThree = True
 		type Negate = _0
 		type Add[X<:TInteger] = X
 		type RevSub[X<:TInteger] = X
@@ -58,16 +62,20 @@ object Integers {
 	sealed trait Inc[N <: TInteger] extends TInteger with PosZ {
 		type Succ = Inc[Inc[N]]
 		type Pred = N
-		type Half = N#ZeroNegPos[
+		type Half = If[DivisibleByTwo,
+			Inc[N#Pred#Half],
 			Nothing,
-			LambdaNatNothing,
-			({type L[X<:TInteger] = X#Half#Succ})#L,
 		TInteger]
-		type Third = N#ZeroNegPos[
+		type Third = If[DivisibleByThree,
+			Inc[N#Pred#Pred#Third],
 			Nothing,
-			LambdaNatNothing,
-			({type L[X<:TInteger] = X#Pred#Half#Succ})#L,
 		TInteger]
+		type DivisibleByTwo  = N#DivisibleByTwo#Not
+		type DivisibleByThree = N#ZeroNegPos[
+			False,
+			LambdaNatFalse,
+			({type L[X<:TInteger] = X#Pred#DivisibleByThree})#L,
+		TBool]
 		type Negate = Dec[N#Negate]
 		type Add[X<:TInteger] = N#Add[X#Succ]
 		type RevSub[X<:TInteger] = N#RevSub[X#Pred]
@@ -79,16 +87,20 @@ object Integers {
 	sealed trait Dec[N <: TInteger] extends TInteger with NegZ {
 		type Succ = N
 		type Pred = Dec[Dec[N]]
-		type Half = N#ZeroNegPos[
+		type Half = If[DivisibleByTwo,
+			Dec[N#Succ#Half],
 			Nothing,
-			({type L[X<:TInteger] = X#Half#Pred})#L,
-			LambdaNatNothing,
 		TInteger]
-		type Third = N#ZeroNegPos[
+		type Third = If[DivisibleByThree,
+			Dec[N#Succ#Succ#Third],
 			Nothing,
-			({type L[X<:TInteger] = X#Succ#Half#Pred})#L,
-			LambdaNatNothing,
 		TInteger]
+		type DivisibleByTwo  = N#DivisibleByTwo#Not
+		type DivisibleByThree = N#ZeroNegPos[
+			False,
+			({type L[X<:TInteger] = X#Succ#DivisibleByThree})#L,
+			LambdaNatFalse,
+		TBool]
 		type Negate = Inc[N#Negate]
 		type Add[X<:TInteger] = N#Add[X#Pred]
 		type RevSub[X<:TInteger] = N#RevSub[X#Succ]
