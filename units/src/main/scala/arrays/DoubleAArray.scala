@@ -25,11 +25,14 @@ import stasiak.karol.units._
 import scala.collection.mutable._
 
 object DoubleAArray {
+	/** Creates an array of given elements */
 	def apply[A<:AffineSpace](elems: DoubleA[A]*) = new DoubleAArray[A](elems.map{_.value}.toArray)
 
+	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: DoubleAArray[A]*) = 
 		new DoubleAArray(Array.concat(arrays.map{_.underlying}: _*))
 
+	/** Copy one array to another. */
 	def copy[A<:AffineSpace](
 		src: DoubleAArray[A], srcPos: Int, 
 		dest: DoubleAArray[A], destPos: Int, 
@@ -37,10 +40,18 @@ object DoubleAArray {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
 
+	/** Returns an array of length 0. */
 	def empty[A<:AffineSpace] = new DoubleAArray[A](Array.empty[Double])
 
+	/** Returns an array that contains the results of some element computation a number of times. */
 	def fill[A<:AffineSpace](n: Int)(elem: =>DoubleA[A]) = {
 		new DoubleAArray(Array.fill(n)(elem.value))
+	}
+
+	/** Returns an array that contains a constant element a number of times. */
+	def fillUniform[A<:AffineSpace](n: Int)(elem: DoubleA[A]) = {
+		val elemValue = elem.value
+		new DoubleAArray(Array.fill(n)(elemValue))
 	}
 	
 	def unapplySeq[A<:AffineSpace](arr: DoubleAArray[A]) = Some(arr)

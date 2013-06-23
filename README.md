@@ -23,7 +23,7 @@ The library is published under MIT License.
 
 [Build instructions.](doc/BUILD.md)
 
-Current version: 0.0.3
+Current version: 0.0.4
 ----------------------
 
 [Changelog.](CHANGELOG.md)
@@ -54,6 +54,8 @@ All of the following implementations were either inefficient or inflexible:
 * [scalau](https://github.com/adrianfr/scalau)
 
     * A source code preprocessor. Converts all units to SI. Does not support arbitrary unit expressions, for example metre to the fourth power would be an invalid unit.
+
+A quick comparison with the units of measure support in F# is [here](doc/FSHARP.md).
 
 Quick showcase
 ==============
@@ -194,8 +196,6 @@ You can also compare values with the same units:
 val area = 3.of[metre × metre]
 area > length * length2        //equals false
 ```
-
-Note: `DoubleU` does not support equality comparison.
 
 If you want to extract the raw dimensionless numeric value from the value with a unit, you can use value method:
 
@@ -383,7 +383,6 @@ Third-party library support
 ---------------------------
 
 [This section has been moved to a separate document.](doc/BINDINGS.md)
-
 
 Implementation details
 ======================

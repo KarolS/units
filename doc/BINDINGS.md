@@ -6,7 +6,7 @@ Scalaz
 
 [Scalaz project page.](https://github.com/scalaz/scalaz)
 
-Currently, only ScalaZ 7.0.x is supported.
+Currently, only Scalaz 7.0.x is supported.
 
 Artefact `units-scalaz` provides implementation of following typeclasses:
 
@@ -64,6 +64,17 @@ Currently, only Joda Time 2.1 and above is supported.
 Artefact `units-joda` provides implicit conversions from and to `Duration`, `Seconds`, `Minutes`, and `Hours` classes.
 
 Usage: `import stasiak.karol.units.jodaSupport._`
+
+Algebird
+--------
+
+[Algebird project page.](https://github.com/twitter/algebird)
+
+Currently, only Algebird 0.1.13 is supported.
+
+Artefact `units-algebird` provides implementations of `Monoid`, `Group` and `VectorSpace` for `IntU`, `DoubleU`, `Vector2U` and `Vector3U` (except for `VectorSpace` for `IntU`).
+
+Usage: `import stasiak.karol.units.algebirdSupport._`
 
 Saddle
 ------

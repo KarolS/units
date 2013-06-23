@@ -7,7 +7,7 @@ import sbt.Defaults._
 object UnitsBuild extends Build {
 	
 
-	val VERSION = "0.0.3-SNAPSHOT"
+	val VERSION = "0.0.4-SNAPSHOT"
 	
 
 	type Sett = Project.Setting[_]
@@ -18,7 +18,7 @@ object UnitsBuild extends Build {
 	    organization := "stasiak.karol",
 	    version := VERSION,
 	    scalaVersion := "2.10.0",
-	    crossScalaVersions := Seq("2.10.0", "2.10.1"),
+	    crossScalaVersions := Seq("2.10.0"),
 		pomIncludeRepository := {
 	      x => false
 	    },
@@ -47,11 +47,13 @@ object UnitsBuild extends Build {
 
 	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.3.0,0.4)" 
 	
+	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "0.1.13"
+
 	lazy val JODA_TIME = "joda-time" % "joda-time" % "[2.1,3)"
 
 	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "[1.2,2)" % "provided"
 
-	lazy val SCALATEST_TEST = "org.scalatest" %% "scalatest" % "[2.0.M5b,2.1)" % "test"
+	lazy val SCALATEST_TEST = "org.scalatest" % "scalatest_2.10" % "[2.0.M5b,2.1)" % "test"
 
 	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test" 
 
@@ -62,8 +64,8 @@ object UnitsBuild extends Build {
 		base = file("units"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units",
-			// scalacOptions += "-Xlog-implicits",
 			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
+			crossScalaVersions := Seq("2.10.0", "2.11.0-M3"),
 			// Benchmarking code based on work by Алексей Носков (https://github.com/alno/sbt-caliper)
 			benchmark <<= benchmarkTaskInit.zip(sources in Test) {
 				case (runTask, srcsTask) =>
@@ -82,7 +84,20 @@ object UnitsBuild extends Build {
 				}
 			}
 		)
-	) aggregate (scalazIntegration, spireIntegration, scalacheckIntegration, jodaTimeIntegration)
+	)
+
+	lazy val _all: Project = Project(
+		id = "units-all",
+		base = file("."),
+		settings = baseSettings
+	) aggregate(
+		__units,
+		scalazIntegration,
+		scalacheckIntegration,
+		spireIntegration,
+		jodaTimeIntegration,
+		algebirdIntegration
+	)
 
 	lazy val scalazIntegration: Project = Project(
 		id = "units-scalaz", 
@@ -120,6 +135,16 @@ object UnitsBuild extends Build {
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-joda",
 			libraryDependencies ++= Seq(JODA_TIME, JODA_CONVERT, SCALATEST_TEST)
+		),
+		dependencies = Seq(__units)
+	)
+
+	lazy val algebirdIntegration: Project = Project(
+		id = "units-algebird", 
+		base = file("units-algebird"),
+		settings = baseSettings ++ Seq[Sett](
+			name := "units-algebird",
+			libraryDependencies ++= Seq(ALGEBIRD, SCALATEST_TEST)
 		),
 		dependencies = Seq(__units)
 	)

@@ -25,11 +25,14 @@ import stasiak.karol.units._
 import scala.collection.mutable._
 
 object IntUArray {
+	/** Creates an array of given elements */
 	def apply[U<:MUnit](elems: IntU[U]*) = new IntUArray[U](elems.map{_.value}.toArray)
 
+	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: IntUArray[U]*) = 
 		new IntUArray(Array.concat(arrays.map{_.underlying}: _*))
 
+	/** Copy one array to another. */
 	def copy[U<:MUnit](
 		src: IntUArray[U], srcPos: Int, 
 		dest: IntUArray[U], destPos: Int, 
@@ -37,12 +40,20 @@ object IntUArray {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
 
+	/** Returns an array of length 0. */
 	def empty[U<:MUnit] = new IntUArray[U](Array.empty[Long])
 
+	/** Returns an array that contains the results of some element computation a number of times. */
 	def fill[U<:MUnit](n: Int)(elem: =>IntU[U]) = {
 		new IntUArray(Array.fill(n)(elem.value))
 	}
 
+	/** Returns an array that contains a constant element a number of times. */
+	def fillUniform[U<:MUnit](n: Int)(elem: IntU[U]) = {
+		val elemValue = elem.value
+		new IntUArray(Array.fill(n)(elemValue))
+	}
+	
 	def unapplySeq[U<:MUnit](arr: IntUArray[U]) = Some(arr)
 	
 	//TODO: more

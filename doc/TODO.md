@@ -9,17 +9,21 @@ For 0.1:
 
 * add more units of measure
 
-* add more [Scalaz](https://github.com/scalaz/scalaz), [Scalacheck](https://github.com/rickynils/scalacheck), [Spire](https://github.com/non/spire), [Joda Time](http://joda-time.sourceforge.net/) integration
+* add more [Scalaz](https://github.com/scalaz/scalaz), [Scalacheck](https://github.com/rickynils/scalacheck), [Spire](https://github.com/non/spire), [Joda Time](http://joda-time.sourceforge.net/), [Algebird](https://github.com/twitter/algebird) integration
 
-* add [Algebird](https://github.com/twitter/algebird) integration
+* clean up `Module` implementations for `IntU`
+
+* make `units-all` project generate no artefacts
+
+* provide full Scala 2.11 support
+
+* rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
 
 * write more tests
 
 * write more benchmarks
 
 * write more documentation
-
-* compile and test against Scala 2.10.2+ (and 2.11.x if it comes out early enough)
 
 ---
 
@@ -37,7 +41,7 @@ For 0.2 and beyond:
 
 * optionally: add runtime dynamic units
 
-* optionally: make the library for IDE-friendly
+* optionally: make the library more IDE-friendly
 
 * and finally: add more new features
 

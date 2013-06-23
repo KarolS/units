@@ -30,123 +30,8 @@ object Conversions {
 	import SingleUnits._
 	import UnitImpl._
 	import stasiak.karol.units.MUnit
+	import stasiak.karol.units.internal.ratios._
 
-	class BaseIntRatio[U<:MUnit, V<:MUnit](val ratio:Long) extends AnyVal {
-		@inline
-		def times[Y<:MUnit] = 
-			new BaseIntRatio[U#Mul[Y],V#Mul[Y]](ratio)
-		@inline
-		def dividedBy[Y<:MUnit] = 
-			new BaseIntRatio[U#Mul[Y#Invert],V#Mul[Y#Invert]](ratio)
-		@inline
-		def invert = new BaseDoubleRatio[V,U](1.0/ratio)
-		@inline
-		def pow2 = this * this
-		@inline
-		def pow3 = this * this * this
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseIntRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseDoubleRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseIntRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio.toDouble/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio.toDouble/that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseIntRatio[V,Y]) = new BaseIntRatio[U,Y](ratio*that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseDoubleRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
-	}
-	class UnitAlias[U<:MUnit, V<:MUnit](val unused: Int = 0) extends AnyVal{
-		@inline
-		def times[Y<:MUnit] = 
-			new BaseIntRatio[U#Mul[Y],V#Mul[Y]](1)
-		@inline
-		def dividedBy[Y<:MUnit] = 
-			new BaseIntRatio[U#Mul[Y#Invert],V#Mul[Y#Invert]](1)
-		@inline
-		def invert = new BaseDoubleRatio[V,U](1.0)
-		@inline
-		def pow2 = new UnitAlias[U#Mul[U],        V#Mul[V]       ]
-		@inline
-		def pow3 = new UnitAlias[U#Mul[U]#Mul[U], V#Mul[V]#Mul[V]]
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseIntRatio[U#Mul[X],V#Mul[Y]](that.ratio)
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](1.0/that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](1.0/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseDoubleRatio[Y,V]) = new BaseDoubleRatio[U,Y](1.0/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseIntRatio[Y,V]) = new BaseDoubleRatio[U,Y](1.0/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[Y,V](1.0/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[Y,V](1.0/that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseIntRatio[V,Y]) = new BaseIntRatio[U,Y](that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseDoubleRatio[V,Y]) = new BaseDoubleRatio[U,Y](that.ratio)
-	}
-	class BaseDoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal {
-		@inline
-		def times[Y<:MUnit] = 
-			new BaseDoubleRatio[U#Mul[Y],V#Mul[Y]](ratio)
-		@inline
-		def dividedBy[Y<:MUnit] = 
-			new BaseDoubleRatio[U#Mul[Y#Invert],V#Mul[Y#Invert]](ratio)
-		@inline
-		def invert = new BaseDoubleRatio[V,U](1.0/ratio)
-		@inline
-		def pow2 = this * this
-		@inline
-		def pow3 = this * this * this
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
-		@inline
-		def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
-		@inline
-		def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
-			new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseDoubleRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
-		@inline
-		def ><[Y<:MUnit](that: BaseIntRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio/that.ratio)
-		@inline
-		def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio.toDouble/that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseDoubleRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
-		@inline
-		def >>[Y<:MUnit](that: BaseIntRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
-	}
-	class DoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal
-	class IntRatio[U<:MUnit, V<:MUnit](val ratio: Long) extends AnyVal
 
 	@inline
 	def productInt[F1<:MUnit,F2<:MUnit,T1<:MUnit,T2<:MUnit](
@@ -178,12 +63,5 @@ object Conversions {
 		@inline
 		def contains(ratio: Float)  = new OneContainsOfDoubleBuilder[U](ratio)
 	}
-
-	class PowerIntRatio[U<:TSingleUnit, Power<:TInteger, V<:MUnit, N<:TInteger](val ratio:Long) extends AnyVal
-	class PowerDoubleRatio[U<:TSingleUnit, Power<:TInteger, V<:MUnit, N<:TInteger](val ratio: Double) extends AnyVal
-
-	class LeftIntRatio[U<:MUnit, V<:MUnit, W<:MUnit](val ratio: Long) extends AnyVal
-	class RightIntRatio[U<:MUnit, V<:MUnit, W<:MUnit](val ratio: Long) extends AnyVal
-
 
 }

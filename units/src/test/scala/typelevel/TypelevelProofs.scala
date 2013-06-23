@@ -34,7 +34,6 @@ import stasiak.karol.units.USCustomary._
 // This trait has only to compile
 sealed trait TypelevelProofs{
 
-	implicitly[True =:= False#Not]
 
 	implicitly[P4 =:= N2#Mul[N2]]
 

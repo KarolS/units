@@ -10,13 +10,13 @@
 dist/*
 target/
 units/target/
+units-algebird/target/
+units-joda/target/
+units-scalacheck/target/
 units-scalaz/target/
 units-spire/target/
-units-scalacheck/target/
-units-joda/target/
 
 # not supported yet
-units-algebird/
 units-breeze/
 units-saddle/
 units-shapeless/
@@ -30,3 +30,11 @@ project/plugins/project/
 
 # Scala-IDE specific
 .scala_dependencies
+
+#not translated yet
+doc-de/
+doc-fr/
+doc-ja/
+doc-nl/
+doc-pl/
+doc-ru/

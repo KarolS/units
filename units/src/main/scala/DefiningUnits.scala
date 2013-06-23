@@ -24,6 +24,7 @@ package stasiak.karol.units
 package object defining {
 	import language.higherKinds
 	import language.implicitConversions
+	import stasiak.karol.units.internal.ratios._
 	import stasiak.karol.units.internal.UnitImpl._
 	import stasiak.karol.units.internal.Strings
 	import stasiak.karol.units.internal.Strings._
@@ -62,6 +63,7 @@ package object defining {
 	
 	@inline def alias[F<:MUnit, T<:MUnit] = new UnitAlias[F,T]
 
+	/** commercial at sign (@) */
 	type _at = AChar[TZ5_0, TZ5_0, TZ5_0]
 
 	type _A = AChar[TZ5_0, TZ5_0, TZ5_1]
@@ -118,22 +120,35 @@ package object defining {
 	type _y = AChar[TZ5_2, TZ5_0, TZ5_2]
 	type _z = AChar[TZ5_2, TZ5_0, TZ5_3]
 
+	/** angström sign (Å) */
 	type _AA = AChar[TZ5_2, TZ5_0, TZ5_4]
 
+	/** micro sign (µ) */
 	type _mu = AChar[TZ5_2, TZ5_1, TZ5_0]
+	/** ohm sign (Ω) */
 	type _OMEGA = AChar[TZ5_2, TZ5_1, TZ5_1]
 
+	/** pound sign (£) */
 	type _POUND = AChar[TZ5_2, TZ5_2, TZ5_0]
+	/** yen sign (¥) */
 	type _YEN = AChar[TZ5_2, TZ5_2, TZ5_1]
+	/** dollar sign ($) */
 	type _DOLLAR = AChar[TZ5_2, TZ5_2, TZ5_2]
+	/** euro sign (€) */
 	type _EURO = AChar[TZ5_2, TZ5_2, TZ5_3]
+	/** lowercase L with stroke (ł) */
 	type _l_ = AChar[TZ5_2, TZ5_2, TZ5_4]
 
+	/** degree sign (°) */
 	type _deg = AChar[TZ5_2, TZ5_3, TZ5_0]
+	/** angular minute sign (’) */
 	type _min = AChar[TZ5_2, TZ5_3, TZ5_1]
+	/** angular second sign (̈́”) */
 	type _sec = AChar[TZ5_2, TZ5_3, TZ5_2]
 
+	/** percent sign (%) */
 	type _percent = AChar[TZ5_2, TZ5_4, TZ5_0]
+	/** permille sign (‰) */
 	type _permille = AChar[TZ5_2, TZ5_4, TZ5_1]
 
 }

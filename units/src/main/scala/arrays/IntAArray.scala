@@ -25,11 +25,14 @@ import stasiak.karol.units._
 import scala.collection.mutable._
 
 object IntAArray {
+	/** Creates an array of given elements */
 	def apply[A<:AffineSpace](elems: IntA[A]*) = new IntAArray[A](elems.map{_.value}.toArray)
 
+	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: IntAArray[A]*) = 
 		new IntAArray(Array.concat(arrays.map{_.underlying}: _*))
 
+	/** Copy one array to another. */
 	def copy[A<:AffineSpace](
 		src: IntAArray[A], srcPos: Int, 
 		dest: IntAArray[A], destPos: Int, 
@@ -37,12 +40,20 @@ object IntAArray {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
 
+	/** Returns an array of length 0. */
 	def empty[A<:AffineSpace] = new IntAArray[A](Array.empty[Long])
 
+	/** Returns an array that contains the results of some element computation a number of times. */
 	def fill[A<:AffineSpace](n: Int)(elem: =>IntA[A]) = {
 		new IntAArray(Array.fill(n)(elem.value))
 	}
 	
+	/** Returns an array that contains a constant element a number of times. */
+	def fillUniform[A<:AffineSpace](n: Int)(elem: IntA[A]) = {
+		val elemValue = elem.value
+		new IntAArray(Array.fill(n)(elemValue))
+	}
+
 	def unapplySeq[A<:AffineSpace](arr: IntAArray[A]) = Some(arr)
 
 	//TODO: more

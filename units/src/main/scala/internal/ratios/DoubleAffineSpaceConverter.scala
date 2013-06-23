@@ -19,36 +19,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.constants
-
+package stasiak.karol.units.internal.ratios
+import stasiak.karol.units.internal._
+import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units._
-import stasiak.karol.units.SI._
-import stasiak.karol.units.SI.Short._
+import stasiak.karol.units.internal.UnitImpl
+import stasiak.karol.units.internal.UnitImpl._
+import stasiak.karol.units.internal.Strings._
+import stasiak.karol.units.internal.Conversions
+import stasiak.karol.units.internal.Conversions._
+import stasiak.karol.units.internal.SingleUnits._
+import stasiak.karol.units.internal.Integers._
+import stasiak.karol.units.internal.AffineSpaces
+import stasiak.karol.units.internal.AffineSpaces._
+import scala.annotation.implicitNotFound
 
-object Physical {
+class DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace](val f: Double => Double)
 
-	val speedOfLight = 299792458L.of[m/s]
-	val gravitation = 6.6738480e-11.of[cube[m]/(kg × square[s])]
-	val planckConstant = 6.6260695729e-34.of[J×s]
-	val reducedPlanckConstant = 1.05457172647e-34.of[J×s]
-	val elementaryCharge = 1.60217656535e-19.of[C]
-	val magneticConstant = 1.256637061e-6.of[N/square[A]]
-	val electricConstant = 8.854187817e-12.of[F/m]
-	val electronMass = 9.1093829140e-31.of[kg]
-	val protonMass = 1.67262177774e-27.of[kg]
-	val avogadrosNumber = 6.0221412927e23.of[_1/mol]
-
-	object Short {
-		val c = speedOfLight
-		val G = gravitation
-		val h = planckConstant
-		val ħ = reducedPlanckConstant
-		val e = elementaryCharge
-		val µ0 = magneticConstant
-		val ε0 = electricConstant
-		val m_e = electronMass
-		val m_p = protonMass
-		val N_A = avogadrosNumber
-	}
-
+object DoubleAffineSpaceConverter {
+	
 }

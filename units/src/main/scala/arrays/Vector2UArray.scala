@@ -25,6 +25,7 @@ import stasiak.karol.units._
 import scala.collection.mutable._
 
 object Vector2UArray {
+	/** Creates an array of given elements */
 	def apply[U<:MUnit](elems: Vector2U[U]*) = {
 		val u = new Array[Double](elems.length * 2)
 		(0 until elems.length).foreach{ i =>
@@ -34,10 +35,12 @@ object Vector2UArray {
 		new Vector2UArray[U](u)
 	}
 
+	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: Vector2UArray[U]*) = 
 		new Vector2UArray(
 			Array.concat(arrays.map{_.underlying}: _*))
 
+	/** Copy one array to another. */
 	def copy[U<:MUnit](
 		src: Vector2UArray[U], srcPos: Int, 
 		dest: Vector2UArray[U], destPos: Int, 
@@ -45,8 +48,10 @@ object Vector2UArray {
 		Array.copy(src.underlying, srcPos*2, dest.underlying, destPos*2, length*2)
 	}
 
+	/** Returns an array of length 0. */
 	def empty[U<:MUnit] = new Vector2UArray[U](Array.empty[Double])
 
+	/** Returns an array that contains the results of some element computation a number of times. */
 	def fill[U<:MUnit](n: Int)(elem: =>Vector2U[U]) = {
 		val u = new Array[Double](n * 2)
 		(0 until n).foreach{ i =>
@@ -55,6 +60,19 @@ object Vector2UArray {
 			u(i*2+1) = e.y.value
 		}
 		new Vector2UArray(u)
+	}
+
+	/** Returns an array that contains a constant element a number of times. */
+	def fillUniform[U<:MUnit](n: Int)(elem: Vector2U[U]) = {
+		val x = elem.x.value
+		val y = elem.y.value
+		val u = new Array[Double](n*2)
+		var i = 0
+		(0 until n).foreach{ i =>
+			u(i*2)     = x
+			u(i*2 + 1) = y
+		}
+		new DoubleUArray(u)
 	}
 	
 	def unapplySeq[U<:MUnit](arr: Vector2UArray[U]) = Some(arr)
@@ -65,7 +83,6 @@ object Vector2UArray {
 }
 class Vector2UArrayBuilder[U<:MUnit] extends Builder[Vector2U[U], Vector2UArray[U]] {
 	val underlying = new ArrayBuilder.ofDouble
-	val underlyingY = new ArrayBuilder.ofDouble
 
 	def +=(elem: Vector2U[U]) = {
 		underlying += elem.x.value
@@ -99,5 +116,22 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		underlying(index*2) = elem.x.value
 		underlying(index*2+1) = elem.y.value
 	}
+
+	def unzip = (xs, ys)
 	
+	def xs = {
+		val array = new Array[Double](length)
+		(0 until length) foreach { i =>
+			array(i) = underlying(i*2)
+		}
+		new DoubleUArray[U](array)
+	}
+	
+	def ys = {
+		val array = new Array[Double](length)
+		(0 until length) foreach { i =>
+			array(i) = underlying(i*2 + 1)
+		}
+		new DoubleUArray[U](array)
+	}
 }

@@ -24,6 +24,7 @@ package stasiak.karol.units
 import language.higherKinds
 import language.implicitConversions
 import language.existentials
+import stasiak.karol.units.internal.ratios._
 import stasiak.karol.units.internal.Bools._
 import stasiak.karol.units.internal.Integers._
 import stasiak.karol.units.internal.Strings._
@@ -31,6 +32,7 @@ import stasiak.karol.units.internal.SingleUnits._
 import stasiak.karol.units.internal.UnitImpl._
 import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.UnionType._
+import stasiak.karol.units.internal.UnitName
 import scala.math
 
 /** Double-precision floating-point value representing a value with a unit of measure.*/

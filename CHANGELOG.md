@@ -1,6 +1,21 @@
 units - CHANGELOG
 =================
 
+version 0.0.4
+-------------
+
+* General: Added few more array methods.
+
+* General: Added a kind of support 2.11.0-M3. Currently, unit tests don't work on Scala 2.11, but benchmarks do.
+
+* General: Reorganised internal classes.
+
+* Constants: Added 5 new physical constants.
+
+* Algebird integration: Added various typeclass instances for DoubleU, IntU, Vector2U and Vector3U
+
+* Testing: Added more type arithmetic tests.
+
 version 0.0.3
 -------------
 

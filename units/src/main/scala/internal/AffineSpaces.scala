@@ -22,15 +22,8 @@ SOFTWARE.
 package stasiak.karol.units.internal
 
 object AffineSpaces {
-	import language.higherKinds
-	import language.implicitConversions
-	import Bools._
-	import Integers._
-	import Strings._
-	import SingleUnits._
 	import UnitImpl._
 	import stasiak.karol.units._
-	import Conversions._
 	
 	trait DefineAffineSpace[Z, U<:MUnit] extends AffineSpace{
 		/** Arbitrary marker type identifying the zero point on the scale.*/
@@ -38,8 +31,5 @@ object AffineSpaces {
 		/** Unit of measurement used in this affine space. */
 		type Unit = U
 	}
-
-	class DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace](val f: Double => Double)
-	class IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace](val f: Long => Long)
 
 }

@@ -25,6 +25,7 @@ import stasiak.karol.units._
 import scala.collection.mutable._
 
 object Vector3UArray {
+	/** Creates an array of given elements */
 	def apply[U<:MUnit](elems: Vector3U[U]*) = {
 		val u = new Array[Double](elems.length * 3)
 		(0 until elems.length).foreach{ i =>
@@ -35,9 +36,11 @@ object Vector3UArray {
 		new Vector3UArray[U](u)
 	}
 
+	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: Vector3UArray[U]*) = 
 		new Vector3UArray(Array.concat(arrays.map{_.underlying}: _*))
 
+	/** Copy one array to another. */
 	def copy[U<:MUnit](
 		src: Vector3UArray[U], srcPos: Int, 
 		dest: Vector3UArray[U], destPos: Int, 
@@ -45,8 +48,10 @@ object Vector3UArray {
 		Array.copy(src.underlying, srcPos*3, dest.underlying, destPos*3, length*3)
 	}
 
+	/** Returns an array of length 0. */
 	def empty[U<:MUnit] = new Vector3UArray[U](Array.empty[Double])
 
+	/** Returns an array that contains the results of some element computation a number of times. */
 	def fill[U<:MUnit](n: Int)(elem: =>Vector3U[U]) = {
 		val u = new Array[Double](n * 3)
 		(0 until n).foreach{ i =>
@@ -56,6 +61,21 @@ object Vector3UArray {
 			u(i*3+2) = e.z.value
 		}
 		new Vector3UArray(u)
+	}
+
+	/** Returns an array that contains a constant element a number of times. */
+	def fillUniform[U<:MUnit](n: Int)(elem: Vector3U[U]) = {
+		val x = elem.x.value
+		val y = elem.y.value
+		val z = elem.z.value
+		val u = new Array[Double](n*3)
+		var i = 0
+		(0 until n).foreach{ i =>
+			u(i*3)     = x
+			u(i*3 + 1) = y
+			u(i*3 + 2) = z
+		}
+		new DoubleUArray(u)
 	}
 	
 	def unapplySeq[U<:MUnit](arr: Vector3UArray[U]) = Some(arr)
@@ -105,4 +125,29 @@ final class Vector3UArray[U<:MUnit] private[arrays] (
 		underlying(index*3+2) = elem.z.value
 	}
 	
+	def unzip = (xs, ys, zs)
+	
+	def xs = {
+		val array = new Array[Double](length)
+		(0 until length) foreach { i =>
+			array(i) = underlying(i*3)
+		}
+		new DoubleUArray[U](array)
+	}
+	
+	def ys = {
+		val array = new Array[Double](length)
+		(0 until length) foreach { i =>
+			array(i) = underlying(i*3 + 1)
+		}
+		new DoubleUArray[U](array)
+	}
+	
+	def zs = {
+		val array = new Array[Double](length)
+		(0 until length) foreach { i =>
+			array(i) = underlying(i*3 + 2)
+		}
+		new DoubleUArray[U](array)
+	}
 }

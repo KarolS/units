@@ -24,6 +24,7 @@ package stasiak.karol.units
 import language.higherKinds
 import language.implicitConversions
 import language.existentials
+import stasiak.karol.units.internal.ratios._
 import stasiak.karol.units.internal.Bools._
 import stasiak.karol.units.internal.Integers._
 import stasiak.karol.units.internal.Strings._
@@ -31,6 +32,7 @@ import stasiak.karol.units.internal.SingleUnits._
 import stasiak.karol.units.internal.UnitImpl._
 import stasiak.karol.units.internal.UnionType._
 import stasiak.karol.units.internal.Conversions._
+import stasiak.karol.units.internal.UnitName
 import scala.math
 
 /** 64-bit signed integer representing a value with a unit of measure.*/
@@ -193,9 +195,14 @@ case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
 
+	/** Square. */
 	@inline def pow2 = this*this
+	/** Cube. */
 	@inline def pow3 = this*this*this
+	/** Fourth power. */
 	@inline def pow4 = this*this*this*this
+	/** Square root. */
 	@inline def sqrt = new DoubleU[U#Sqrt](math.sqrt(value.toDouble))
+	/** Cube root. */
 	@inline def cbrt = new DoubleU[U#Cbrt](math.cbrt(value.toDouble))
 }

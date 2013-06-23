@@ -23,6 +23,7 @@ package stasiak.karol.units
 
 import language.higherKinds
 import language.implicitConversions
+import stasiak.karol.units.internal.ratios._
 import stasiak.karol.units.internal.Bools._
 import stasiak.karol.units.internal.Integers._
 import stasiak.karol.units.internal.Strings._
@@ -30,6 +31,7 @@ import stasiak.karol.units.internal.SingleUnits._
 import stasiak.karol.units.internal.UnitImpl._
 import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
+import stasiak.karol.units.internal.UnitName
 
 /** 64-bit signed integer representing a point in a 1-dimensional affine space.*/
 case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{

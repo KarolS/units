@@ -123,5 +123,4 @@ object UnitImpl {
 		MUnit]
 	}
 	
- 	class UnitName[U<:MUnit](override val toString:String) extends AnyVal	
 }
