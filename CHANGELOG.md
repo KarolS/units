@@ -1,6 +1,15 @@
 units - CHANGELOG
 =================
 
+version 0.0.5
+-------------
+
+* Units: Added 34 new currencies.
+
+* FIXED: Errors in Scaladoc for vectors
+
+* FIXED: Vector2U.apply
+
 version 0.0.4
 -------------
 

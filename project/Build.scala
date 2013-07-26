@@ -7,7 +7,7 @@ import sbt.Defaults._
 object UnitsBuild extends Build {
 	
 
-	val VERSION = "0.0.4-SNAPSHOT"
+	val VERSION = "0.0.5-SNAPSHOT"
 	
 
 	type Sett = Project.Setting[_]
