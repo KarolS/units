@@ -331,8 +331,8 @@ AffineSpace is defined as a pair containing a zero point and a unit.
 
 
 ``` scala
-import stasiak.karol.units.Units._
-import stasiak.karol.units.DefiningUnits._
+import stasiak.karol.units._
+import stasiak.karol.units.defining._
 
 type celsius_deg = DefineUnit[_deg~:_C]
 sealed trait CelsiusZero
