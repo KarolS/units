@@ -36,12 +36,16 @@ import stasiak.karol.units.internal.UnitName
 import scala.math
 
 object Vector2U {
+	/** Zero vector */
 	def zero[U<:MUnit] = Vector2U(0.0.of[U], 0.0.of[U])
+	/** (1,0) vector */
 	def x[U<:MUnit]    = Vector2U(1.0.of[U], 0.0.of[U])
+	/** (0,1) vector */
 	def y[U<:MUnit]    = Vector2U(0.0.of[U], 1.0.of[U])
-	def of[U<:MUnit](x: Double, y: Double, z: Double) = Vector3U(x.of[U], y.of[U], z.of[U])
+	def of[U<:MUnit](x: Double, y: Double) = Vector2U(x.of[U], y.of[U])
 }
 
+/** A two-dimensional vector with a unit */
 case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 	@inline
 	def mkString(implicit name: UnitName[U]) = toString + name.toString
@@ -90,13 +94,13 @@ case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 	@inline def /[V<:MUnit](i: IntU[V]) = new Vector2U[U#Mul[V#Invert]](x/i, y/i)
 	/** Divide by a value with a unit. */
 	@inline def /[V<:MUnit](i: DoubleU[V]) = new Vector2U[U#Mul[V#Invert]](x/i, y/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Int) = new Vector2U[U](x/i, y/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Short) = new Vector2U[U](x/i, y/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Byte) = new Vector2U[U](x/i, y/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Float) = new Vector2U[U](x/i, y/i)
 	
 	/** Divide by a dimensionless value. */
@@ -133,11 +137,16 @@ case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 		Vector2U[W](x-i.x, y-i.y)
 
 
+	/** Square of length of this vector */
 	@inline def absSq = x*x + y*y
+	/** Euclidean length of this vector */
 	@inline def abs = new DoubleU[U](math.sqrt(x.value*x.value + y.value*y.value))
+	/** Euclidean length of this vector */
 	@inline def length = abs
+	/** Square of length of this vector */
 	@inline def lengthSq = absSq
 
+	/** A vector with the same direction and length 1 */
 	@inline def unit = {
 		val l = length.value
 		Vector2U[_1](x.value/l, y.value/l)

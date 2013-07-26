@@ -36,13 +36,18 @@ import stasiak.karol.units.internal.UnitName
 import scala.math
 
 object Vector3U {
+	/** Zero vector */
 	def zero[U<:MUnit] = Vector3U(0.0.of[U], 0.0.of[U], 0.0.of[U])
+	/** (1,0,0) vector */
 	def x[U<:MUnit]    = Vector3U(1.0.of[U], 0.0.of[U], 0.0.of[U])
+	/** (0,1,0) vector */
 	def y[U<:MUnit]    = Vector3U(0.0.of[U], 1.0.of[U], 0.0.of[U])
+	/** (0,0,1) vector */
 	def z[U<:MUnit]    = Vector3U(0.0.of[U], 0.0.of[U], 1.0.of[U])
 	def of[U<:MUnit](x: Double, y: Double, z: Double) = Vector3U(x.of[U], y.of[U], z.of[U])
 }
 
+/** A three-dimensional vector with a unit */
 case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[U]) {
 	@inline
 	def mkString(implicit name: UnitName[U]) = toString + name.toString
@@ -91,13 +96,13 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 	@inline def /[V<:MUnit](i: IntU[V]) = new Vector3U[U#Mul[V#Invert]](x/i, y/i, z/i)
 	/** Divide by a value with a unit. */
 	@inline def /[V<:MUnit](i: DoubleU[V]) = new Vector3U[U#Mul[V#Invert]](x/i, y/i, z/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Int) = new Vector3U[U](x/i, y/i, z/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Short) = new Vector3U[U](x/i, y/i, z/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Byte) = new Vector3U[U](x/i, y/i, z/i)
-	/** Multiply by a dimensionless value. */
+	/** Divide by a dimensionless value. */
 	@inline def /(i: Float) = new Vector3U[U](x/i, y/i, z/i)
 	
 	/** Divide by a dimensionless value. */
@@ -134,9 +139,13 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 		Vector3U[W](x-i.x, y-i.y, z-i.z)
 
 
+	/** Square of length of this vector */
 	@inline def absSq: DoubleU[U#Mul[U]] = x*x + y*y + z*z
+	/** Euclidean length of this vector */
 	@inline def abs = new DoubleU[U](math.sqrt(x.value*x.value + y.value*y.value + z.value*z.value))
+	/** Euclidean length of this vector */
 	@inline def length = abs
+	/** Square of length of this vector */
 	@inline def lengthSq = absSq
 
 	/** Cross product */
@@ -147,6 +156,7 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 		(z.value*i.x.value - x.value*i.z.value).of[U],
 		(x.value*i.y.value - y.value*i.x.value).of[U])
 
+	/** A vector with the same direction and length 1 */
 	@inline def unit: Vector3U[TDimensionless] = {
 		val l = length.value
 		Vector3U[_1](x.value/l, y.value/l, z.value/l)
