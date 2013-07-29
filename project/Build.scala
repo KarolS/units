@@ -65,7 +65,6 @@ object UnitsBuild extends Build {
 		settings = baseSettings ++ Seq[Sett](
 			name := "units",
 			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
-			crossScalaVersions := Seq("2.10.0", "2.11.0-M3"),
 			// Benchmarking code based on work by Алексей Носков (https://github.com/alno/sbt-caliper)
 			benchmark <<= benchmarkTaskInit.zip(sources in Test) {
 				case (runTask, srcsTask) =>
@@ -84,19 +83,39 @@ object UnitsBuild extends Build {
 				}
 			}
 		)
-	)
-
-	lazy val _all: Project = Project(
-		id = "units-all",
-		base = file("."),
-		settings = baseSettings
 	) aggregate(
-		__units,
 		scalazIntegration,
 		scalacheckIntegration,
 		spireIntegration,
 		jodaTimeIntegration,
 		algebirdIntegration
+	)
+
+	lazy val __units11: Project = Project(
+		id  = "units-211",
+		base = file("units"),
+		settings = baseSettings ++ Seq[Sett](
+			name := "units-211",
+			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
+			crossScalaVersions := Seq("2.11.0-M3"),
+			// Benchmarking code based on work by Алексей Носков (https://github.com/alno/sbt-caliper)
+			benchmark <<= benchmarkTaskInit.zip(sources in Test) {
+				case (runTask, srcsTask) =>
+					(runTask :^: srcsTask :^: KNil) map {
+						case run :+: srcs :+: HNil =>
+							run { srcs map { _.base } filter { _.endsWith("Benchmark") } }
+				}
+			},
+			benchmarkOnly <<= sbt.inputTask { (argTask: TaskKey[Seq[String]]) =>
+				benchmarkTaskInit.zip(argTask) {
+				case (runTask, argTask) =>
+					(runTask :^: argTask :^: KNil) map {
+						case run :+: args :+: HNil =>
+							run { args }
+					}
+				}
+			}
+		)
 	)
 
 	lazy val scalazIntegration: Project = Project(

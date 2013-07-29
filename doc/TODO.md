@@ -13,8 +13,6 @@ For 0.1:
 
 * clean up `Module` implementations for `IntU`
 
-* make `units-all` project generate no artefacts
-
 * provide full Scala 2.11 support
 
 * rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
@@ -36,6 +34,8 @@ For 0.2 and beyond:
 * optimize compilation times
 
 * test Proguard compatibility
+
+* add `java.time` integration (JDK 8)
 
 * optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless), [Slick](https://github.com/slick/slick) and [Squeryl](https://github.com/max-l/Squeryl) integration
 
