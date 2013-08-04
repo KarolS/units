@@ -175,7 +175,7 @@ case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline
 	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
-	/** Subract a value with a different unit, coercing to the smaller of them. */
+	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
@@ -183,7 +183,7 @@ case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline
 	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
-	/** Subract a value with a different unit, coercing to the smaller of them. */
+	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
