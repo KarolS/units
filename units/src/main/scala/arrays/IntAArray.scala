@@ -30,7 +30,7 @@ object IntAArray {
 
 	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: IntAArray[A]*) = 
-		new IntAArray(Array.concat(arrays.map{_.underlying}: _*))
+		new IntAArray[A](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[A<:AffineSpace](
