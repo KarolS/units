@@ -36,21 +36,5 @@ class ArraySuite extends FunSuite {
 		assert(a == 1.of[metre])
 		assert(b == 3.of[metre])
 	}
-
-	test("Units should be correctly implicitly converted in comparisons") {
-		assert(2.of[inch] >~ 5.of[centimetre])
-		assert(3.of[foot] <~ 1.of[metre])
-	}
-
-	test("Units should be correctly explicitly converted in other powers") {
-		assert(144.of[square[inch]].convert[square[foot]] == 1.0.of[square[foot]])
-		assert(1728.of[cube[inch]].convert[cube[foot]] == 1.0.of[cube[foot]])
-
-		assert(1.of[square[foot]].convert[square[inch]] == 144.0.of[square[inch]])
-		assert(1.of[cube[foot]].convert[cube[inch]] == 1728.0.of[cube[inch]])
-		
-		assert(1.of[square[foot]].convertToInt[square[inch]] == 144.of[square[inch]])
-		assert(1.of[cube[foot]].convertToInt[cube[inch]] == 1728.of[cube[inch]])
-	}
 	
 }
