@@ -72,7 +72,7 @@ object Vector2UArray {
 			u(i*2)     = x
 			u(i*2 + 1) = y
 		}
-		new DoubleUArray(u)
+		new Vector2UArray(u)
 	}
 	
 	def unapplySeq[U<:MUnit](arr: Vector2UArray[U]) = Some(arr)

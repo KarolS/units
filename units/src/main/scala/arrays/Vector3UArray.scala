@@ -75,7 +75,7 @@ object Vector3UArray {
 			u(i*3 + 1) = y
 			u(i*3 + 2) = z
 		}
-		new DoubleUArray(u)
+		new Vector3UArray(u)
 	}
 	
 	def unapplySeq[U<:MUnit](arr: Vector3UArray[U]) = Some(arr)
