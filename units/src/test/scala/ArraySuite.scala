@@ -30,27 +30,79 @@ import arrays._
 
 class ArraySuite extends FunSuite {
 	
-	test("Arrays should decompose") {
+	test("IntU arrays should decompose") {
 		val arr = IntUArray[metre](1.of, 3.of)
 		val IntUArray(a,b) = arr
 		assert(a == 1.of[metre])
 		assert(b == 3.of[metre])
 	}
 
-	test("Units should be correctly implicitly converted in comparisons") {
-		assert(2.of[inch] >~ 5.of[centimetre])
-		assert(3.of[foot] <~ 1.of[metre])
+	test("IntU arrays should be concatenated correctly") {
+		val arr1 = IntUArray[metre]( 0.of, 10.of)
+		val arr2 = IntUArray[metre](20.of, 30.of)
+		val arr = IntUArray.concat(arr1, arr2)
+		assert(arr(0) ==  0.of[metre])
+		assert(arr(1) == 10.of[metre])
+		assert(arr(2) == 20.of[metre])
+		assert(arr(3) == 30.of[metre])
 	}
 
-	test("Units should be correctly explicitly converted in other powers") {
-		assert(144.of[square[inch]].convert[square[foot]] == 1.0.of[square[foot]])
-		assert(1728.of[cube[inch]].convert[cube[foot]] == 1.0.of[cube[foot]])
-
-		assert(1.of[square[foot]].convert[square[inch]] == 144.0.of[square[inch]])
-		assert(1.of[cube[foot]].convert[cube[inch]] == 1728.0.of[cube[inch]])
-		
-		assert(1.of[square[foot]].convertToInt[square[inch]] == 144.of[square[inch]])
-		assert(1.of[cube[foot]].convertToInt[cube[inch]] == 1728.of[cube[inch]])
+	test("Empty IntU arrays should work") {
+		val arr = IntUArray.empty[metre]
+		assert(arr.length == 0)
 	}
 	
+	test("Uniform IntU arrays should work") {
+		val arr = IntUArray.fillUniform[metre](3)(9.of)
+		assert(arr.length == 3)
+		assert(arr(0) == 9.of[metre])
+		assert(arr(1) == 9.of[metre])
+		assert(arr(2) == 9.of[metre])
+	}
+	
+	test("IntU arrays should update correctly") {
+		val arr = new IntUArray[metre](2)
+		arr(0) = 775.of[metre]
+		arr(1) = 776.of[metre]
+		assert(arr(0) == 775.of[metre])
+		assert(arr(1) == 776.of[metre])
+	}
+	
+	test("DoubleU arrays should decompose") {
+		val arr = DoubleUArray[metre](1.0.of, 3.0.of)
+		val DoubleUArray(a,b) = arr
+		assert(a == 1.0.of[metre])
+		assert(b == 3.0.of[metre])
+	}
+
+	test("DoubleU arrays should be concatenated correctly") {
+		val arr1 = DoubleUArray[metre]( 0.0.of, 10.0.of)
+		val arr2 = DoubleUArray[metre](20.0.of, 30.0.of)
+		val arr = DoubleUArray.concat(arr1, arr2)
+		assert(arr(0) ==  0.0.of[metre])
+		assert(arr(1) == 10.0.of[metre])
+		assert(arr(2) == 20.0.of[metre])
+		assert(arr(3) == 30.0.of[metre])
+	}
+
+	test("Empty DoubleU arrays should work") {
+		val arr = DoubleUArray.empty[metre]
+	}
+	
+	test("Uniform DoubleU arrays should work") {
+		val arr = DoubleUArray.fillUniform[metre](3)(9.0.of)
+		assert(arr.length == 3)
+		assert(arr(0) == 9.0.of[metre])
+		assert(arr(1) == 9.0.of[metre])
+		assert(arr(2) == 9.0.of[metre])
+	}
+	
+	test("DoubleU arrays should update correctly") {
+		val arr = new DoubleUArray[metre](2)
+		arr(0) = 775.of[metre]
+		arr(1) = 776.of[metre]
+		assert(arr(0) == 775.of[metre])
+		assert(arr(1) == 776.of[metre])
+	}
+
 }

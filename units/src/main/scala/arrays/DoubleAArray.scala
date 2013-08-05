@@ -30,7 +30,7 @@ object DoubleAArray {
 
 	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: DoubleAArray[A]*) = 
-		new DoubleAArray(Array.concat(arrays.map{_.underlying}: _*))
+		new DoubleAArray[A](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[A<:AffineSpace](

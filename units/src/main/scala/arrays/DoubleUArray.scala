@@ -30,7 +30,7 @@ object DoubleUArray {
 
 	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: DoubleUArray[U]*) = 
-		new DoubleUArray(Array.concat(arrays.map{_.underlying}: _*))
+		new DoubleUArray[U](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[U<:MUnit](
