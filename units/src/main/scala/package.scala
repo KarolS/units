@@ -151,6 +151,8 @@ package object units {
 	class Vector3UBuilder(x: Double, y: Double, z: Double) {
 		@inline
 		def of[U<:MUnit] = Vector3U[U](x.of, y.of, z.of)
+		@inline
+		def at[A<:AffineSpace] = Vector3A[A](x.at, y.at, z.at)
 	}
 	@inline
 	implicit def implicit_tupleII2Vector2UBuilder(value: (Int, Int)) =
@@ -165,6 +167,8 @@ package object units {
 	class Vector2UBuilder(x: Double, y: Double) {
 		@inline
 		def of[U<:MUnit] = Vector2U[U](x.of, y.of)
+		@inline
+		def at[A<:AffineSpace] = Vector2A[A](x.at, y.at)
 	}
 	@inline
 	implicit def implicit_int2IntUBuilder(value: Int) = new IntUBuilder(value.toLong)
