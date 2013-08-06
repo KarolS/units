@@ -55,10 +55,13 @@ case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	/** Negate this value. */
 	@inline def unary_- = new IntU[U](-value)
 	
-	
+	/** Multiply by a vector. */
 	@inline def   *  [V<:MUnit](i: Vector3U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def times[V<:MUnit](i: Vector3U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def   *  [V<:MUnit](i: Vector2U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def times[V<:MUnit](i: Vector2U[V]) = i*this
 	
 	/** Multiply by a value with a unit. */
@@ -182,15 +185,19 @@ case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		value*l.ratio != i.value*r.ratio
 
+	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
 	def +[V<:MUnit, W<:MUnit/*: (U∨V)#Union*/](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new IntU[W](value*l.ratio + i.value*r.ratio)
+	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new IntU[W](value*l.ratio - i.value*r.ratio)
 	@inline
+	/** Add a value with a different unit, coercing to the smaller of them. */
 	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
+	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
 	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)

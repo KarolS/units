@@ -53,6 +53,8 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 	def mkString(implicit name: UnitName[U]) = toString + name.toString
 	@inline
 	override def toString = "[" + x.value + "," + y.value + "," + z.value + "]"
+	
+	/** Return the value as a triple of Doubles. */
 	@inline 
 	def value = (x.value, y.value, z.value)
 	

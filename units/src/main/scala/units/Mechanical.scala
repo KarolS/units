@@ -30,27 +30,45 @@ object Mechanical {
 	type time = DefineUnit[_t~:_i~:_m~:_e]
 	type mass = DefineUnit[_m~:_a~:_s~:_s]
 
+	/** ^ ^ = length² */
 	type area = length×length
+	/** ^ ^ = length³ */
 	type volume = length×area
 
+	/** ^ ^ = 1 / time */
 	type frequency = _1/time
 
+	/** ^ ^ = length / time */
 	type velocity = length/time
+	/** ^ ^ = length / time */
 	type speed = length/time
+	/** ^ ^ = length / time² */
 	type acceleration = velocity/time
+	/** ^ ^ = length / time³ */
 	type jerk = acceleration/time
+	/** ^ ^ = length / time⁴ */
 	type jounce = jerk/time
 
+	/** ^ ^ = mass / volume = mass / length³ */
 	type density = mass/volume
+	/** ^ ^ = mass × acceleration = mass × length / time² */
 	type force = mass×acceleration
+	/** ^ ^ = force × length = mass × length² / time² */
 	type work = force×length
+	/** ^ ^ = force × length = mass × length² / time² */
 	type energy = work
+	/** ^ ^ = work / time = mass × length² / time³ */
 	type power = work/time
+	/** ^ ^ = force / area = mass / (length × time²) */
 	type pressure = force/area
 
+	/** ^ ^ = mass × velocity = mass × length / time */
 	type momentum = mass×velocity
+	/** ^ ^ = angle / time */
 	type angular_velocity = _1/time
+	/** ^ ^ = mass × angular velocity = mass × angle / time */
 	type angular_momentum = mass×angular_velocity
+	/** ^ ^ = force × length = mass × length² / time² */
 	type torque = force×length
 
 }

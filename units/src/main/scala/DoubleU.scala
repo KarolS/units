@@ -53,9 +53,13 @@ case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	/** Negate this value. */
 	@inline def unary_- = new DoubleU[U](-value)
 
+	/** Multiply by a vector. */
 	@inline def   *  [V<:MUnit](i: Vector2U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def times[V<:MUnit](i: Vector2U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def   *  [V<:MUnit](i: Vector3U[V]) = i*this
+	/** Multiply by a vector. */
 	@inline def times[V<:MUnit](i: Vector3U[V]) = i*this
 
 	/** Multiply by a value with a unit. */

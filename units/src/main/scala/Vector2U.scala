@@ -51,6 +51,8 @@ case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 	def mkString(implicit name: UnitName[U]) = toString + name.toString
 	@inline
 	override def toString = "[" + x.value + "," + y.value + "]"
+	
+	/** Return the value as a pair of Doubles. */
 	@inline 
 	def value = (x.value, y.value)
 	
