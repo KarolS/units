@@ -38,7 +38,7 @@ object UnitName {
 	implicit val implicit_dimensionlessName = new UnitName[TDimensionless]("")
 	@inline
 	implicit def implicit_consUnitName[H<:TUnitPowerPair, T<:MUnit](implicit h:TUnitPowerPairName[H], t:UnitName[T]) = 
-		new UnitName[T**H](h.toString + " " + t.toString)
+		new UnitName[T**H](h.toString + t.toString)
 	@inline
 	implicit def implicit_singleUnitName[H<:TUnitPowerPair](implicit h:TUnitPowerPairName[H]) = 
 		new UnitName[H](h.toString)

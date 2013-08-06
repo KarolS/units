@@ -34,6 +34,14 @@ class UnitNameSuite extends FunSuite {
 		assert(2.of[newton_repr].mkString === "2 N")
 	}
 
+	test("Compound unit names should be correct") {
+		assert(2.of[metre × second].mkString === "2 m s")
+		assert(2.of[metre / second].mkString === "2 m s^(-1)")
+		assert(2.of[second / metre].mkString === "2 m^(-1) s")
+		assert(2.of[square[metre]].mkString === "2 m^2")
+		assert(2.of[cube[metre]].mkString === "2 m^3")
+	}
+
 	test("Units should get correct names after representAll") {
 		val string = 1.0.of[square[foot]].representAll[foot,inch].mkString
 		assert("""144(\.0+)? in\^2""".r.findFirstIn(string) != None)
