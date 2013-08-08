@@ -5,7 +5,7 @@ For 0.1:
 
 * **move everything from `stasiak.karol.units` package to `units`**
 
-* add 2D and 3D affine spaces
+* add two-way affine space conversions
 
 * add more units of measure
 

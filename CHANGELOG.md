@@ -1,14 +1,29 @@
 units - CHANGELOG
 =================
 
+version 0.0.6
+-------------
+
+* General: Moved Scala 2.11 build to a separated subproject, `units-211`.
+
+* General: More Scaladoc.
+
+* Testing: More tests.
+
+* Testing: Moved most of the tests to another package.
+
+* FIXED: The `concat` method of array companion objects.
+
+* FIXED: The `fillUniform` method of vector array companion objects.
+
 version 0.0.5
 -------------
 
 * Units: Added 34 new currencies.
 
-* FIXED: Errors in Scaladoc for vectors
+* FIXED: Errors in Scaladoc for vectors.
 
-* FIXED: Vector2U.apply
+* FIXED: `Vector2U.apply`.
 
 version 0.0.4
 -------------
@@ -21,7 +36,7 @@ version 0.0.4
 
 * Constants: Added 5 new physical constants.
 
-* Algebird integration: Added various typeclass instances for DoubleU, IntU, Vector2U and Vector3U
+* Algebird integration: Added various typeclass instances for DoubleU, IntU, Vector2U and Vector3U.
 
 * Testing: Added more type arithmetic tests.
 
