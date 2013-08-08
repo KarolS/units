@@ -44,3 +44,34 @@ sealed trait ReversibleIntAConversion[A<:AffineSpace, B<:AffineSpace]{
 	val backwardInt: IntA[B]=>IntA[A]
 }
 
+class DoubleATranslation[A<:AffineSpace, B<:AffineSpace](
+	val vector: DoubleU[A#Unit]
+)(implicit ev: A#Unit =:= B#Unit) extends ReversibleDoubleAConversion[A,B] {
+	val forward = (a:DoubleA[A]) => (a.value + vector.value).at[B]
+	val backward = (b:DoubleA[B]) => (b.value - vector.value).at[A]
+}
+
+class DoubleAScalingTranslation[A<:AffineSpace, B<:AffineSpace](
+	val scale: DoubleU[B#Unit / A#Unit],
+	val vector: DoubleU[B#Unit]
+) extends ReversibleDoubleAConversion[A,B] {
+	val forward = (a:DoubleA[A]) => (a.value*scale.value + vector.value).at[B]
+	val backward = (b:DoubleA[B]) => ((b.value - vector.value)/scale.value).at[A]
+}
+
+class DoubleATranslationScaling[A<:AffineSpace, B<:AffineSpace](
+	val vector: DoubleU[A#Unit],
+	val scale: DoubleU[B#Unit / A#Unit]
+) extends ReversibleDoubleAConversion[A,B] {
+	val forward = (a:DoubleA[A]) => ((a.value + vector.value)*scale.value + vector.value).at[B]
+	val backward = (b:DoubleA[B]) => (b.value / scale.value - vector.value).at[A]
+}
+
+class IntATranslation[A<:AffineSpace, B<:AffineSpace](
+	val vector: IntU[A#Unit]
+)(implicit ev: A#Unit =:= B#Unit) extends ReversibleDoubleAConversion[A,B] with ReversibleIntAConversion[A,B] {
+	val forward = (a:DoubleA[A]) => (a.value + vector.value).at[B]
+	val backward = (b:DoubleA[B]) => (b.value - vector.value).at[A]
+	val forwardInt = (a:IntA[A]) => (a.value + vector.value).at[B]
+	val backwardInt = (b:IntA[B]) => (b.value - vector.value).at[A]
+}
