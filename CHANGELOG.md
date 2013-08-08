@@ -4,6 +4,8 @@ units - CHANGELOG
 version 0.0.6
 -------------
 
+* General: Added 2D and 3D vectors in affine spaces (`Vector2A`, `Vector3A`, `Vector2AArray` and `Vector3AArray`).
+
 * General: Moved Scala 2.11 build to a separated subproject, `units-211`.
 
 * General: More Scaladoc.
