@@ -113,7 +113,7 @@ type second = DefineUnit[_s]
 type kilogram = DefineUnit[ _k ~: _g ]
 ```
 
-All units are subtypes of trait `MUnit`. This includes type `_1`, which represents dimensionless unit 1.
+All units are subtypes of trait `MUnit`. This includes the type `_1`, which represents the dimensionless unit 1.
 
 This also automatically generates implicit names for those units: `"m"`, `"s"`, and `"kg"` respectively.
 
@@ -176,7 +176,7 @@ This value is of type `IntU[metre]`. If you used a double literal, you would rec
 val length2 = 2.0.of[metre]
 ```
 
-`IntU` and `DoubleU` are represented at runtime as unboxed `Long` and `Double` respectively.
+`IntU` and `DoubleU` are represented at runtime as an unboxed `Long` and `Double` respectively.
 
 You can add and subtract values with the same units:
 
@@ -267,13 +267,13 @@ area.representAll[metre, centimetre]                              // equals 3000
 Automatic unit conversion
 -------------------------
 
-Units are automatically converted in comparisons using operators ending with a tilde:
+Units are automatically converted in comparisons when using operators ending with a tilde:
 
 ``` scala
 399.of[centimetre] >=~ 4.of[metre]   // false
 ```
 
-If there is a integer conversion ratio between two units, then adding/subtracting two values with those units converts the sum/difference to the smaller unit:
+If there is an integer conversion ratio between two units, then adding/subtracting two values with those units converts the sum/difference to the smaller unit:
 
 ``` scala
 14.of[centimetre] + 3.of[metre]  // equals 314 cm, not 3.14 m
@@ -282,7 +282,7 @@ If there is a integer conversion ratio between two units, then adding/subtractin
 Affine spaces
 -------------
 
-Affine space is a space of quantities, which cannot be multiplied or added, only subtracted. The reason for that is that the zero is chosen arbitrarily. Affine spaces are used to represent temperatures, timestamps, Cartesian coordinates, potential energy, electric potential, and more. See [this article](http://math.ucr.edu/home/baez/torsors.html) for more info.
+Affine space is a space of quantities which cannot be multiplied or added, only subtracted. The reason for that is that the zero is chosen arbitrarily. Affine spaces are used to represent temperatures, timestamps, Cartesian coordinates, potential energy, electric potential, and more. See [this article](http://math.ucr.edu/home/baez/torsors.html) for more info.
 
 Example:
 

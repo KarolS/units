@@ -18,7 +18,7 @@ You can create a new array in several ways:
 
 * directly, with `new` operator: `new DoubleUArray[metre](256)`
 
-* using `fill` method: `DoubleUArray.fill(256)(1.78.of[metre])`
+* using `fill` or `fillUniform` methods: `DoubleUArray.fill(256)(1.78.of[metre])`
 
 * using `apply` method: `DoubleUArray[metre](1.78.of, 1.80.of, 1.82.of)`
 

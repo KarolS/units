@@ -8,7 +8,7 @@ Scalaz
 
 Currently, only Scalaz 7.0.x is supported.
 
-Artefact `units-scalaz` provides implementation of following typeclasses:
+Artefact `units-scalaz` provides implementations of following typeclasses:
 
 * for `IntU`: `Monoid`, `Equal`, `Order`, `Show`
 
@@ -22,6 +22,10 @@ Artefact `units-scalaz` provides implementation of following typeclasses:
 
 * for `Vector3U`: `Monoid`, `Equal`, `Show`
 
+* for `Vector2A`: `Equal`, `Show`
+
+* for `Vector3A`: `Equal`, `Show`
+
 Usage: `import stasiak.karol.units.scalazSupport._`
 
 Spire
@@ -31,7 +35,7 @@ Spire
 
 Currently, only Spire 0.3.x is supported.
 
-Artefact `units-spire` provides implementation of following typeclasses:
+Artefact `units-spire` provides implementations of following typeclasses:
 
 * for `IntU`: `Module[IntU[U], Int]`, `Module[IntU[U], Long]`
 
