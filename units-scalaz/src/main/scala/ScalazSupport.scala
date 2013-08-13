@@ -100,4 +100,18 @@ package object scalazSupport {
 			def equal(f1: Vector2U[U], f2: Vector2U[U]) = f1 == f2
 		}
 
+	implicit def implicit__vector2AInstance[A<:AffineSpace] =
+		new Equal[Vector2A[A]] with Show[Vector2A[A]] {
+			override def shows(f: Vector2A[A]) = f.toString
+			override def equalIsNatural: Boolean = true
+			def equal(f1: Vector2A[A], f2: Vector2A[A]) = f1 == f2
+		}
+
+	implicit def implicit__vector3AInstance[A<:AffineSpace] =
+		new Equal[Vector3A[A]] with Show[Vector3A[A]] {
+			override def shows(f: Vector3A[A]) = f.toString
+			override def equalIsNatural: Boolean = true
+			def equal(f1: Vector3A[A], f2: Vector3A[A]) = f1 == f2
+		}
+
 }
