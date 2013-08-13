@@ -23,7 +23,7 @@ The library is published under MIT License.
 
 [Build instructions.](doc/BUILD.md)
 
-Current version: 0.0.5
+Current version: 0.0.6
 ----------------------
 
 [Changelog.](CHANGELOG.md)
