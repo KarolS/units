@@ -6,7 +6,7 @@ version 0.0.6
 
 * General: Added 2D and 3D vectors in affine spaces (`Vector2A`, `Vector3A`, `Vector2AArray` and `Vector3AArray`).
 
-* General: Moved Scala 2.11 build to a separated subproject, `units-211`.
+* General: Moved Scala 2.11 build to a separate subproject, `units-211`.
 
 * General: More Scaladoc.
 
@@ -14,9 +14,9 @@ version 0.0.6
 
 * Testing: Moved most of the tests to another package.
 
-* FIXED: The `concat` method of array companion objects.
+* FIXED: The `concat` method of array companion object.
 
-* FIXED: The `fillUniform` method of vector array companion objects.
+* FIXED: The `fillUniform` method of vector array companion object.
 
 version 0.0.5
 -------------
@@ -32,7 +32,7 @@ version 0.0.4
 
 * General: Added few more array methods.
 
-* General: Added a kind of support 2.11.0-M3. Currently, unit tests don't work on Scala 2.11, but benchmarks do.
+* General: Added a kind of support for Scala 2.11.0-M3. Currently, unit tests don't work on Scala 2.11, but benchmarks do.
 
 * General: Reorganised internal classes.
 

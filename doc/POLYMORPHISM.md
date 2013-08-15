@@ -8,7 +8,7 @@ Implicit polymorphism
 
 **Note:** This method has severe limitations.
 
-Writing a function that works only on a specific units is trivial:
+Writing a function that works only on specific units is trivial:
 
 ``` scala
 def hypotenuse(a: DoubleU[metre], b: DoubleU[metre]) = (a.pow2 + b.pow2).sqrt
@@ -38,7 +38,7 @@ def tempDifference[A1 <: AffineSpace, A2 <: AffineSpace](a: DoubleA[A1], b: Doub
     ) = a.convert[A2] -- b // return type is DoubleU[T2#Unit]
 ```
 
-Other kinds of implicit parameters are required for automatic unit coercion during addition and pretty-printing.
+Other kinds of implicit parameters are required for automatic unit coercion during addition and for pretty-printing.
 
 **Limitations:**
 
@@ -59,7 +59,7 @@ def position(x0: DoubleU[L], v0: DoubleU[L/T], a: DoubleU[L/square[T]], t:Double
 	x0 + v0*t + a*t*t/2
 ```
 
-(Note: a similar function using implicit unit polymorphism will not compile.)
+(Note: a similar function using the implicit unit polymorphism will not compile.)
 
 We can define now a unit system, where time is expressed in seconds, mass in kilograms, and distance in metres:
 
@@ -85,7 +85,7 @@ val workday = 8.of[hour]
 MKS[T](workday.convert[second])   // explicit conversion required
 ```
 
-A subset of generic units is defined in `stasiak.karol.units.Mechanical`. Using it, the example above could be rewritten as:
+A subset of generic units is defined in `stasiak.karol.units.Mechanical`. By using it, the example above could be rewritten as:
 
 ``` scala
 import stasiak.karol.units.Mechanical._

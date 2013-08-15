@@ -150,4 +150,25 @@ final class Vector3UArray[U<:MUnit] private[arrays] (
 		}
 		new DoubleUArray[U](array)
 	}
+
+	def x(index: Int) = underlying(3*index).of[U]
+
+	def y(index: Int) = underlying(3*index + 1).of[U]
+
+	def z(index: Int) = underlying(3*index + 2).of[U]
+
+	def sum = {
+		var sx = 0.0
+		var sy = 0.0
+		var sz = 0.0
+		var i = 0
+		var l = length
+		while(i<l){
+			sx += underlying(3*i)
+			sy += underlying(3*i + 1)
+			sz += underlying(3*i + 2)			
+		}
+		Vector3U[U](sx.of, sy.of, sz.of)
+	}
+
 }

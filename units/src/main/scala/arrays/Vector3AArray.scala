@@ -152,4 +152,28 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		}
 		new DoubleAArray[A](array)
 	}
+
+	def x(index: Int) = underlying(3*index).at[A]
+
+	def y(index: Int) = underlying(3*index + 1).at[A]
+	
+	def z(index: Int) = underlying(3*index + 2).at[A]
+
+	def avg = {
+		var sx = 0.0
+		var sy = 0.0
+		var sz = 0.0
+		var i = 0
+		var l = length
+		while(i<l){
+			sx += underlying(3*i)
+			sy += underlying(3*i + 1)
+			sz += underlying(3*i + 2)			
+		}
+		sx /= l
+		sy /= l
+		sz /= l
+		Vector3A[A](sx.at, sy.at, sz.at)
+	}
+
 }
