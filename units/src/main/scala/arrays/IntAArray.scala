@@ -89,6 +89,7 @@ final class IntAArray[A<:AffineSpace] private[arrays] (private[arrays] val under
 		underlying(index) = elem.value
 	}
 	
+	/** The average of all values in the array */
 	def avg = DoubleA[A](underlying.sum.toDouble / length)
 
 }

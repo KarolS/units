@@ -89,6 +89,7 @@ final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying:
 		underlying(index) = elem.value
 	}
 	
+	/** The sum of all values in the array */
 	def sum = IntU[U](underlying.sum)
 
 }

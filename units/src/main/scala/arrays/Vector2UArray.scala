@@ -117,8 +117,10 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		underlying(index*2+1) = elem.y.value
 	}
 
+	/** Returns separate arrays for each coordinate. */
 	def unzip = (xs, ys)
 	
+	/** Returns an array of values of the X coordinate. */
 	def xs = {
 		val array = new Array[Double](length)
 		(0 until length) foreach { i =>
@@ -127,6 +129,7 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		new DoubleUArray[U](array)
 	}
 	
+	/** Returns an array of values of the Y coordinate. */
 	def ys = {
 		val array = new Array[Double](length)
 		(0 until length) foreach { i =>
@@ -135,10 +138,13 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		new DoubleUArray[U](array)
 	}
 
+	/** Returns the value of the X coordinate of given element. */
 	def x(index: Int) = underlying(2*index).of[U]
 
+	/** Returns the value of the Y coordinate of given element. */
 	def y(index: Int) = underlying(2*index + 1).of[U]
 
+	/** The sum of all values in the array */
 	def sum = {
 		var sx = 0.0
 		var sy = 0.0

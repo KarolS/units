@@ -99,6 +99,7 @@ final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlyi
 		new DoubleUArray[U](array)
 	}
 	
+	/** The sum of all values in the array */
 	def sum = DoubleU[U](underlying.sum)
 
 }
