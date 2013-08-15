@@ -28,6 +28,8 @@ object IntAArray {
 	/** Creates an array of given elements */
 	def apply[A<:AffineSpace](elems: IntA[A]*) = new IntAArray[A](elems.map{_.value}.toArray)
 
+	def at[A<:AffineSpace](elems: Long*) = new IntAArray[A](Array[Long](elems:_*))
+
 	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: IntAArray[A]*) = 
 		new IntAArray[A](Array.concat(arrays.map{_.underlying}: _*))
