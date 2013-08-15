@@ -136,4 +136,9 @@ final class Vector2AArray[A<:AffineSpace] private[arrays] (
 		}
 		new DoubleAArray[A](array)
 	}
+
+	def x(index: Int) = underlying(2*index).at[A]
+
+	def y(index: Int) = underlying(2*index + 1).at[A]
+	
 }

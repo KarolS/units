@@ -150,4 +150,11 @@ final class Vector3UArray[U<:MUnit] private[arrays] (
 		}
 		new DoubleUArray[U](array)
 	}
+
+	def x(index: Int) = underlying(3*index).of[U]
+
+	def y(index: Int) = underlying(3*index + 1).of[U]
+
+	def z(index: Int) = underlying(3*index + 2).of[U]
+
 }

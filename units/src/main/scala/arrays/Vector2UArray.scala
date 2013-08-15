@@ -134,4 +134,9 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		}
 		new DoubleUArray[U](array)
 	}
+
+	def x(index: Int) = underlying(2*index).of[U]
+
+	def y(index: Int) = underlying(2*index + 1).of[U]
+
 }

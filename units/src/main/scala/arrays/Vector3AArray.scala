@@ -152,4 +152,11 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		}
 		new DoubleAArray[A](array)
 	}
+
+	def x(index: Int) = underlying(3*index).at[A]
+
+	def y(index: Int) = underlying(3*index + 1).at[A]
+	
+	def z(index: Int) = underlying(3*index + 2).at[A]
+
 }
