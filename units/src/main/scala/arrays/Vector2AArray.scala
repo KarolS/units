@@ -140,5 +140,19 @@ final class Vector2AArray[A<:AffineSpace] private[arrays] (
 	def x(index: Int) = underlying(2*index).at[A]
 
 	def y(index: Int) = underlying(2*index + 1).at[A]
-	
+
+	def avg = {
+		var sx = 0.0
+		var sy = 0.0
+		var i = 0
+		var l = length
+		while(i<l){
+			sx += underlying(2*i)
+			sy += underlying(2*i + 1)		
+		}
+		sx /= l
+		sy /= l
+		Vector2A[A](sx.at, sy.at)
+	}
+
 }
