@@ -23,7 +23,7 @@ The library is published under MIT License.
 
 [Build instructions.](doc/BUILD.md)
 
-Current version: 0.0.6
+Current version: 0.0.7
 ----------------------
 
 [Changelog.](CHANGELOG.md)
@@ -69,8 +69,8 @@ type EUR = DefineUnit[_E~:_U~:_R]
 
 implicit val EUR_to_USD = one[EUR].contains(1.25)[USD]
 
-import stasiak.karol.units.units.SI._
-import stasiak.karol.units.units.USCustomary._
+import stasiak.karol.units.SI._
+import stasiak.karol.units.USCustomary._
 
 val priceInUSA     =  200.of[USD/square[foot]]
 val priceInGermany = 1500.of[EUR/square[metre]]
@@ -152,7 +152,7 @@ implicit val kgm_to_kgcm = m_to_cm.times[kilogram]
 implicit val mps_to_cmps = m_to_cm.dividedBy[second]
 ```
 
-See sources for `stasiak.karol.units.units.SI` and `stasiak.karol.units.units.USCustomary` objects for more examples.
+See sources for `stasiak.karol.units.SI` and `stasiak.karol.units.USCustomary` objects for more examples.
 
 
 Using values with units

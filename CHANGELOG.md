@@ -1,6 +1,29 @@
 units - CHANGELOG
 =================
 
+version 0.0.7
+-------------
+
+* General: Two-way affine space conversions.
+
+* General: More methods for scalar array companion objects: `of`, `at`.
+
+* General: More methods for arrays: `avg`, `sum`, `x`, `y`, `z`.
+
+* General: Added more Scaladoc; fixed some errors in documentation.
+
+* Units: Conversions between bits and bytes with binary prefixes.
+
+* Units: Added 2 more units.
+
+* Testing: More unit tests.
+
+* Testing: More benchmarks.
+
+* Scalaz integration: Added typeclass instances for `Vector2A` and `Vector3A`
+
+* FIXED: Equality comparisons between IntA and DoubleA.
+
 version 0.0.6
 -------------
 
