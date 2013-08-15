@@ -28,6 +28,8 @@ object DoubleUArray {
 	/** Creates an array of given elements */
 	def apply[U<:MUnit](elems: DoubleU[U]*) = new DoubleUArray[U](elems.map{_.value}.toArray)
 
+	def of[U<:MUnit](elems: Double*) = new DoubleUArray[U](Array[Double](elems:_*))
+
 	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: DoubleUArray[U]*) = 
 		new DoubleUArray[U](Array.concat(arrays.map{_.underlying}: _*))
@@ -96,4 +98,8 @@ final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlyi
 		}
 		new DoubleUArray[U](array)
 	}
+	
+	/** The sum of all values in the array */
+	def sum = DoubleU[U](underlying.sum)
+
 }

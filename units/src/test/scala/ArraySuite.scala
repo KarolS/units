@@ -89,6 +89,18 @@ class ArraySuite extends FunSuite {
 		val arr = DoubleUArray.empty[metre]
 	}
 	
+	test("Filling out DoubleU arrays should work") {
+		var i = 0
+		val arr = DoubleUArray.fill[metre](3){
+			i += 1
+			i*i.of[metre]
+		}
+		assert(arr.length == 3)
+		assert(arr(0) == 1.0.of[metre])
+		assert(arr(1) == 4.0.of[metre])
+		assert(arr(2) == 9.0.of[metre])
+	}
+	
 	test("Uniform DoubleU arrays should work") {
 		val arr = DoubleUArray.fillUniform[metre](3)(9.0.of)
 		assert(arr.length == 3)
@@ -103,6 +115,85 @@ class ArraySuite extends FunSuite {
 		arr(1) = 776.of[metre]
 		assert(arr(0) == 775.of[metre])
 		assert(arr(1) == 776.of[metre])
+	}
+	
+	test("Filling out DoubleA arrays should work") {
+		var i = 0
+		val arr = DoubleAArray.fill[CelsiusScale](3){
+			i += 1
+			(i*i).at[CelsiusScale]
+		}
+		assert(arr.length == 3)
+		assert(arr(0) == 1.0.at[CelsiusScale])
+		assert(arr(1) == 4.0.at[CelsiusScale])
+		assert(arr(2) == 9.0.at[CelsiusScale])
+	}
+
+	test("Uniform DoubleA arrays should work") {
+		val arr = DoubleAArray.fillUniform[CelsiusScale](3)(9.0.at)
+		assert(arr.length == 3)
+		assert(arr(0) == 9.0.at[CelsiusScale])
+		assert(arr(1) == 9.0.at[CelsiusScale])
+		assert(arr(2) == 9.0.at[CelsiusScale])
+	}
+
+	test("Copying DoubleA arrays should work") {
+		val src = DoubleAArray.at[CelsiusScale](11, 22, 33)
+		var dest = new DoubleAArray[CelsiusScale](2)
+		DoubleAArray.copy(src, 1, dest, 0, 2)
+		assert(dest(0) == 22.at[CelsiusScale])
+		assert(dest(1) == 33.at[CelsiusScale])
+	}
+
+	test("Copying DoubleU arrays should work") {
+		val src = DoubleUArray.of[metre](11, 22, 33)
+		var dest = new DoubleUArray[metre](2)
+		DoubleUArray.copy(src, 1, dest, 0, 2)
+		assert(dest(0) == 22.of[metre])
+		assert(dest(1) == 33.of[metre])
+	}
+
+	test("Copying Vector2U arrays should work") {
+		val src = Vector2UArray.of[metre]((11,111), (22,222), (33,333))
+		var dest = new Vector2UArray[metre](2)
+		Vector2UArray.copy(src, 1, dest, 0, 2)
+		assert(dest.x(0) == 22.of[metre])
+		assert(dest.x(1) == 33.of[metre])
+		assert(dest.y(0) == 222.of[metre])
+		assert(dest.y(1) == 333.of[metre])
+	}
+
+	test("Copying Vector3U arrays should work") {
+		val src = Vector3UArray.of[metre]((11,111,1111), (22,222,2222), (33,333,3333))
+		var dest = new Vector3UArray[metre](2)
+		Vector3UArray.copy(src, 1, dest, 0, 2)
+		assert(dest.x(0) == 22.of[metre])
+		assert(dest.x(1) == 33.of[metre])
+		assert(dest.y(0) == 222.of[metre])
+		assert(dest.y(1) == 333.of[metre])
+		assert(dest.z(0) == 2222.of[metre])
+		assert(dest.z(1) == 3333.of[metre])
+	}
+	test("Copying Vector2A arrays should work") {
+		val src = Vector2AArray.at[CelsiusScale]((11,111), (22,222), (33,333))
+		var dest = new Vector2AArray[CelsiusScale](2)
+		Vector2AArray.copy(src, 1, dest, 0, 2)
+		assert(dest.x(0) == 22.at[CelsiusScale])
+		assert(dest.x(1) == 33.at[CelsiusScale])
+		assert(dest.y(0) == 222.at[CelsiusScale])
+		assert(dest.y(1) == 333.at[CelsiusScale])
+	}
+
+	test("Copying Vector3A arrays should work") {
+		val src = Vector3AArray.at[CelsiusScale]((11,111,1111), (22,222,2222), (33,333,3333))
+		var dest = new Vector3AArray[CelsiusScale](2)
+		Vector3AArray.copy(src, 1, dest, 0, 2)
+		assert(dest.x(0) == 22.at[CelsiusScale])
+		assert(dest.x(1) == 33.at[CelsiusScale])
+		assert(dest.y(0) == 222.at[CelsiusScale])
+		assert(dest.y(1) == 333.at[CelsiusScale])
+		assert(dest.z(0) == 2222.at[CelsiusScale])
+		assert(dest.z(1) == 3333.at[CelsiusScale])
 	}
 
 }

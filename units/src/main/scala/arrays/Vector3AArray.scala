@@ -127,8 +127,10 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		underlying(index*3+2) = elem.z.value
 	}
 	
+	/** Returns separate arrays for each coordinate. */
 	def unzip = (xs, ys, zs)
 	
+	/** Returns an array of values of the X coordinate. */
 	def xs = {
 		val array = new Array[Double](length)
 		(0 until length) foreach { i =>
@@ -137,6 +139,7 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		new DoubleAArray[A](array)
 	}
 	
+	/** Returns an array of values of the Y coordinate. */
 	def ys = {
 		val array = new Array[Double](length)
 		(0 until length) foreach { i =>
@@ -145,6 +148,7 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		new DoubleAArray[A](array)
 	}
 	
+	/** Returns an array of values of the Z coordinate. */
 	def zs = {
 		val array = new Array[Double](length)
 		(0 until length) foreach { i =>
@@ -153,12 +157,16 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		new DoubleAArray[A](array)
 	}
 
+	/** Returns the value of the X coordinate of given element. */
 	def x(index: Int) = underlying(3*index).at[A]
 
+	/** Returns the value of the Y coordinate of given element. */
 	def y(index: Int) = underlying(3*index + 1).at[A]
 	
+	/** Returns the value of the Z coordinate of given element. */
 	def z(index: Int) = underlying(3*index + 2).at[A]
 
+	/** The average of all values in the array */
 	def avg = {
 		var sx = 0.0
 		var sy = 0.0

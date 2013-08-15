@@ -92,6 +92,10 @@ case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 	@inline
 	def ==(i: IntA[A]) = value == i.value
 	@inline
+	def ==(i: DoubleA[A]) = value == i.value
+	@inline
 	def !=(i: IntA[A]) = value != i.value
+	@inline
+	def !=(i: DoubleA[A]) = value != i.value
 
 }

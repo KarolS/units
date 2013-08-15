@@ -28,6 +28,8 @@ object DoubleAArray {
 	/** Creates an array of given elements */
 	def apply[A<:AffineSpace](elems: DoubleA[A]*) = new DoubleAArray[A](elems.map{_.value}.toArray)
 
+	def at[A<:AffineSpace](elems: Double*) = new DoubleAArray[A](Array[Double](elems:_*))
+
 	/** Concatenates all arrays into a single array. */
 	def concat[A<:AffineSpace](arrays: DoubleAArray[A]*) = 
 		new DoubleAArray[A](Array.concat(arrays.map{_.underlying}: _*))
@@ -87,4 +89,7 @@ final class DoubleAArray[A<:AffineSpace] private[arrays] (private[arrays] val un
 		underlying(index) = elem.value
 	}
 	
+	/** The average of all values in the array */
+	def avg = DoubleA[A](underlying.sum / length)
+
 }

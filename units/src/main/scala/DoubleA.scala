@@ -81,6 +81,16 @@ case class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
 	def >~[B<:AffineSpace](i: DoubleA[B])(implicit ev: DoubleAffineSpaceConverter[A,B]) = ev.f(value) > i.value
 	@inline
 	def >=~[B<:AffineSpace](i: DoubleA[B])(implicit ev: DoubleAffineSpaceConverter[A,B]) = ev.f(value) >= i.value
+
+	@inline
+	def ==(i: IntA[A]) = value == i.value
+	@inline
+	def ==(i: DoubleA[A]) = value == i.value
+	@inline
+	def !=(i: IntA[A]) = value != i.value
+	@inline
+	def !=(i: DoubleA[A]) = value != i.value
+
 }
 
 

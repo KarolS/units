@@ -25,6 +25,9 @@ package stasiak.karol.units
 object Information {
 	import stasiak.karol.units._
 	import stasiak.karol.units.defining._
+	import scala.math._
+
+	type nat = DefineUnit[_n~:_a~:_t]
 
 	type bit = DefineUnit[_b]
 	type byte= DefineUnit[_B]
@@ -175,6 +178,9 @@ object Information {
 	implicit val implicit__Pib_to_B   = one[pebibit].contains(0x800000000000L)[byte]
 
 	//TODO: conversions between binary and decimal prefixes
+
+	implicit val implicit__bit_to_nat  = one[bit ].contains(log(2))[nat]
+	implicit val implicit__byte_to_nat = one[byte].contains(log(2)*8)[nat]
 
 	object Short {
 		type B = byte

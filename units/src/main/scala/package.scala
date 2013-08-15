@@ -63,6 +63,8 @@ package object units {
 
 	@inline
 	implicit def implicit_widening[U<:MUnit](i: IntU[U]) = i.toDouble
+	@inline
+	implicit def implicit_wideningA[A<:AffineSpace](i: IntA[A]) = i.toDouble
 
 	@inline
 	implicit def implicit_toDimensionlessInt(i:Int) = new IntU[_1](i)

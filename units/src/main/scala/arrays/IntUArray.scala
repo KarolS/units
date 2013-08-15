@@ -28,6 +28,8 @@ object IntUArray {
 	/** Creates an array of given elements */
 	def apply[U<:MUnit](elems: IntU[U]*) = new IntUArray[U](elems.map{_.value}.toArray)
 
+	def of[U<:MUnit](elems: Long*) = new IntUArray[U](Array[Long](elems:_*))
+
 	/** Concatenates all arrays into a single array. */
 	def concat[U<:MUnit](arrays: IntUArray[U]*) = 
 		new IntUArray[U](Array.concat(arrays.map{_.underlying}: _*))
@@ -87,4 +89,7 @@ final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying:
 		underlying(index) = elem.value
 	}
 	
+	/** The sum of all values in the array */
+	def sum = IntU[U](underlying.sum)
+
 }
