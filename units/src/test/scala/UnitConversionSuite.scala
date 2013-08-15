@@ -53,5 +53,42 @@ class UnitConversionSuite extends FunSuite {
 		assert(1.of[square[foot]].convertToInt[square[inch]] == 144.of[square[inch]])
 		assert(1.of[cube[foot]].convertToInt[cube[inch]] == 1728.of[cube[inch]])
 	}
+
+	test("Affine spaces should be correctly converted") {
+		{
+			val freezeF = 32.at[FahrenheitScale]
+			val freezeCmin = -0.5.at[CelsiusScale]
+			val freezeCmax = 0.5.at[CelsiusScale]
+			val freezeC = freezeF.convert[CelsiusScale]
+			//println(freezeC.mkString)
+			assert(freezeC < freezeCmax)
+			assert(freezeC > freezeCmin)
+
+			val alcoholF = -40.at[FahrenheitScale]
+			val alcoholCmin = -40.5.at[CelsiusScale]
+			val alcoholCmax = -39.5.at[CelsiusScale]
+			val alcoholC = alcoholF.convert[CelsiusScale]
+			//println(alcoholC.mkString)
+			assert(alcoholC < alcoholCmax)
+			assert(alcoholC > alcoholCmin)
+		}
+		{
+			val freezeC = 0.at[CelsiusScale]
+			val freezeFmin = 31.5.at[FahrenheitScale]
+			val freezeFmax = 32.5.at[FahrenheitScale]
+			val freezeF = freezeC.convert[FahrenheitScale]
+			//println(freezeF.mkString)
+			assert(freezeF < freezeFmax)
+			assert(freezeF > freezeFmin)
+
+			val alcoholC = -40.at[CelsiusScale]
+			val alcoholFmin = -40.5.at[FahrenheitScale]
+			val alcoholFmax = -39.5.at[FahrenheitScale]
+			val alcoholF = alcoholC.convert[FahrenheitScale]
+			//println(alcoholF.mkString)
+			assert(alcoholF < alcoholFmax)
+			assert(alcoholF > alcoholFmin)
+		}
+	}
 	
 }
