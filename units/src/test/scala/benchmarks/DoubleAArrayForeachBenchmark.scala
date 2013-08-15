@@ -25,63 +25,39 @@ import stasiak.karol.units._
 import stasiak.karol.units.SI._
 import stasiak.karol.units.arrays._
 
-class ArrayBenchmark extends SimpleBenchmark {
+class DoubleAArrayForeachBenchmark extends SimpleBenchmark {
 
-	val array = new Array[Long](1000)
-	val arrayW = new IntUArray[metre](1000);
+	val array = new Array[Double](1000)
+	val arrayW = new DoubleAArray[CelsiusScale](1000);
 
-	override def setUp (){}
+	override def setUp (){
+		var i = 0
+		while (i<1000) {
+			array(i) = i*i
+			arrayW(i) = (i*i).at[CelsiusScale]
+			i += 1
+		}
+	}
+
 	override def tearDown(){}
 
 	def timeRaw(reps: Int) = {
-		var result = 0L
-		for(x<-0 until reps){
-			var i = 0
-			while (i<1000) {
-				array(i) = i*i
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				result += array(i)
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				array(i) = i*i
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				result += array(i)
-				i += 1
+		var result = 0.0
+		val zero = 0.0
+		for(x<-0 until 2*reps){
+			array.foreach {
+				result += _ - zero
 			}
 		}
 		result
 	}
 	
 	def timeWithUnits(reps: Int) = {
-		var result = 0L.of[metre]
-		for(x<-0 until reps){
-			var i = 0
-			while (i<1000) {
-				arrayW(i) = (i*i).of[metre]
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				result += arrayW(i)
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				arrayW(i) = (i*i).of[metre]
-				i += 1
-			}
-			i = 0
-			while (i<1000) {
-				result += arrayW(i)
-				i += 1
+		var result = 0.0.at[CelsiusScale]
+		val zero = 0.0.at[CelsiusScale]
+		for(x<-0 until 2*reps){
+			arrayW.foreach {
+				result += _ -- zero
 			}
 		}
 		result.value
