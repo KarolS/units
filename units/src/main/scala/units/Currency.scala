@@ -165,6 +165,8 @@ object Currency {
 	type VND = DefineUnit[_V~:_N~:_D]
 	/** Central African CFA franc */
 	type XAF = DefineUnit[_X~:_A~:_F]
+	/** Bitcoin */
+	type XBT = DefineUnit[_X~:_B~:_T]
 	/** East Caribbean dollar */
 	type XCD = DefineUnit[_X~:_C~:_D]
 	/** CFP franc (franc pacifique) */
