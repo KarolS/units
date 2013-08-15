@@ -87,4 +87,6 @@ final class DoubleAArray[A<:AffineSpace] private[arrays] (private[arrays] val un
 		underlying(index) = elem.value
 	}
 	
+	def avg = DoubleA[A](underlying.sum / length)
+
 }
