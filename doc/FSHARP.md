@@ -41,7 +41,7 @@ F#:
 Scala:
 
 ``` scala
-type cm = DefineType[_c~:_m]
+type cm = DefineUnit[_c~:_m]
 type ml = cube[cm]
 ```
 
