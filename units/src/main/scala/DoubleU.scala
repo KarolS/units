@@ -35,6 +35,15 @@ import stasiak.karol.units.internal.UnionType._
 import stasiak.karol.units.internal.UnitName
 import scala.math
 
+object DoubleU {
+	private val _orderingInstanceVal = new Ordering[DoubleU[_1]]{
+		def compare(x: DoubleU[_1], y: DoubleU[_1]) = 
+			implicitly[Ordering[Double]].compare(x.value, y.value)
+	}
+	implicit def _orderingInstance[U<:MUnit] = 
+		_orderingInstanceVal.asInstanceOf[Ordering[DoubleU[U]]]
+}
+
 /** Double-precision floating-point value representing a value with a unit of measure.*/
 case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline

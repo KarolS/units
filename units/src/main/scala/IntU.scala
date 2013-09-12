@@ -35,6 +35,15 @@ import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.UnitName
 import scala.math
 
+object IntU {
+	private val _orderingInstanceVal = new Ordering[IntU[_1]]{
+		def compare(x: IntU[_1], y: IntU[_1]) = 
+			implicitly[Ordering[Long]].compare(x.value, y.value)
+	}
+	implicit def _orderingInstance[U<:MUnit] = 
+		_orderingInstanceVal.asInstanceOf[Ordering[IntU[U]]]
+}
+
 /** 64-bit signed integer representing a value with a unit of measure.*/
 case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 

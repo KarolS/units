@@ -33,6 +33,16 @@ import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
 import stasiak.karol.units.internal.UnitName
 
+object DoubleA {
+	private type Aff = DefineAffineSpace[Nothing, _1]
+	private val _orderingInstanceVal = new Ordering[DoubleA[Aff]]{
+		def compare(x: DoubleA[Aff], y: DoubleA[Aff]) = 
+			implicitly[Ordering[Double]].compare(x.value, y.value)
+	}
+	implicit def _orderingInstance[A<:AffineSpace] = 
+		_orderingInstanceVal.asInstanceOf[Ordering[DoubleA[A]]]
+}
+
 /** Double-precision floating-point value representing a point in a 1-dimensional affine space.*/
 case class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
 

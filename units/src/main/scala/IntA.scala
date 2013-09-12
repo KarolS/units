@@ -33,6 +33,16 @@ import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
 import stasiak.karol.units.internal.UnitName
 
+object IntA {
+	private type Aff = DefineAffineSpace[Nothing, _1]
+	private val _orderingInstanceVal = new Ordering[IntA[Aff]]{
+		def compare(x: IntA[Aff], y: IntA[Aff]) = 
+			implicitly[Ordering[Long]].compare(x.value, y.value)
+	}
+	implicit def _orderingInstance[A<:AffineSpace] = 
+		_orderingInstanceVal.asInstanceOf[Ordering[IntA[A]]]
+}
+
 /** 64-bit signed integer representing a point in a 1-dimensional affine space.*/
 case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 
