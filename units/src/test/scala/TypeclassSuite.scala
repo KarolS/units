@@ -32,23 +32,27 @@ class TypeclassSuite extends FunSuite {
 
 	test("Lists of IntA should be sorted correctly."){
 		val a = List(2.at[CelsiusScale], 4.at[CelsiusScale], 1.at[CelsiusScale])
-		assert(a.sorted === List(1.at[CelsiusScale], 2.at[CelsiusScale], 4.at[CelsiusScale]))
+		val s: List[IntA[CelsiusScale]] = a.sorted
+		assert(s === List(1.at[CelsiusScale], 2.at[CelsiusScale], 4.at[CelsiusScale]))
 	}
 
 
 	test("Lists of DoubleA should be sorted correctly."){
 		val a = List(2.0.at[CelsiusScale], 4.0.at[CelsiusScale], 1.0.at[CelsiusScale])
-		assert(a.sorted === List(1.0.at[CelsiusScale], 2.0.at[CelsiusScale], 4.0.at[CelsiusScale]))
+		val s: List[DoubleA[CelsiusScale]] = a.sorted
+		assert(s === List(1.0.at[CelsiusScale], 2.0.at[CelsiusScale], 4.0.at[CelsiusScale]))
 	}
 
 	test("Lists of IntU should be sorted correctly."){
 		val a = List(2.of[metre], 4.of[metre], 1.of[metre])
-		assert(a.sorted === List(1.of[metre], 2.of[metre], 4.of[metre]))
+		val s: List[IntU[metre]] = a.sorted
+		assert(s === List(1.of[metre], 2.of[metre], 4.of[metre]))
 	}
 
 	test("Lists of DoubleU should be sorted correctly."){
 		val a = List(2.0.of[metre], 4.0.of[metre], 1.0.of[metre])
-		assert(a.sorted === List(1.0.of[metre], 2.0.of[metre], 4.0.of[metre]))
+		val s: List[DoubleU[metre]] = a.sorted
+		assert(s === List(1.0.of[metre], 2.0.of[metre], 4.0.of[metre]))
 	}
 
 }

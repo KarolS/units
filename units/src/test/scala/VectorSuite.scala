@@ -32,16 +32,20 @@ class VectorSuite extends FunSuite {
 	
 	test("Dot product and norms for 3D vectors should work correctly") {
 		val v1 = (1,1,1).of[metre]
-		assert(3.of[square[metre]] == v1.absSq)
+		val v1absSq: DoubleU[square[metre]] = v1.absSq
+		assert(3.of[square[metre]] == v1absSq)
 		val v2 = (1,2,2).of[second]
-		assert((3.of[second] - v2.abs) < 1.nano[second])
+		val v2abs: DoubleU[second] = v2.abs
+		assert((3.of[second] - v2abs) < 1.nano[second])
 		assert((5.of[metre×second] - v1*v2) < 1.nano[metre×second])
 	}
 
 	test("Dot product and norms for 2D vectors should work correctly") {
 		val v1 = (1,1).of[metre]
+		val v1absSq: DoubleU[square[metre]] = v1.absSq
 		assert(2.of[square[metre]] == v1.absSq)
 		val v2 = (3,4).of[second]
+		val v2abs: DoubleU[second] = v2.abs
 		assert((5.of[second] - v2.abs) < 1.nano[second])
 		assert((7.of[metre×second] - v1*v2) < 1.nano[metre×second])
 	}

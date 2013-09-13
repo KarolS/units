@@ -33,9 +33,12 @@ class UnitConversionSuite extends FunSuite {
 
 	test("Smaller units should be implicitly converted to bigger units") {
 		implicitly[(inch ∨ foot)#Union[inch]]
-		assert(2.of[inch] + 1.of[foot] === 14.of[inch])
-		assert(2.of[ounce] + 1.of[pound] === 18.of[ounce])
-		assert(3.of[metre×metre] + 5.of[are] === 503.of[metre×metre])
+		val sum1: IntU[inch] = 2.of[inch] + 1.of[foot]
+		assert(sum1 === 14.of[inch])
+		val sum2: IntU[ounce] = 2.of[ounce] + 1.of[pound]
+		assert(sum2 === 18.of[ounce])
+		val sum3: IntU[metre×metre] = 3.of[metre×metre] + 5.of[are]
+		assert(sum3 === 503.of[metre×metre])
 	}
 
 	test("Units should be correctly implicitly converted in comparisons") {

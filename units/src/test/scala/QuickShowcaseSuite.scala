@@ -38,10 +38,10 @@ class QuickShowcaseSuite extends FunSuite {
 		val priceInUSA     =  200.of[USD/square[foot]]
 		val priceInGermany = 1500.of[EUR/square[metre]]
 
-		val area = 200.of[centimetre] * 550.of[centimetre]
+		val area: IntU[square[centimetre]] = 200.of[centimetre] * 550.of[centimetre]
 
-		val costInUSA     = priceInUSA     * area.convert[foot × foot]
-		val costInGermany = priceInGermany * area.convert[metre × metre]
+		val costInUSA:     DoubleU[USD] = priceInUSA     * area.convert[foot × foot]
+		val costInGermany: DoubleU[EUR] = priceInGermany * area.convert[metre × metre]
 
 		assert(null ne s"You can buy tiles in Germany for ${costInGermany.mkString}.")
 		assert(null ne s"You can buy tiles in USA for ${costInUSA.mkString}.")
