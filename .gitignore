@@ -15,12 +15,12 @@ units-joda/target/
 units-scalacheck/target/
 units-scalaz/target/
 units-spire/target/
+units-slick/target/
 
 # not supported yet
 units-breeze/
 units-saddle/
 units-shapeless/
-units-slick/
 units-squeryl/
 
 lib_managed/

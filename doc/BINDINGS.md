@@ -80,6 +80,17 @@ Artefact `units-algebird` provides implementations of `Monoid`, `Group` and `Vec
 
 Usage: `import stasiak.karol.units.algebirdSupport._`
 
+Slick
+-----
+
+[Slick project page.](http://slick.typesafe.com)
+
+Currently, only Slick 1.0.x is supported. Support for Slick 2.0 will follow after its stable release.
+
+Artefact `units-slick` provides implementations of column mappings for `IntU`, `IntA`, `DoubleU` and `DoubleA`.
+
+Usage: `import stasiak.karol.units.slick1Support`
+
 Saddle
 ------
 

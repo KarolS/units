@@ -49,6 +49,8 @@ object UnitsBuild extends Build {
 	
 	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "0.1.13"
 
+	lazy val SLICK = "com.typesafe.slick" %% "slick" % "[1.0.0,1.1)"
+
 	lazy val JODA_TIME = "joda-time" % "joda-time" % "[2.1,3)"
 
 	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "[1.2,2)" % "provided"
@@ -56,6 +58,10 @@ object UnitsBuild extends Build {
 	lazy val SCALATEST_TEST = "org.scalatest" % "scalatest_2.10" % "[2.0.M5b,2.1)" % "test"
 
 	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test" 
+
+	lazy val H2_TEST = "com.h2database" % "h2" % "1.3.173" % "test" 
+
+	lazy val SLF4J_TEST = "org.slf4j" % "slf4j-nop" % "1.6.4"
 
     // project definitions
 
@@ -88,7 +94,8 @@ object UnitsBuild extends Build {
 		scalacheckIntegration,
 		spireIntegration,
 		jodaTimeIntegration,
-		algebirdIntegration
+		algebirdIntegration,
+		slick1Integration
 	)
 
 	lazy val __units11: Project = Project(
@@ -164,6 +171,16 @@ object UnitsBuild extends Build {
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-algebird",
 			libraryDependencies ++= Seq(ALGEBIRD, SCALATEST_TEST)
+		),
+		dependencies = Seq(__units)
+	)
+
+	lazy val slick1Integration: Project = Project(
+		id = "units-slick", 
+		base = file("units-slick"),
+		settings = baseSettings ++ Seq[Sett](
+			name := "units-slick",
+			libraryDependencies ++= Seq(SLICK, SCALATEST_TEST, H2_TEST, SLF4J_TEST)
 		),
 		dependencies = Seq(__units)
 	)
