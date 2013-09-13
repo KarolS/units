@@ -43,7 +43,7 @@ object Vector2A {
 	/** (0,1) vector */
 	def y[A<:AffineSpace]    = Vector2A(0.0.at[A], 1.0.at[A])
 
-	def at[A<:AffineSpace](x: Double, y: Double, z: Double) = Vector2A(x.at[A], y.at[A])
+	def at[A<:AffineSpace](x: Double, y: Double) = Vector2A(x.at[A], y.at[A])
 }
 
 /** A two-dimensional vector within an affine space */
