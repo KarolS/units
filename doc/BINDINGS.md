@@ -90,17 +90,3 @@ Currently, only Slick 1.0.x is supported. Support for Slick 2.0 will follow afte
 Artefact `units-slick` provides implementations of column mappings for `IntU`, `IntA`, `DoubleU` and `DoubleA`.
 
 Usage: `import stasiak.karol.units.slick1Support`
-
-Saddle
-------
-
-[Saddle project page.](https://github.com/saddle/saddle)
-
-Support is planned in the future.
-
-Breeze
-------
-
-[Breeze project page.](https://github.com/dlwh/breeze)
-
-Support is planned in the future.
