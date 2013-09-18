@@ -1,27 +1,9 @@
 units
 =====
 
-Flexible, statically-checked experimental library for units of measurement.
+**Flexible, statically-checked experimental library for units of measurement.**
 
-This is a result of my experiments with Scala's type system.
-
-The goal I was aiming for when working on this library was to provide units of measurement with following properties:
-
-* values with units are unboxed (possible thanks to Scala 2.10's custom value classes)
-
-* units can be defined by user (as opposed to implementations limiting users to seven base SI units)
-
-* all unit checking should be done on compile time (as opposed to runtime)
-
-* not a compiler plugin or a macro (although I may add some macro-powered syntactic sugar in the future)
-
-* proper support for affine spaces
-
-* easy conversion between units
-
-The library is published under MIT License.
-
-[Build instructions.](doc/BUILD.md)
+Published under MIT License.
 
 Current version: 0.0.7
 ----------------------
@@ -30,30 +12,28 @@ Current version: 0.0.7
 
 [Plans for the nearest future.](doc/TODO.md)
 
-Why not any other implementation?
----------------------------------
+[Build instructions.](doc/BUILD.md)
 
-All of the following implementations were either inefficient or inflexible:
+Features
+--------
 
-* [units (compiler plugin)](https://lampsvn.epfl.ch/trac/scala/browser/compiler-plugins/units/trunk)
+[Reasons for creation and design goals.](doc/RATIONALE.md)
 
-    * Both outdated and a compiler plugin.
+Main features:
 
-* [Metascala Units](http://trac.assembla.com/metascala/browser/src/metascala/Units.scala)
+* static, compile-time checking of units of measure
 
-* [scalax-units](https://github.com/soc/scalax-units)
+* ability to define custom units of measure
 
-* [ScalaQuantity](https://github.com/zzorn/ScalaQuantity)
+* unit arithmetic
 
-    * All three above are limited to 7 SI units only, and since they were made before 2.10, values are boxed. They were the direct inspiration for this library.
+* automatic unit conversions
 
-* [axle.quanta](https://github.com/adampingel/axle/tree/master/core/src/main/scala/axle/quanta)
+* many out-of-the-box supported units and their conversions
 
-    * Allows for adding new units, but all unit checking is performed at runtime, causing a significant runtime overhead.
+* support for affine spaces
 
-* [scalau](https://github.com/adrianfr/scalau)
-
-    * A source code preprocessor. Converts all units to SI. Does not support arbitrary unit expressions, for example metre to the fourth power would be an invalid unit.
+* bindings for several Scala and Java libraries
 
 A quick comparison with the units of measure support in F# is [here](doc/FSHARP.md).
 
@@ -229,6 +209,8 @@ length.mkString               // equals "4 m"
 ```
 
 It is currently not recommended though, it takes a lot of time to compile and generates awfully large classfiles. The recommended way is to use `value` method and append a unit symbol manually.
+
+[Section about using custom numeric types with units has been moved here.](doc/CUSTOM.md)
 
 Manual unit conversion
 ----------------------
