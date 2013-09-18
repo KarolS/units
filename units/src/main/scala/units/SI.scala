@@ -104,11 +104,17 @@ object SI {
 	// mass units
 	type milligram = DefineUnit[_m~:_g]
 	type gram = DefineUnit[_g]
+	type decagram = DefineUnit[_d~:_a~:_g]
+	type dekagram = decagram
 	type tonne = DefineUnit[_t]
 	implicit val implicit__kg_to_g  = one[kilogram].contains(1000)[gram]
+	implicit val implicit__kg_to_dag = one[kilogram].contains(100)[decagram]
+	implicit val implicit__dag_to_g  = one[decagram].contains(10)[gram]
+	implicit val implicit__dag_to_mg = one[decagram].contains(10000)[milligram]
 	implicit val implicit__g_to_mg  = one[gram    ].contains(1000)[milligram]
 	implicit val implicit__kg_to_mg = one[kilogram].contains(1000000)[milligram]
 	implicit val implicit__t_to_kg  = one[tonne   ].contains(1000)[kilogram]
+	implicit val implicit__t_to_dag = one[tonne   ].contains(100000)[decagram]
 	implicit val implicit__t_to_g   = one[tonne   ].contains(1000000)[gram]
 	implicit val implicit__t_to_mg  = one[tonne   ].contains(1000000000)[milligram]
 
@@ -120,6 +126,10 @@ object SI {
 	type centimetre = DefineUnit[_c~:_m]
 	type kilometre = DefineUnit[_k~:_m]
 	implicit val implicit__km_to_m  = one[kilometre ].contains(1000)[metre]
+	implicit val implicit__km_to_cm = one[kilometre ].contains(1000000)[centimetre]
+	implicit val implicit__km_to_mm = one[kilometre ].contains(1000000000)[millimetre]
+	implicit val implicit__km_to_um = one[kilometre ].contains(1000000000000L)[micrometre]
+	implicit val implicit__km_to_nm = one[kilometre ].contains(1000000000000000L)[nanometre]
 	implicit val implicit__m_to_cm  = one[metre     ].contains(100)[centimetre]
 	implicit val implicit__m_to_mm  = one[metre     ].contains(1000)[millimetre]
 	implicit val implicit__m_to_um  = one[metre     ].contains(1000000)[micrometre]
@@ -130,6 +140,8 @@ object SI {
 	implicit val implicit__mm_to_um = one[millimetre].contains(1000)[micrometre]
 	implicit val implicit__mm_to_nm = one[millimetre].contains(1000000)[nanometre]
 	implicit val implicit__um_to_nm = one[micrometre].contains(1000)[nanometre]
+	
+	implicit val implicit__km_to_AA = one[kilometre ].contains(10000000000000L)[angstrom]
 	implicit val implicit__m_to_AA  = one[metre     ].contains(10000000000L)[angstrom]
 	implicit val implicit__cm_to_AA = one[centimetre].contains(100000000)[angstrom]
 	implicit val implicit__mm_to_AA = one[millimetre].contains(10000000)[angstrom]
@@ -175,12 +187,27 @@ object SI {
 	implicit val implicit__h_to_min  = one[hour  ].contains(60)[minute]
 	implicit val implicit__d_to_h    = one[day   ].contains(24)[hour]
 	implicit val implicit__week_to_d = one[week  ].contains(7)[day]
+	implicit val implicit__ms_to_ns  = one[millisecond].contains(1000000)[nanosecond]
+	implicit val implicit__us_to_ns  = one[microsecond].contains(1000)[nanosecond]
+	implicit val implicit__ms_to_us  = one[millisecond].contains(1000)[microsecond]
 	implicit val implicit__h_to_s      = implicit__h_to_min  >> implicit__min_to_s
 	implicit val implicit__d_to_min    = implicit__d_to_h    >> implicit__h_to_min
 	implicit val implicit__d_to_s      = implicit__d_to_h    >> implicit__h_to_s
 	implicit val implicit__week_to_h   = implicit__week_to_d >> implicit__d_to_h
 	implicit val implicit__week_to_min = implicit__week_to_h >> implicit__h_to_min
 	implicit val implicit__week_to_s   = implicit__week_to_h >> implicit__h_to_s
+	implicit val implicit__min_to_ms   = implicit__min_to_s  >> implicit__s_to_ms
+	implicit val implicit__min_to_us   = implicit__min_to_s  >> implicit__s_to_us
+	implicit val implicit__min_to_ns   = implicit__min_to_s  >> implicit__s_to_ns
+	implicit val implicit__h_to_ms  = implicit__h_to_s >> implicit__s_to_ms
+	implicit val implicit__h_to_us  = implicit__h_to_s >> implicit__s_to_us
+	implicit val implicit__h_to_ns  = implicit__h_to_s >> implicit__s_to_ns
+	implicit val implicit__d_to_ms   = implicit__d_to_s  >> implicit__s_to_ms
+	implicit val implicit__d_to_us   = implicit__d_to_s  >> implicit__s_to_us
+	implicit val implicit__d_to_ns   = implicit__d_to_s  >> implicit__s_to_ns
+	implicit val implicit__week_to_ms  = implicit__week_to_s >> implicit__s_to_ms
+	implicit val implicit__week_to_us  = implicit__week_to_s >> implicit__s_to_us
+	implicit val implicit__week_to_ns  = implicit__week_to_s >> implicit__s_to_ns
 
 	// speed unit conversions
 	implicit val implicit__mps_to_cmps = implicit__m_to_cm.dividedBy[second]
