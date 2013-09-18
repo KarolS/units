@@ -40,7 +40,7 @@ class WithASuite extends FunSuite {
 	test("Subtraction should work") {
 		val i = BigInt(1).at[CelsiusScale]
 		val j = BigInt(2).of[celsius_deg]
-		val sum: WithA[BigInt,CelsiusScale] = i+j
+		val sum: WithA[BigInt,CelsiusScale] = i-j
 		assert(sum === BigInt(-1).at[CelsiusScale])
 	}
 	test("Difference should work") {
