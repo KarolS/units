@@ -22,6 +22,7 @@ SOFTWARE.
 
 package stasiak.karol.units
 
+import scala.math.Numeric
 import spire.algebra._ 
 import spire.math._ 
 import stasiak.karol.units._
@@ -46,6 +47,27 @@ package object spireSupport {
 		def timesl(d: Double, x: DoubleU[U]) = x times d
 		override def divr(x: DoubleU[U], d: Double) = x dividedBy d
 	}
+	
+	implicit def implicit__withU[N,U<:MUnit](implicit n: Numeric[N]) = new Module[Any, N] {
+
+		implicit def scalar: Ring[N] = Ring[N]
+
+		override def additive: AbGroup[Any] = new AbGroup[Any] {
+			def id: Any = n.zero.of[U].asInstanceOf[Any]
+			def op(x: Any, y: Any): Any = 
+				x.asInstanceOf[WithU[N,U]] + y.asInstanceOf[WithU[N,U]]
+			def inverse(x: Any): Any = -x.asInstanceOf[WithU[N,U]]
+		}
+
+		def zero: Any = n.zero.of[U]
+		def negate(x: Any): Any = -x.asInstanceOf[WithU[N,U]]
+		override def minus(x: Any, y: Any): Any = 
+			x.asInstanceOf[WithU[N,U]] - y.asInstanceOf[WithU[N,U]]
+		def plus(x: Any, y: Any): Any = 
+			x.asInstanceOf[WithU[N,U]] + y.asInstanceOf[WithU[N,U]]
+		def timesl(d: N, x: Any): Any = x.asInstanceOf[WithU[N,U]] times d
+		
+	}.asInstanceOf[Module[WithU[N,U],N]]
 	
 	implicit def intUI[U<:MUnit] = new Module[IntU[U], Int] {
 
