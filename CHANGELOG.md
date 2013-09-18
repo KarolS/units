@@ -1,6 +1,21 @@
 units - CHANGELOG
 =================
 
+version 0.0.8
+-------------
+
+* General: Added support for arbitrary underlying numeric types with `WithU` and `WithA`.
+
+* Units: Added 8 new units and multiple new conversions.
+
+* Units: Added 33 new currencies.
+
+* Slick integration: Added column converters for `(Double/Int)(U/A)`.
+
+* FIXED: Parameters for `Vector2A.at`
+
+* FIXED: Few minor documentation fixes.
+
 version 0.0.7
 -------------
 
@@ -61,7 +76,7 @@ version 0.0.4
 
 * Constants: Added 5 new physical constants.
 
-* Algebird integration: Added various typeclass instances for DoubleU, IntU, Vector2U and Vector3U.
+* Algebird integration: Added various typeclass instances for `DoubleU`, `IntU`, `Vector2U` and `Vector3U`.
 
 * Testing: Added more type arithmetic tests.
 
@@ -70,7 +85,7 @@ version 0.0.3
 
 * General: Added 2D and 3D vectors and vector arrays.
 
-* General: Allowed to compare Double(U/A) for equality.
+* General: Allowed to compare `Double(U/A)` for equality.
 
 * Units: Added conversions between binary prefixes for bytes.
 
@@ -99,17 +114,17 @@ version 0.0.2
 
 * Units: Added all remaining conversions between information units with decimal prefixes.
 
-* Scalaz integration: Added various typeclass instances for (Double/Int)(U/A).
+* Scalaz integration: Added various typeclass instances for `(Double/Int)(U/A)`.
 
-* Spire integration: Added VectorSpace instances for Double(U/A) and Module instances for Int(U/A).
+* Spire integration: Added `VectorSpace` instances for `Double(U/A)` and `Module` instances for `Int(U/A)`.
 
-* Scalacheck integration: Added Choose instances for (Double/Int)(U/A).
+* Scalacheck integration: Added `Choose` instances for `(Double/Int)(U/A)`.
 
-* Joda Time integration: Added implicit conversions for Duration.
+* Joda Time integration: Added implicit conversions for `Duration`.
 
 * Testing: Added 2 simple benchmarks.
 
-* FIXED: Compilation and code completion no longer hang during LeftIntRatio/RightIntRatio implicit search, which makes the library usable in Eclipse.
+* FIXED: Compilation and code completion no longer hang during `LeftIntRatio`/`RightIntRatio` implicit search, which makes the library usable in Eclipse.
 
 version 0.0.1
 -------------
