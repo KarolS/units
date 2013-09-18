@@ -36,6 +36,8 @@ package object units {
 	import stasiak.karol.units.internal.AffineSpaces
 	import stasiak.karol.units.internal.AffineSpaces._
 
+	type @@[N, U<:MUnit] = WithU[N,U]
+
 	/** Unit division.*/
 	type /[U<:MUnit, V<:MUnit] = U#Mul[V#Invert]
 	/** Unit multiplication.*/
@@ -91,6 +93,39 @@ package object units {
 	implicit def implicit_float2DoubleUBuilder(value: Float) =new DoubleUBuilder(value.toDouble)
 	@inline
 	implicit def implicit_dimensionless2DoubleUBuilder(value: DoubleU[_1]) =new DoubleUBuilder(value.value)
+
+	/**Extension methods for everything */
+	implicit final class WithUBuilder[N](val underlyingValue: N) extends AnyVal {
+		/** Creates a value with a unit. */
+		@inline
+		def of[U<:MUnit] = new WithU[N,U](underlyingValue)
+		/** Creates a value in an affine space. */
+		@inline
+		def at[A<:AffineSpace] = new WithA[N,A](underlyingValue)
+
+		@inline
+		def deca[U<:MUnit] (implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def hecto[U<:MUnit](implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def deka[U<:MUnit] (implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def hekto[U<:MUnit](implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def kilo[U<:MUnit] (implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def mega[U<:MUnit] (implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		@inline
+		def giga[U<:MUnit] (implicit n:Numeric[N]) = 
+			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+		
+	}
 
 	/** Extention methods for Double. */
 	implicit final class DoubleUBuilder(val value: Double) extends AnyVal {
