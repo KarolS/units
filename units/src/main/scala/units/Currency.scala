@@ -31,6 +31,8 @@ object Currency {
 
 	/** UAE dinar*/
 	type AED = DefineUnit[_A~:_E~:_D]
+	/** Afghan afghani */
+	type AFN = DefineUnit[_A~:_F~:_N]
 	/** Albanian lek */
 	type ALL = DefineUnit[_A~:_L~:_L]
 	/** Armenian dram */
@@ -43,12 +45,26 @@ object Currency {
 	type AUD = DefineUnit[_A~:_U~:_D]
 	/** Azeri manat */
 	type AZN = DefineUnit[_A~:_Z~:_N]
+	/** Bosnian mark */
+	type BAM = DefineUnit[_B~:_A~:_M]
+	/** Barbadian dinar */
+	type BBD = DefineUnit[_B~:_B~:_D]
 	/** Bengali taka */
 	type BDT = DefineUnit[_B~:_D~:_T]
 	/** Bulgarian lev */
 	type BGN = DefineUnit[_B~:_G~:_N]
+	/** Bahraini dinar */
+	type BHD = DefineUnit[_B~:_H~:_D]
 	/** Brazilian rial */
 	type BRL = DefineUnit[_B~:_R~:_L]
+	/** Bahamian dollar */
+	type BSD = DefineUnit[_B~:_S~:_D]
+	/** Botswana pula */
+	type BWP = DefineUnit[_B~:_W~:_P]
+	/** Belarusian ruble */
+	type BYR = DefineUnit[_B~:_Y~:_R]
+	/** Belize dollar */
+	type BZD = DefineUnit[_B~:_Z~:_D]
 	/** Canadian dollar */
 	type CAD = DefineUnit[_C~:_A~:_D]
 	/** Swiss franc */
@@ -59,6 +75,8 @@ object Currency {
 	type CNY = DefineUnit[_C~:_N~:_Y]
 	/** Colombian peso */
 	type COP = DefineUnit[_C~:_O~:_P]
+	/** Costa Rica colon */
+	type CRC = DefineUnit[_C~:_R~:_C]
 	/** Cuban convertible peso */
 	type CUC = DefineUnit[_C~:_U~:_C]
 	/** Cuban peso */
@@ -67,6 +85,8 @@ object Currency {
 	type CZK = DefineUnit[_C~:_Z~:_K]
 	/** Danish krone */
 	type DKK = DefineUnit[_D~:_K~:_K]
+	/** Dominican peso */
+	type DOP = DefineUnit[_D~:_O~:_P]
 	/** Algerian dinar */
 	type DZD = DefineUnit[_D~:_Z~:_D]
 	/** Egyptian pound */
@@ -77,8 +97,16 @@ object Currency {
 	type GBP = DefineUnit[_G~:_B~:_P]
 	/** Georgian lari */
 	type GEL = DefineUnit[_G~:_E~:_L]
+	/** Guinean franc */
+	type GNF = DefineUnit[_G~:_N~:_F]
+	/** Guatemalan quetzal */
+	type GTQ = DefineUnit[_G~:_T~:_Q]
+	/** Guyanese dollar */
+	type GYD = DefineUnit[_G~:_Y~:_D]
 	/** Hong Kong dollar */
 	type HKD = DefineUnit[_H~:_K~:_D]
+	/** Haitan gourde */
+	type HTG = DefineUnit[_H~:_T~:_G]
 	/** Hungarian forint */
 	type HUF = DefineUnit[_H~:_U~:_F]
 	/** Croatian kuna */
@@ -95,28 +123,46 @@ object Currency {
 	type IRR = DefineUnit[_I~:_R~:_R]
 	/** Icelandic krona */
 	type ISK = DefineUnit[_I~:_S~:_K]
+	/** Jamaican dollar */
+	type JMD = DefineUnit[_J~:_M~:_D]
+	/** Jordanian dinar */
+	type JOD = DefineUnit[_J~:_O~:_D]
 	/** Japanese yen */
 	type JPY = DefineUnit[_J~:_P~:_Y]
+	/** Cambodian riel */
+	type KHR = DefineUnit[_K~:_H~:_R]
 	/** South Korean won */
 	type KRW = DefineUnit[_K~:_R~:_W]
 	/** Kuwaiti dinar */
 	type KWD = DefineUnit[_K~:_W~:_D]
 	/** Kazakh tenge */
 	type KZT = DefineUnit[_K~:_Z~:_T]
+	/** Laos kip */
+	type LAK = DefineUnit[_L~:_A~:_K]
+	/** Sri Lankan rupee */
+	type LKR = DefineUnit[_L~:_K~:_R]
 	/** Lithuanian lit */
 	type LTL = DefineUnit[_L~:_T~:_L]
 	/** Latvian lat */
 	type LVL = DefineUnit[_L~:_V~:_L]
 	/** Moroccan dirham */
 	type MAD = DefineUnit[_M~:_A~:_D]
+	/** Moldovan leu */
+	type MDL = DefineUnit[_M~:_D~:_L]
 	/** Macedonian denar */
 	type MKD = DefineUnit[_M~:_K~:_D]
+	/** Burmese kyat */
+	type MMK = DefineUnit[_M~:_M~:_K]
+	/** Mongolian togrog */
+	type MNT = DefineUnit[_M~:_N~:_T]
 	/** Mexican peso */
 	type MXN = DefineUnit[_M~:_X~:_N]
 	/** Malaysian ringgit */
 	type MYR = DefineUnit[_M~:_Y~:_R]
 	/* Nigerian naira */
 	type NGN = DefineUnit[_N~:_G~:_N]
+	/** Nicaraguan cordoba */
+	type NIO = DefineUnit[_N~:_I~:_O]
 	/** Norwegian krone */
 	type NOK = DefineUnit[_N~:_O~:_K]
 	/** New Zealand dollar */
@@ -125,7 +171,7 @@ object Currency {
 	type OMR = DefineUnit[_O~:_M~:_R]
 	/** Qatari riyal */
 	type QAR = DefineUnit[_Q~:_A~:_R]
-	/** Peruvian peso */
+	/** Peruvian nuevo sol */
 	type PEN = DefineUnit[_P~:_E~:_N]
 	/** Filipino peso */
 	type PHP = DefineUnit[_P~:_H~:_P]
@@ -133,6 +179,8 @@ object Currency {
 	type PKR = DefineUnit[_P~:_K~:_R]
 	/** Polish zloty */
 	type PLN = DefineUnit[_P~:_L~:_N]
+	/** Paraguayan guarani */
+	type PYG = DefineUnit[_P~:_Y~:_G]
 	/** Romanian lei */
 	type RON = DefineUnit[_R~:_O~:_N]
 	/** Serbian dinar */
@@ -147,12 +195,20 @@ object Currency {
 	type SGD = DefineUnit[_S~:_G~:_D]
 	/** Syrian pound */
 	type SYP = DefineUnit[_S~:_Y~:_P]
+	/** Surinamese dollar */
+	type SRD = DefineUnit[_S~:_R~:_D]
 	/** Thai bhat */
 	type THB = DefineUnit[_T~:_H~:_B]
+	/** Tajikistan somoni */
+	type TJS = DefineUnit[_T~:_J~:_S]
+	/** Turkmenistan manat */
+	type TMT = DefineUnit[_T~:_M~:_T]
 	/** Tunisian dinar */
 	type TND = DefineUnit[_T~:_N~:_D]
 	/** Turkish lira */
 	type TRY = DefineUnit[_T~:_R~:_Y]
+	/** Trinidad and Tobago dollar */
+	type TTD = DefineUnit[_T~:_T~:_D]
 	/** Ukrainian hryvnia */
 	type UAH = DefineUnit[_U~:_A~:_H]
 	/** US dollar */
@@ -163,16 +219,26 @@ object Currency {
 	type VEF = DefineUnit[_V~:_E~:_F]
 	/** Vietnamese dong */
 	type VND = DefineUnit[_V~:_N~:_D]
+	/** Vanuatu vatu */
+	type VUV = DefineUnit[_V~:_U~:_V]
+	/** Samoan tala */
+	type WST = DefineUnit[_W~:_S~:_T]
 	/** Central African CFA franc */
 	type XAF = DefineUnit[_X~:_A~:_F]
 	/** Bitcoin */
 	type XBT = DefineUnit[_X~:_B~:_T]
 	/** East Caribbean dollar */
 	type XCD = DefineUnit[_X~:_C~:_D]
+	/** West African CFA franc */
+	type XOF = DefineUnit[_X~:_O~:_F]
 	/** CFP franc (franc pacifique) */
 	type XPF = DefineUnit[_X~:_P~:_F]
+	/** Yemeni rial */
+	type YER = DefineUnit[_Y~:_E~:_R]
 	/** South African rand */
 	type ZAR = DefineUnit[_Z~:_A~:_R]
+	/** Zambian kwacha */
+	type ZMW = DefineUnit[_Z~:_M~:_W]
 
 	// TODO: more currencies
 
