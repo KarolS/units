@@ -99,8 +99,10 @@ package object units {
 		/** Creates a value with a unit. */
 		@inline
 		def of[U<:MUnit] = new WithU[N,U](underlyingValue)
+		/** Creates a value in an affine space. */
+		@inline
+		def at[A<:AffineSpace] = new WithA[N,A](underlyingValue)
 
-		// def at
 		@inline
 		def deca[U<:MUnit] (implicit n:Numeric[N]) = 
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
