@@ -39,7 +39,7 @@ class PowerIntRatio[U<:TSingleUnit, Power<:TInteger, V<:MUnit, N<:TInteger](val 
 
 object PowerIntRatio {
 	@inline
-	implicit def implicit_zeroPowerIntRatio[U<:TSingleUnit, V<:MUnit] = 
+	implicit def implicit_zeroPowerIntRatio[U<:TSingleUnit, V<:MUnit] =
 		new PowerIntRatio[U,P1,V,_0](1)
 	@inline
 	implicit def implicit_positivePowerIntRatio[U<:TSingleUnit, V<:MUnit, N<:TInteger](

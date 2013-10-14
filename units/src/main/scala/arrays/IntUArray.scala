@@ -31,13 +31,13 @@ object IntUArray {
 	def of[U<:MUnit](elems: Long*) = new IntUArray[U](Array[Long](elems:_*))
 
 	/** Concatenates all arrays into a single array. */
-	def concat[U<:MUnit](arrays: IntUArray[U]*) = 
+	def concat[U<:MUnit](arrays: IntUArray[U]*) =
 		new IntUArray[U](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[U<:MUnit](
-		src: IntUArray[U], srcPos: Int, 
-		dest: IntUArray[U], destPos: Int, 
+		src: IntUArray[U], srcPos: Int,
+		dest: IntUArray[U], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
@@ -71,8 +71,8 @@ class IntUArrayBuilder[U<:MUnit] extends Builder[IntU[U], IntUArray[U]] {
 	def result() = new IntUArray[U](underlying.result())
 }
 /** Mutable fixed-size array of unboxed `IntU`. */
-final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Long]) 
-	extends IndexedSeq[IntU[U]] 
+final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Long])
+	extends IndexedSeq[IntU[U]]
 	with ArrayLike[IntU[U], IntUArray[U]]{
 
 	def this(length: Int) {

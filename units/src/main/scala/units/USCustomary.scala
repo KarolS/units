@@ -189,7 +189,7 @@ object USCustomary {
 	type FahrenheitScale = DefineAffineSpace[FahrenheitZero, fahrenheit_deg]
 
 		
-	implicit val implicit__fromFahrenheitToCelsius = 
+	implicit val implicit__fromFahrenheitToCelsius =
 		new DoubleATranslationScaling[FahrenheitScale, CelsiusScale](
 			-32.of[fahrenheit_deg]
 		)

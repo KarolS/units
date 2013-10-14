@@ -42,7 +42,7 @@ object SingleUnits {
  	trait ASingleUnit[N<:TString] extends TSingleUnit {
 		type Name = N
 		type Equals[That<:TSingleUnit] = N === That#Name
-		type LessEqualGreater[That<:TSingleUnit, Less<:Result, Equal<:Result, Greater<:Result, Result] = 
+		type LessEqualGreater[That<:TSingleUnit, Less<:Result, Equal<:Result, Greater<:Result, Result] =
 			(N===That#Name)#DoIf[
 				Equal,
 				(N#LessOrEqual[That#Name])#DoIf2[

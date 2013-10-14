@@ -27,19 +27,19 @@ import language.implicitConversions
 
 package object scalacheckSupport {
 	implicit def implicit__intU[U<:MUnit] = new Choose[IntU[U]] {
-	    def choose(low: IntU[U], high: IntU[U]) = 
+	    def choose(low: IntU[U], high: IntU[U]) =
 	    	Choose.chooseLong.choose(low.value, high.value).map(_.of[U])
   	}
 	implicit def implicit__intA[A<:AffineSpace] = new Choose[IntA[A]] {
-	    def choose(low: IntA[A], high: IntA[A]) = 
+	    def choose(low: IntA[A], high: IntA[A]) =
 	    	Choose.chooseLong.choose(low.value, high.value).map(_.at[A])
   	}
 	implicit def implicit__doubleU[U<:MUnit] = new Choose[DoubleU[U]] {
-	    def choose(low: DoubleU[U], high: DoubleU[U]) = 
+	    def choose(low: DoubleU[U], high: DoubleU[U]) =
 	    	Choose.chooseDouble.choose(low.value, high.value).map(_.of[U])
   	}
 	implicit def implicit__doubleA[A<:AffineSpace] = new Choose[DoubleA[A]] {
-	    def choose(low: DoubleA[A], high: DoubleA[A]) = 
+	    def choose(low: DoubleA[A], high: DoubleA[A]) =
 	    	Choose.chooseDouble.choose(low.value, high.value).map(_.at[A])
   	}
 }

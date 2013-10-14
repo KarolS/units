@@ -39,7 +39,7 @@ class PowerDoubleRatio[U<:TSingleUnit, Power<:TInteger, V<:MUnit, N<:TInteger](v
 
 object PowerDoubleRatio {
 	@inline
-	implicit def implicit_zeroPowerDoubleRatio[U<:TSingleUnit, V<:MUnit] = 
+	implicit def implicit_zeroPowerDoubleRatio[U<:TSingleUnit, V<:MUnit] =
 		new PowerDoubleRatio[U,P1,V,_0](1.0)
 	@inline
 	implicit def implicit_positivePowerDoubleRatio[U<:TSingleUnit, V<:MUnit, N<:TInteger](

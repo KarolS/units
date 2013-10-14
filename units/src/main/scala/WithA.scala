@@ -39,7 +39,7 @@ import scala.math.{Numeric, Fractional}
 object WithA {
 	// TODO: circumvent erasure-related problems
 	implicit def _orderingInstance[N, A<:AffineSpace](implicit o:Ordering[N]) = new Ordering[Any]{
-		override def compare(x:Any, y:Any) = 
+		override def compare(x:Any, y:Any) =
 			o.compare(x.asInstanceOf[WithA[N,A]].value, y.asInstanceOf[WithA[N,A]].value)
 	}.asInstanceOf[Ordering[WithA[N,A]]]
 }

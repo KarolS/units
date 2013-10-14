@@ -54,5 +54,5 @@ class WithUSuite extends FunSuite {
 		val s: List[BigInt @@ second] = l.sorted
 		val e: List[BigInt @@ second] = List(1,2,4).map(i=>BigInt(i).of[second])
 		assert(s === e)
-	} 
+	}
 }

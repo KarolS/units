@@ -36,10 +36,10 @@ import stasiak.karol.units.internal.UnitName
 object DoubleA {
 	private type Aff = DefineAffineSpace[Nothing, _1]
 	private val _orderingInstanceVal = new Ordering[DoubleA[Aff]]{
-		def compare(x: DoubleA[Aff], y: DoubleA[Aff]) = 
+		def compare(x: DoubleA[Aff], y: DoubleA[Aff]) =
 			implicitly[Ordering[Double]].compare(x.value, y.value)
 	}
-	implicit def _orderingInstance[A<:AffineSpace] = 
+	implicit def _orderingInstance[A<:AffineSpace] =
 		_orderingInstanceVal.asInstanceOf[Ordering[DoubleA[A]]]
 }
 
@@ -55,11 +55,11 @@ case class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
 	@inline def --(i: DoubleA[A]) = new DoubleU[A#Unit](value - i.value)
 	
 	@inline
-	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) = 
+	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) =
 		new DoubleA[DefineAffineSpace[A#Zero, U]](value * ev.ratio)
 
 	@inline
-	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) = 
+	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) =
 		new DoubleA[B](ev.f(value))
 
 	@inline def fromZero = new DoubleU[A#Unit](value)

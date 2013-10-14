@@ -32,8 +32,8 @@ sealed trait UnitArithmeticProofs {
 	type c = DefineUnit[_c]
 
 	/*
-	TODO: 
-	Make it faster to compile, 
+	TODO:
+	Make it faster to compile,
 	so all these below can be uncommented and compiled in reasonable time.
 	*/
 

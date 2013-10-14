@@ -54,7 +54,7 @@ case class Vector3A[A<:AffineSpace](val x:DoubleA[A], val y:DoubleA[A], val z:Do
 	def mkString(implicit name: UnitName[A#Unit]) = toString + name.toString
 	@inline
 	override def toString = "[" + x.value + "," + y.value + "," + z.value + "]"
-	@inline 
+	@inline
 	def value = (x.value, y.value, z.value)
 	
 	/** Add a value with the same unit. */
@@ -65,7 +65,7 @@ case class Vector3A[A<:AffineSpace](val x:DoubleA[A], val y:DoubleA[A], val z:Do
 	@inline def --(i: Vector3A[A]): Vector3U[A#Unit] = Vector3U(x--i.x, y--i.y, z--i.z)
 
 	/** Convert to another unit. */
-	@inline def convert[B<:AffineSpace](implicit ev:DoubleAffineSpaceConverter[A,B]) = 
+	@inline def convert[B<:AffineSpace](implicit ev:DoubleAffineSpaceConverter[A,B]) =
 		Vector3A(x.convert[B], y.convert[B], z.convert[B])
 	
 	def fromZero = Vector3U(x.fromZero, y.fromZero, z.fromZero)

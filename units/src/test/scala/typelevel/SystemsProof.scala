@@ -42,7 +42,7 @@ sealed trait SystemsProof{
 		val v2: DoubleU[metre/second] = v
 	}
 	{
-		def position(x0: DoubleU[L], v0: DoubleU[L/T], a: DoubleU[L/square[T]], t:DoubleU[T]) = 
+		def position(x0: DoubleU[L], v0: DoubleU[L/T], a: DoubleU[L/square[T]], t:DoubleU[T]) =
 			x0 + v0*t + a*t*t/2
 
 		val x0 = 5.of[metre]
@@ -55,7 +55,7 @@ sealed trait SystemsProof{
 	{
 		import stasiak.karol.units.Mechanical._
 		import stasiak.karol.units.SI._
-		def position(x0: DoubleU[length], v0: DoubleU[speed], a: DoubleU[acceleration], t:DoubleU[time]) = 
+		def position(x0: DoubleU[length], v0: DoubleU[speed], a: DoubleU[acceleration], t:DoubleU[time]) =
 			x0 + v0*t + a*t*t/2
 
 		val x0 = 5.of[metre]

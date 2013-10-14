@@ -46,10 +46,10 @@ package object defining {
 	type ~:[H<:TChar,T<:TString] = Strings.~:[H,T]
 	
 	@inline
-	def convertAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Double => Double) = 
+	def convertAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Double => Double) =
 		new DoubleAffineSpaceConverter[T1,T2](f)
 	@inline
-	def convertIntAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Long => Long) = 
+	def convertIntAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Long => Long) =
 		new IntAffineSpaceConverter[T1,T2](f)
 
 	@inline

@@ -30,8 +30,8 @@ import USCustomary._
 class QuickShowcaseSuite extends FunSuite {
 
 	test("Quick showcase from README.md should work") {
-		type USD = DefineUnit[_U~:_S~:_D] 
-		type EUR = DefineUnit[_E~:_U~:_R] 
+		type USD = DefineUnit[_U~:_S~:_D]
+		type EUR = DefineUnit[_E~:_U~:_R]
 
 		implicit val EUR_to_USD = one[EUR].contains(1.25)[USD]
 

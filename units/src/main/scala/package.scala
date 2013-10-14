@@ -77,17 +77,17 @@ package object units {
 	@inline
 	implicit def implicit_toDimensionlessDouble(i:Double) = new DoubleU[_1](i)
 	@inline
-	implicit def implicit_toDimensionlessTupleDDD(i:(Double,Double,Double)) = 
+	implicit def implicit_toDimensionlessTupleDDD(i:(Double,Double,Double)) =
 	Vector3U(i._1.of[_1], i._2.of[_1], i._3.of[_1])
 
 	@inline
-	implicit def implicit_toDimensionlessTupleIII(i:(Int,Int,Int)) = 
+	implicit def implicit_toDimensionlessTupleIII(i:(Int,Int,Int)) =
 	Vector3U(i._1.toDouble.of[_1], i._2.toDouble.of[_1], i._3.toDouble.of[_1])
 	@inline
 	implicit def implicit_fromDimensionlessInt(i:IntU[_1]) = i.value
 	@inline
 	implicit def implicit_fromDimensionlessDouble(i:DoubleU[_1]) = i.value
-	@inline 
+	@inline
 	implicit def implicit_fromDimensionlessTuple(i:Vector3U[_1]) = (i.x.value, i.y.value, i.z.value)
 	@inline
 	implicit def implicit_float2DoubleUBuilder(value: Float) =new DoubleUBuilder(value.toDouble)
@@ -104,25 +104,25 @@ package object units {
 		def at[A<:AffineSpace] = new WithA[N,A](underlyingValue)
 
 		@inline
-		def deca[U<:MUnit] (implicit n:Numeric[N]) = 
+		def deca[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def hecto[U<:MUnit](implicit n:Numeric[N]) = 
+		def hecto[U<:MUnit](implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def deka[U<:MUnit] (implicit n:Numeric[N]) = 
+		def deka[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def hekto[U<:MUnit](implicit n:Numeric[N]) = 
+		def hekto[U<:MUnit](implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def kilo[U<:MUnit] (implicit n:Numeric[N]) = 
+		def kilo[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def mega[U<:MUnit] (implicit n:Numeric[N]) = 
+		def mega[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
-		def giga[U<:MUnit] (implicit n:Numeric[N]) = 
+		def giga[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		
 	}

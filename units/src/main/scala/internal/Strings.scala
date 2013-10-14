@@ -105,7 +105,7 @@ object Strings {
 		type Mid = M
 		type Low  = L
 		type EqualChar[C<:TChar] = H#EqualZ5[C#High]#And[L#EqualZ5[C#Low]]#And[M#EqualZ5[C#Mid]]
-		type LessOrEqualChar[C<:TChar] = 
+		type LessOrEqualChar[C<:TChar] =
 		C#High#GreaterThanZ5[H] #Or[
 			C#High#EqualZ5[H] #And[
 				C#Mid#GreaterThanZ5[M] #Or[
@@ -119,8 +119,8 @@ object Strings {
 	}
 	sealed trait TString {
 		type MatchEmptyNonempty[
-			IfEmpty<:ResultType, 
-			IfNonempty[H<:TChar, T<:TString]<:ResultType, 
+			IfEmpty<:ResultType,
+			IfNonempty[H<:TChar, T<:TString]<:ResultType,
 			ResultType] <: ResultType
 		type IsEmpty <: TBool
 		type Equals[S<:TString] <: TBool
@@ -129,8 +129,8 @@ object Strings {
 	}
 	sealed trait EmptyTString extends TString{
 		type MatchEmptyNonempty[
-			IfEmpty<:ResultType, 
-			IfNonempty[He<:TChar, Ta<:TString]<:ResultType, 
+			IfEmpty<:ResultType,
+			IfNonempty[He<:TChar, Ta<:TString]<:ResultType,
 			ResultType] = IfEmpty
 		type IsEmpty = True
 		type Equals[S<:TString] = S#IsEmpty
@@ -139,14 +139,14 @@ object Strings {
 	}
 	sealed trait ~:[H<:TChar,T<:TString] extends TString {
 		type MatchEmptyNonempty[
-			IfEmpty<:ResultType, 
-			IfNonempty[He<:TChar, Ta<:TString]<:ResultType, 
+			IfEmpty<:ResultType,
+			IfNonempty[He<:TChar, Ta<:TString]<:ResultType,
 			ResultType] = IfNonempty[H,T]
 		type IsEmpty = False
 		type Equals[S<:TString] = S#MatchEmptyNonempty[False, E, TBool]
 		type E[h<:TChar,t<:TString] = h#EqualChar[H]#And[t#Equals[T]]
 		type Length = T#Length#Succ
-		type LambdaComparison[H2<:TChar, T2<:TString] = 
+		type LambdaComparison[H2<:TChar, T2<:TString] =
 			If[H#EqualChar[H2],
 				T#LessOrEqual[T2],
 				H#LessOrEqualChar[H2],

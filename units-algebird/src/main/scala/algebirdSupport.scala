@@ -27,7 +27,7 @@ import com.twitter.algebird._
 import language.implicitConversions
 
 package object algebirdSupport {
-	implicit def implicit__doubleUInstancep[U<:MUnit] = 
+	implicit def implicit__doubleUInstancep[U<:MUnit] =
 		new Monoid[DoubleU[U]] with Group[DoubleU[U]] with VectorSpace[Double, ({type T[Ign]=DoubleU[U]})#T] {
 			implicit def field: Field[Double] = implicitly[Field[Double]]
 			implicit def group: Group[DoubleU[U]] = this
@@ -37,14 +37,14 @@ package object algebirdSupport {
 			override def negate(x: DoubleU[U]) = -x
 			override def minus(x: DoubleU[U], y: DoubleU[U]) = x - y
 		}
-	implicit def implicit__intUInstancep[U<:MUnit] = 
+	implicit def implicit__intUInstancep[U<:MUnit] =
 		new Monoid[IntU[U]] with Group[IntU[U]] {
 			def zero = 0.of[U]
 			def plus(x: IntU[U], y: IntU[U]) = x + y
 			override def negate(x: IntU[U]) = -x
 			override def minus(x: IntU[U], y: IntU[U]) = x - y
 		}
-	implicit def implicit__vector2UInstancep[U<:MUnit] = 
+	implicit def implicit__vector2UInstancep[U<:MUnit] =
 		new Monoid[Vector2U[U]] with Group[Vector2U[U]] with VectorSpace[Double, ({type T[Ign]=Vector2U[U]})#T] {
 			implicit def field: Field[Double] = implicitly[Field[Double]]
 			implicit def group: Group[Vector2U[U]] = this
@@ -54,7 +54,7 @@ package object algebirdSupport {
 			override def negate(x: Vector2U[U]) = -x
 			override def minus(x: Vector2U[U], y: Vector2U[U]) = x - y
 		}
-	implicit def implicit__vector3UInstancep[U<:MUnit] = 
+	implicit def implicit__vector3UInstancep[U<:MUnit] =
 		new Monoid[Vector3U[U]] with Group[Vector3U[U]] with VectorSpace[Double, ({type T[Ign]=Vector3U[U]})#T] {
 			implicit def field: Field[Double] = implicitly[Field[Double]]
 			implicit def group: Group[Vector3U[U]] = this

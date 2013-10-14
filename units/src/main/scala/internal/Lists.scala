@@ -24,7 +24,7 @@ package stasiak.karol.units.internal
 object Lists {
 	import language.higherKinds
 	sealed trait TList {
-		type Head 
+		type Head
 		type Tail <: TList
 	}
 	sealed trait TNil extends TList {

@@ -41,10 +41,10 @@ object RightIntRatio {
 	@inline
 	implicit def implicit_oneRightIntRatio[U<:MUnit] = new RightIntRatio[U,U,U](1)
 	@inline
-	implicit def implicit_rightIntRatio[U<:MUnit, V<:MUnit](implicit ev: IntRatio[U,V]) = 
+	implicit def implicit_rightIntRatio[U<:MUnit, V<:MUnit](implicit ev: IntRatio[U,V]) =
 		new RightIntRatio[U,V,V](1)
 	@inline
-	implicit def implicit_rightIntRatioRev[U<:MUnit, V<:MUnit](implicit ev: IntRatio[V,U]) = 
+	implicit def implicit_rightIntRatioRev[U<:MUnit, V<:MUnit](implicit ev: IntRatio[V,U]) =
 		new RightIntRatio[U,V,U](ev.ratio)
 
 }

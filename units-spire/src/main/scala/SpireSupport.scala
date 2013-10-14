@@ -22,8 +22,8 @@ SOFTWARE.
 
 package stasiak.karol.units
 
-import spire.algebra._ 
-import spire.math._ 
+import spire.algebra._
+import spire.math._
 import stasiak.karol.units._
 import language.implicitConversions
 

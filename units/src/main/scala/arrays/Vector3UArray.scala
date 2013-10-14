@@ -37,13 +37,13 @@ object Vector3UArray {
 	}
 
 	/** Concatenates all arrays into a single array. */
-	def concat[U<:MUnit](arrays: Vector3UArray[U]*) = 
+	def concat[U<:MUnit](arrays: Vector3UArray[U]*) =
 		new Vector3UArray(Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[U<:MUnit](
-		src: Vector3UArray[U], srcPos: Int, 
-		dest: Vector3UArray[U], destPos: Int, 
+		src: Vector3UArray[U], srcPos: Int,
+		dest: Vector3UArray[U], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos*3, dest.underlying, destPos*3, length*3)
 	}
@@ -101,8 +101,8 @@ class Vector3UArrayBuilder[U<:MUnit] extends Builder[Vector3U[U], Vector3UArray[
 /** Mutable fixed-size array of unboxed `Vector3U`. */
 final class Vector3UArray[U<:MUnit] private[arrays] (
 	private[arrays] val underlying: Array[Double]
-	) 
-	extends IndexedSeq[Vector3U[U]] 
+	)
+	extends IndexedSeq[Vector3U[U]]
 	with ArrayLike[Vector3U[U], Vector3UArray[U]]{
 
 	def this(length: Int) {
@@ -113,10 +113,10 @@ final class Vector3UArray[U<:MUnit] private[arrays] (
 	override def stringPrefix = "Vector3UArray"
 	override def newBuilder = new Vector3UArrayBuilder[U]
 
-	def apply(index: Int) = 
+	def apply(index: Int) =
 		new Vector3U[U](
-			underlying(index*3  ).of, 
-			underlying(index*3+1).of, 
+			underlying(index*3  ).of,
+			underlying(index*3+1).of,
 			underlying(index*3+2).of)
 
 	def update(index: Int, elem: Vector3U[U]) {

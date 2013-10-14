@@ -26,8 +26,8 @@ import scalaz.{Ordering, Monoid, Show, Order, Equal}
 
 package object scalazSupport {
 
-	implicit def implicit__doubleUInstance[U<:MUnit]: 
-		Monoid[DoubleU[U]] with Order[DoubleU[U]] with Show[DoubleU[U]] = 
+	implicit def implicit__doubleUInstance[U<:MUnit]:
+		Monoid[DoubleU[U]] with Order[DoubleU[U]] with Show[DoubleU[U]] =
 		new Monoid[DoubleU[U]] with Order[DoubleU[U]] with Show[DoubleU[U]] {
 
 		override def shows(f: DoubleU[U]) = f.value.toString
@@ -38,12 +38,12 @@ package object scalazSupport {
 
 		override def equalIsNatural: Boolean = true
 
-		def order(x: DoubleU[U], y: DoubleU[U]) = 
+		def order(x: DoubleU[U], y: DoubleU[U]) =
 			if (x < y) scalaz.Ordering.LT else if (x == y) scalaz.Ordering.EQ else scalaz.Ordering.GT
 	}
 
-	implicit def implicit__intUInstance[U<:MUnit]: 
-		Monoid[IntU[U]] with Order[IntU[U]] with Show[IntU[U]] = 
+	implicit def implicit__intUInstance[U<:MUnit]:
+		Monoid[IntU[U]] with Order[IntU[U]] with Show[IntU[U]] =
 		new Monoid[IntU[U]] with Order[IntU[U]] with Show[IntU[U]] {
 
 		override def shows(f: IntU[U]) = f.value.toString
@@ -54,31 +54,31 @@ package object scalazSupport {
 
 		override def equalIsNatural: Boolean = true
 
-		def order(x: IntU[U], y: IntU[U]) = 
+		def order(x: IntU[U], y: IntU[U]) =
 			if (x < y) scalaz.Ordering.LT else if (x == y) scalaz.Ordering.EQ else scalaz.Ordering.GT
 	}
 
-	implicit def implicit__doubleAInstance[A<:AffineSpace]: 
-		Order[DoubleA[A]] with Show[DoubleA[A]] = 
+	implicit def implicit__doubleAInstance[A<:AffineSpace]:
+		Order[DoubleA[A]] with Show[DoubleA[A]] =
 		new Order[DoubleA[A]] with Show[DoubleA[A]] {
 
 		override def shows(f: DoubleA[A]) = f.value.toString
 
 		override def equalIsNatural: Boolean = true
 
-		def order(x: DoubleA[A], y: DoubleA[A]) = 
+		def order(x: DoubleA[A], y: DoubleA[A]) =
 			if (x < y) scalaz.Ordering.LT else if (x == y) scalaz.Ordering.EQ else scalaz.Ordering.GT
 	}
 
-	implicit def implicit__intAInstance[A<:AffineSpace]: 
-		Order[IntA[A]] with Show[IntA[A]] = 
+	implicit def implicit__intAInstance[A<:AffineSpace]:
+		Order[IntA[A]] with Show[IntA[A]] =
 		new Order[IntA[A]] with Show[IntA[A]] {
 
 		override def shows(f: IntA[A]) = f.toString
 
 		override def equalIsNatural: Boolean = true
 
-		def order(x: IntA[A], y: IntA[A]) = 
+		def order(x: IntA[A], y: IntA[A]) =
 			if (x < y) scalaz.Ordering.LT else if (x == y) scalaz.Ordering.EQ else scalaz.Ordering.GT
 	}
 

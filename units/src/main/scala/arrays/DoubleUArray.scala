@@ -31,13 +31,13 @@ object DoubleUArray {
 	def of[U<:MUnit](elems: Double*) = new DoubleUArray[U](Array[Double](elems:_*))
 
 	/** Concatenates all arrays into a single array. */
-	def concat[U<:MUnit](arrays: DoubleUArray[U]*) = 
+	def concat[U<:MUnit](arrays: DoubleUArray[U]*) =
 		new DoubleUArray[U](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[U<:MUnit](
-		src: DoubleUArray[U], srcPos: Int, 
-		dest: DoubleUArray[U], destPos: Int, 
+		src: DoubleUArray[U], srcPos: Int,
+		dest: DoubleUArray[U], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
@@ -71,8 +71,8 @@ class DoubleUArrayBuilder[U<:MUnit] extends Builder[DoubleU[U], DoubleUArray[U]]
 	def result() = new DoubleUArray[U](underlying.result())
 }
 /** Mutable fixed-size array of unboxed `DoubleU`. */
-final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Double]) 
-	extends IndexedSeq[DoubleU[U]] 
+final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Double])
+	extends IndexedSeq[DoubleU[U]]
 	with ArrayLike[DoubleU[U], DoubleUArray[U]]{
 
 	def this(length: Int) {

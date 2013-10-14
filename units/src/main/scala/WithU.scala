@@ -39,7 +39,7 @@ import scala.math.{Numeric, Fractional}
 object WithU {
 	// TODO: circumvent erasure-related problems
 	implicit def _orderingInstance[N, U<:MUnit](implicit o:Ordering[N]) = new Ordering[Any]{
-		override def compare(x:Any, y:Any) = 
+		override def compare(x:Any, y:Any) =
 			o.compare(x.asInstanceOf[WithU[N,U]].value, y.asInstanceOf[WithU[N,U]].value)
 	}.asInstanceOf[Ordering[WithU[N,U]]]
 }
@@ -65,23 +65,23 @@ case class WithU[N, U<:MUnit](val value:N) extends AnyVal {
 
 
 	/** Multiply by a value with a unit. */
-	def *[V<:MUnit](i: WithU[N,V])(implicit n: Numeric[N]) = 
+	def *[V<:MUnit](i: WithU[N,V])(implicit n: Numeric[N]) =
 		WithU[N,U#Mul[V]](n.times(value,i.value))	
 	/** Multiply by a dimensionless value. */
-	def times(i: N)(implicit n: Numeric[N]) = 
+	def times(i: N)(implicit n: Numeric[N]) =
 		WithU[N,U](n.times(value,i))
 	/** Multiply by a dimensionless value. */
-	def times(i: Int)(implicit n: Numeric[N]) = 
+	def times(i: Int)(implicit n: Numeric[N]) =
 		WithU[N,U](n.times(value,n.fromInt(i)))
 
 	/** Divide by a value with a unit. */
-	def /[V<:MUnit](i: WithU[N,V])(implicit n: Fractional[N]) = 
+	def /[V<:MUnit](i: WithU[N,V])(implicit n: Fractional[N]) =
 		WithU[N,U#Mul[V#Invert]](n.div(value,i.value))
 	/** Divide by a dimensionless value. */
-	def dividedBy(i: N)(implicit n: Fractional[N]) = 
+	def dividedBy(i: N)(implicit n: Fractional[N]) =
 		WithU[N,U](n.div(value,i))
 	/** Divide by a dimensionless value. */
-	def dividedBy(i: Int)(implicit n: Fractional[N]) = 
+	def dividedBy(i: Int)(implicit n: Fractional[N]) =
 		WithU[N,U](n.div(value,n.fromInt(i)))
 
 	def < (i: WithU[N,U])(implicit o:Ordering[N]) = o.compare(value,i.value) <  0

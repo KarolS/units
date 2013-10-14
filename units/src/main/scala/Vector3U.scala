@@ -55,7 +55,7 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 	override def toString = "[" + x.value + "," + y.value + "," + z.value + "]"
 	
 	/** Return the value as a triple of Doubles. */
-	@inline 
+	@inline
 	def value = (x.value, y.value, z.value)
 	
 	/** Add a value with the same unit. */
@@ -121,23 +121,23 @@ case class Vector3U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U], val z:DoubleU[
 	@inline def dividedBy(i: Float) = Vector3U(x dividedBy i, y dividedBy i, z dividedBy i)
 
 	/** Convert to another unit. */
-	@inline def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) = 
+	@inline def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) =
 		Vector3U(x.convert[V], y.convert[V], z.convert[V])
 	
-	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) = 
+	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) =
 		Vector3U(x.represent[V,W], y.represent[V,W], z.represent[V,W])
-	 
+	
 	@inline def representAll[V<:TUnitPowerPair, W<:MUnit](
 		implicit ev: PowerDoubleRatio[V#UnitName,V#Power,W,U#Get[V#UnitName]]) =
 			Vector3U(x.representAll[V,W], y.representAll[V,W], z.representAll[V,W])
 
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector3U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector3U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		Vector3U[W](x+i.x, y+i.y, z+i.z)
 	/** Subract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector3U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector3U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		Vector3U[W](x-i.x, y-i.y, z-i.z)
 
 

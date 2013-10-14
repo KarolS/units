@@ -37,10 +37,10 @@ import scala.math
 
 object IntU {
 	private val _orderingInstanceVal = new Ordering[IntU[_1]]{
-		def compare(x: IntU[_1], y: IntU[_1]) = 
+		def compare(x: IntU[_1], y: IntU[_1]) =
 			implicitly[Ordering[Long]].compare(x.value, y.value)
 	}
-	implicit def _orderingInstance[U<:MUnit] = 
+	implicit def _orderingInstance[U<:MUnit] =
 		_orderingInstanceVal.asInstanceOf[Ordering[IntU[U]]]
 }
 
@@ -130,18 +130,18 @@ case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 
 	/** Convert to a subunit. */
 	@inline
-	def convertToInt[V<:MUnit](implicit ev:IntRatio[U,V]) = 
+	def convertToInt[V<:MUnit](implicit ev:IntRatio[U,V]) =
 		new IntU[V](value * ev.ratio)
 	
 	/** Convert to another unit. */
 	@inline
-	def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) = 
+	def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) =
 		new DoubleU[V](value * ev.ratio)
 	
 	@inline
-	def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) = 
+	def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) =
 		new DoubleU[U#Mul[V#Invert]#Mul[W]](value * ev.ratio)
-	 
+	
 	@inline
 	def representAll[V<:TUnitPowerPair, W<:MUnit](
 		implicit ev: PowerDoubleRatio[V#UnitName,V#Power,W,U#Get[V#UnitName]]
@@ -176,39 +176,39 @@ case class IntU[U<:MUnit](val value:Long) extends AnyVal {
 	@inline
 	def ==(i: IntU[U]) = value == i.value
 	@inline
-	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio == i.value*r.ratio
 	@inline
 	def !=(i: IntU[U]) = value != i.value
 	@inline
-	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio != i.value*r.ratio
 	@inline
 	def ==(i: DoubleU[U]) = value == i.value
 	@inline
-	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio == i.value*r.ratio
 	@inline
 	def !=(i: DoubleU[U]) = value != i.value
 	@inline
-	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio != i.value*r.ratio
 
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def +[V<:MUnit, W<:MUnit/*: (U∨V)#Union*/](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit/*: (U∨V)#Union*/](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new IntU[W](value*l.ratio + i.value*r.ratio)
 	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new IntU[W](value*l.ratio - i.value*r.ratio)
 	@inline
 	/** Add a value with a different unit, coercing to the smaller of them. */
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
 	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
 
 	/** Square. */

@@ -35,10 +35,10 @@ import stasiak.karol.units.internal.AffineSpaces._
 
 class BaseDoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal {
 	@inline
-	def times[Y<:MUnit] = 
+	def times[Y<:MUnit] =
 		new BaseDoubleRatio[U#Mul[Y],V#Mul[Y]](ratio)
 	@inline
-	def dividedBy[Y<:MUnit] = 
+	def dividedBy[Y<:MUnit] =
 		new BaseDoubleRatio[U#Mul[Y#Invert],V#Mul[Y#Invert]](ratio)
 	@inline
 	def invert = new BaseDoubleRatio[V,U](1.0/ratio)
@@ -47,16 +47,16 @@ class BaseDoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal {
 	@inline
 	def pow3 = this * this * this
 	@inline
-	def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
+	def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
 	@inline
-	def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
+	def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
 	@inline
-	def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) = 
+	def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
 	@inline
-	def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) = 
+	def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
 	@inline
 	def ><[Y<:MUnit](that: BaseDoubleRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)

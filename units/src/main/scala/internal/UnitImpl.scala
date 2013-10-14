@@ -42,7 +42,7 @@ object UnitImpl {
 		type UnitName = U
 		type Power = N
 		type Invert = U ^ N#Negate
-		type MulSingle[S<:TUnitPowerPair] = 
+		type MulSingle[S<:TUnitPowerPair] =
 			S#UnitName#LessEqualGreater[U,
 				(U^N)**S,
 				(S#Power+N)#ZeroNegPos[
@@ -91,7 +91,7 @@ object UnitImpl {
 		TInteger]
 		//type MatchScalarNonscalar[IfScalar<:ResultType, IfNonscalar[U<:TUnitPowerPair, Tail<:MUnit]<:ResultType, ResultType] = IfNonscalar[H,T]
 		type Invert = (T#Invert)**(H#UnitName ^ H#Power#Negate)
-		type MulSingle[S<:TUnitPowerPair] = 
+		type MulSingle[S<:TUnitPowerPair] =
 			S#UnitName#LessEqualGreater[H#UnitName,
 				(T**H)**S,
 				(S#Power + H#Power)#ZeroNegPos[

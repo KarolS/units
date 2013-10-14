@@ -36,14 +36,14 @@ object Vector2UArray {
 	}
 
 	/** Concatenates all arrays into a single array. */
-	def concat[U<:MUnit](arrays: Vector2UArray[U]*) = 
+	def concat[U<:MUnit](arrays: Vector2UArray[U]*) =
 		new Vector2UArray(
 			Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[U<:MUnit](
-		src: Vector2UArray[U], srcPos: Int, 
-		dest: Vector2UArray[U], destPos: Int, 
+		src: Vector2UArray[U], srcPos: Int,
+		dest: Vector2UArray[U], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos*2, dest.underlying, destPos*2, length*2)
 	}
@@ -97,8 +97,8 @@ class Vector2UArrayBuilder[U<:MUnit] extends Builder[Vector2U[U], Vector2UArray[
 /** Mutable fixed-size array of unboxed `Vector2U`. */
 final class Vector2UArray[U<:MUnit] private[arrays] (
 	private[arrays] val underlying: Array[Double]
-	) 
-	extends IndexedSeq[Vector2U[U]] 
+	)
+	extends IndexedSeq[Vector2U[U]]
 	with ArrayLike[Vector2U[U], Vector2UArray[U]]{
 
 	def this(length: Int) {
@@ -109,7 +109,7 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 	override def stringPrefix = "Vector2UArray"
 	override def newBuilder = new Vector2UArrayBuilder[U]
 
-	def apply(index: Int) = 
+	def apply(index: Int) =
 		new Vector2U[U](underlying(index*2).of, underlying(index*2+1).of)
 
 	def update(index: Int, elem: Vector2U[U]) {

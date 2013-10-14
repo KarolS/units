@@ -44,7 +44,7 @@ sealed trait ReversibleIntAConversion[A<:AffineSpace, B<:AffineSpace]{
 	val backwardInt: Long=>Long
 }
 
-/** 
+/**
 	A two-way conversion between affine spaces with the same underlying units.
 	`vector` is the distance between the zeroes of the spaces.
 	Instances of this class should be implicit.
@@ -56,7 +56,7 @@ class DoubleATranslation[A<:AffineSpace, B<:AffineSpace](
 	val backward = (b:Double) => (b - vector.value)
 }
 
-/** 
+/**
 	A two-way conversion between affine spaces with different underlying units.
 	`scale` is the conversion between the units.
 	`vector` is the distance between the zeroes of the space B and scaled space A.
@@ -75,7 +75,7 @@ class DoubleAScalingTranslation[A<:AffineSpace, B<:AffineSpace](
 	val backward = (b:Double) => ((b - vector.value)/scale.value)
 }
 
-/** 
+/**
 	A two-way conversion between affine spaces with different underlying units.
 	`scale` is the conversion between the units.
 	`vector` is the distance between the zeroes of the space B and scaled space A.
@@ -94,7 +94,7 @@ class DoubleATranslationScaling[A<:AffineSpace, B<:AffineSpace](
 	val backward = (b:Double) => (b / scale.value - vector.value)
 }
 
-/** 
+/**
 	A two-way conversion between affine spaces with the same underlying units.
 	`vector` is the distance between the zeroes of the spaces.
 	Instances of this class should be implicit.

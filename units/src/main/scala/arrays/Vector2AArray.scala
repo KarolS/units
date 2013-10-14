@@ -36,14 +36,14 @@ object Vector2AArray {
 	}
 
 	/** Concatenates all arrays into a single array. */
-	def concat[A<:AffineSpace](arrays: Vector2AArray[A]*) = 
+	def concat[A<:AffineSpace](arrays: Vector2AArray[A]*) =
 		new Vector2AArray(
 			Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[A<:AffineSpace](
-		src: Vector2AArray[A], srcPos: Int, 
-		dest: Vector2AArray[A], destPos: Int, 
+		src: Vector2AArray[A], srcPos: Int,
+		dest: Vector2AArray[A], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos*2, dest.underlying, destPos*2, length*2)
 	}
@@ -99,8 +99,8 @@ class Vector2AArrayBuilder[A<:AffineSpace] extends Builder[Vector2A[A], Vector2A
 /** Mutable fixed-size array of unboxed `Vector2A`. */
 final class Vector2AArray[A<:AffineSpace] private[arrays] (
 	private[arrays] val underlying: Array[Double]
-	) 
-	extends IndexedSeq[Vector2A[A]] 
+	)
+	extends IndexedSeq[Vector2A[A]]
 	with ArrayLike[Vector2A[A], Vector2AArray[A]]{
 
 	def this(length: Int) {
@@ -111,7 +111,7 @@ final class Vector2AArray[A<:AffineSpace] private[arrays] (
 	override def stringPrefix = "Vector2AArray"
 	override def newBuilder = new Vector2AArrayBuilder[A]
 
-	def apply(index: Int) = 
+	def apply(index: Int) =
 		new Vector2A[A](underlying(index*2).at, underlying(index*2+1).at)
 
 	def update(index: Int, elem: Vector2A[A]) {

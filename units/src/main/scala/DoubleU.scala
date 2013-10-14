@@ -37,10 +37,10 @@ import scala.math
 
 object DoubleU {
 	private val _orderingInstanceVal = new Ordering[DoubleU[_1]]{
-		def compare(x: DoubleU[_1], y: DoubleU[_1]) = 
+		def compare(x: DoubleU[_1], y: DoubleU[_1]) =
 			implicitly[Ordering[Double]].compare(x.value, y.value)
 	}
-	implicit def _orderingInstance[U<:MUnit] = 
+	implicit def _orderingInstance[U<:MUnit] =
 		_orderingInstanceVal.asInstanceOf[Ordering[DoubleU[U]]]
 }
 
@@ -129,9 +129,9 @@ case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	/** Convert to another unit. */
 	@inline def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) = new DoubleU[V](value * ev.ratio)
 	
-	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) = 
+	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) =
 		new DoubleU[U#Mul[V#Invert]#Mul[W]](value * ev.ratio)
-	 
+	
 	@inline def representAll[V<:TUnitPowerPair, W<:MUnit](
 		implicit ev: PowerDoubleRatio[V#UnitName,V#Power,W,U#Get[V#UnitName]]
 		) = new DoubleU[U#Mul[(V#UnitName^(U#Get[V#UnitName]))#Invert]#Mul[W#ToPower[U#Get[V#UnitName]]]](value * ev.ratio)
@@ -165,40 +165,40 @@ case class DoubleU[U<:MUnit](val value:Double) extends AnyVal {
 	@inline
 	def ==(i: IntU[U]) = value == i.value
 	@inline
-	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio == i.value*r.ratio
 	@inline
 	def !=(i: IntU[U]) = value != i.value
 	@inline
-	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio != i.value*r.ratio
 	@inline
 	def ==(i: DoubleU[U]) = value == i.value
 	@inline
-	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def ==~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio == i.value*r.ratio
 	@inline
 	def !=(i: DoubleU[U]) = value != i.value
 	@inline
-	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def !=~[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		value*l.ratio != i.value*r.ratio
 
 
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
 	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: IntU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble + i.value*r.ratio.toDouble)
 	/** Subtract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: DoubleU[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		new DoubleU[W](value*l.ratio.toDouble - i.value*r.ratio.toDouble)
 
 	/** Square. */	

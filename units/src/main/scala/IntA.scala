@@ -36,10 +36,10 @@ import stasiak.karol.units.internal.UnitName
 object IntA {
 	private type Aff = DefineAffineSpace[Nothing, _1]
 	private val _orderingInstanceVal = new Ordering[IntA[Aff]]{
-		def compare(x: IntA[Aff], y: IntA[Aff]) = 
+		def compare(x: IntA[Aff], y: IntA[Aff]) =
 			implicitly[Ordering[Long]].compare(x.value, y.value)
 	}
-	implicit def _orderingInstance[A<:AffineSpace] = 
+	implicit def _orderingInstance[A<:AffineSpace] =
 		_orderingInstanceVal.asInstanceOf[Ordering[IntA[A]]]
 }
 
@@ -55,16 +55,16 @@ case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 	@inline def --(i: DoubleA[A]) = new DoubleU[A#Unit](value.toDouble - i.value)
 
 	@inline
-	def changeUnitInt[U<:MUnit](implicit ev: IntRatio[A#Unit, U]) = 
+	def changeUnitInt[U<:MUnit](implicit ev: IntRatio[A#Unit, U]) =
 		new IntA[DefineAffineSpace[A#Zero, U]](value * ev.ratio)
 	@inline
-	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) = 
+	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) =
 		new DoubleA[DefineAffineSpace[A#Zero, U]](value.toDouble * ev.ratio)
 	@inline
-	def convertToInt[B<:AffineSpace](implicit ev: IntAffineSpaceConverter[A,B]) = 
+	def convertToInt[B<:AffineSpace](implicit ev: IntAffineSpaceConverter[A,B]) =
 		new IntA[B](ev.f(value))
 	@inline
-	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) = 
+	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) =
 		new DoubleA[B](ev.f(value.toDouble))
 
 	@inline def fromZero = new IntU[A#Unit](value)

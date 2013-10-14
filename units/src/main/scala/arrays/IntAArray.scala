@@ -31,13 +31,13 @@ object IntAArray {
 	def at[A<:AffineSpace](elems: Long*) = new IntAArray[A](Array[Long](elems:_*))
 
 	/** Concatenates all arrays into a single array. */
-	def concat[A<:AffineSpace](arrays: IntAArray[A]*) = 
+	def concat[A<:AffineSpace](arrays: IntAArray[A]*) =
 		new IntAArray[A](Array.concat(arrays.map{_.underlying}: _*))
 
 	/** Copy one array to another. */
 	def copy[A<:AffineSpace](
-		src: IntAArray[A], srcPos: Int, 
-		dest: IntAArray[A], destPos: Int, 
+		src: IntAArray[A], srcPos: Int,
+		dest: IntAArray[A], destPos: Int,
 		length: Int) {
 		Array.copy(src.underlying, srcPos, dest.underlying, destPos, length)
 	}
@@ -71,8 +71,8 @@ class IntAArrayBuilder[A<:AffineSpace] extends Builder[IntA[A], IntAArray[A]] {
 	def result() = new IntAArray[A](underlying.result())
 }
 /** Mutable fixed-size array of unboxed `IntA`. */
-final class IntAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Long]) 
-	extends IndexedSeq[IntA[A]] 
+final class IntAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Long])
+	extends IndexedSeq[IntA[A]]
 	with ArrayLike[IntA[A], IntAArray[A]]{
 
 	def this(length: Int) {

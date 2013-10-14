@@ -54,5 +54,5 @@ class WithASuite extends FunSuite {
 		val s: List[WithA[BigInt, CelsiusScale]] = l.sorted
 		val e: List[WithA[BigInt, CelsiusScale]] = List(1,2,4).map(i=>BigInt(i).at[CelsiusScale])
 		assert(s === e)
-	} 
+	}
 }

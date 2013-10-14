@@ -53,7 +53,7 @@ case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 	override def toString = "[" + x.value + "," + y.value + "]"
 	
 	/** Return the value as a pair of Doubles. */
-	@inline 
+	@inline
 	def value = (x.value, y.value)
 	
 	/** Add a value with the same unit. */
@@ -119,23 +119,23 @@ case class Vector2U[U<:MUnit](val x:DoubleU[U], val y:DoubleU[U]) {
 	@inline def dividedBy(i: Float) = Vector2U(x dividedBy i, y dividedBy i)
 
 	/** Convert to another unit. */
-	@inline def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) = 
+	@inline def convert[V<:MUnit](implicit ev:DoubleRatio[U,V]) =
 		Vector2U(x.convert[V], y.convert[V])
 	
-	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) = 
+	@inline def represent[V<:MUnit,W<:MUnit](implicit ev:DoubleRatio[V,W]) =
 		Vector2U(x.represent[V,W], y.represent[V,W])
-	 
+	
 	@inline def representAll[V<:TUnitPowerPair, W<:MUnit](
 		implicit ev: PowerDoubleRatio[V#UnitName,V#Power,W,U#Get[V#UnitName]]) =
 			Vector2U(x.representAll[V,W], y.representAll[V,W])
 
 	/** Add a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector2U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def +[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector2U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		Vector2U[W](x+i.x, y+i.y)
 	/** Subract a value with a different unit, coercing to the smaller of them. */
 	@inline
-	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector2U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) = 
+	def -[V<:MUnit, W<:MUnit: (U∨V)#Union](i: Vector2U[V])(implicit l: LeftIntRatio[U,V,W], r: RightIntRatio[U,V,W]) =
 		Vector2U[W](x-i.x, y-i.y)
 
 

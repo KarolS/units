@@ -43,9 +43,9 @@ object UnitsBuild extends Build {
 
 	lazy val SCALACHECK = "org.scalacheck" %% "scalacheck" % "[1.10.0,1.11)"
 
-	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "[7.0.0,7.1)" 
+	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "[7.0.0,7.1)"
 
-	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.3.0,0.4)" 
+	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.3.0,0.4)"
 	
 	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "0.1.13"
 
@@ -57,9 +57,9 @@ object UnitsBuild extends Build {
 
 	lazy val SCALATEST_TEST = "org.scalatest" % "scalatest_2.10" % "[2.0.M5b,2.1)" % "test"
 
-	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test" 
+	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test"
 
-	lazy val H2_TEST = "com.h2database" % "h2" % "1.3.173" % "test" 
+	lazy val H2_TEST = "com.h2database" % "h2" % "1.3.173" % "test"
 
 	lazy val SLF4J_TEST = "org.slf4j" % "slf4j-nop" % "1.6.4"
 
@@ -126,7 +126,7 @@ object UnitsBuild extends Build {
 	)
 
 	lazy val scalazIntegration: Project = Project(
-		id = "units-scalaz", 
+		id = "units-scalaz",
 		base = file("units-scalaz"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-scalaz",
@@ -136,7 +136,7 @@ object UnitsBuild extends Build {
 	)
 	
 	lazy val spireIntegration: Project = Project(
-		id = "units-spire", 
+		id = "units-spire",
 		base = file("units-spire"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-spire",
@@ -146,7 +146,7 @@ object UnitsBuild extends Build {
 	)
 
 	lazy val scalacheckIntegration: Project = Project(
-		id = "units-scalacheck", 
+		id = "units-scalacheck",
 		base = file("units-scalacheck"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-scalacheck",
@@ -156,7 +156,7 @@ object UnitsBuild extends Build {
 	)
 
 	lazy val jodaTimeIntegration: Project = Project(
-		id = "units-joda", 
+		id = "units-joda",
 		base = file("units-joda"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-joda",
@@ -166,7 +166,7 @@ object UnitsBuild extends Build {
 	)
 
 	lazy val algebirdIntegration: Project = Project(
-		id = "units-algebird", 
+		id = "units-algebird",
 		base = file("units-algebird"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-algebird",
@@ -176,7 +176,7 @@ object UnitsBuild extends Build {
 	)
 
 	lazy val slick1Integration: Project = Project(
-		id = "units-slick", 
+		id = "units-slick",
 		base = file("units-slick"),
 		settings = baseSettings ++ Seq[Sett](
 			name := "units-slick",

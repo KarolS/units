@@ -28,15 +28,15 @@ import language.implicitConversions
 
 package object slick1Support {
 
-	implicit def implicit__intUTypeMapper[U<:MUnit] = 
+	implicit def implicit__intUTypeMapper[U<:MUnit] =
 		MappedTypeMapper.base[IntU[U], Long](_.value, _.of[U])
 
-	implicit def implicit__doubleUTypeMapper[U<:MUnit] = 
+	implicit def implicit__doubleUTypeMapper[U<:MUnit] =
 		MappedTypeMapper.base[DoubleU[U], Double](_.value, _.of[U])
 
-	implicit def implicit__intATypeMapper[A<:AffineSpace] = 
+	implicit def implicit__intATypeMapper[A<:AffineSpace] =
 		MappedTypeMapper.base[IntA[A], Long](_.value, _.at[A])
 
-	implicit def implicit__doubleATypeMapper[A<:AffineSpace] = 
+	implicit def implicit__doubleATypeMapper[A<:AffineSpace] =
 		MappedTypeMapper.base[DoubleA[A], Double](_.value, _.at[A])
 }

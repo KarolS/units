@@ -42,6 +42,6 @@ trait MUnit {
 	type Cbrt <:MUnit
 	type IsSquare <: TBool
 	type IsCube <: TBool
-	type ToPower[Exp<:TInteger] <: MUnit 
+	type ToPower[Exp<:TInteger] <: MUnit
 	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
 }

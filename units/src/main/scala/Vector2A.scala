@@ -52,7 +52,7 @@ case class Vector2A[A<:AffineSpace](val x:DoubleA[A], val y:DoubleA[A]) {
 	def mkString(implicit name: UnitName[A#Unit]) = toString + name.toString
 	@inline
 	override def toString = "[" + x.value + "," + y.value + "]"
-	@inline 
+	@inline
 	def value = (x.value, y.value)
 	
 	/** Add a value with the same unit. */
@@ -63,7 +63,7 @@ case class Vector2A[A<:AffineSpace](val x:DoubleA[A], val y:DoubleA[A]) {
 	@inline def --(i: Vector2A[A]): Vector2U[A#Unit] = Vector2U(x--i.x, y--i.y)
 
 	/** Convert to another unit. */
-	@inline def convert[B<:AffineSpace](implicit ev:DoubleAffineSpaceConverter[A,B]) = 
+	@inline def convert[B<:AffineSpace](implicit ev:DoubleAffineSpaceConverter[A,B]) =
 		Vector2A(x.convert[B], y.convert[B])
 	
 	def fromZero = Vector2U(x.fromZero, y.fromZero)
