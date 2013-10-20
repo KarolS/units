@@ -46,24 +46,6 @@ package object spireSupport {
 		def timesl(d: Double, x: DoubleU[U]) = x times d
 		override def divr(x: DoubleU[U], d: Double) = x dividedBy d
 	}
-	
-	implicit def intUI[U<:MUnit] = new Module[IntU[U], Int] {
-
-		implicit def scalar: Ring[Int] = Ring[Int]
-
-		override def additive: AbGroup[IntU[U]] = new AbGroup[IntU[U]] {
-			def id = 0.of[U]
-			def op(x: IntU[U], y: IntU[U]): IntU[U] = x + y
-			def inverse(x: IntU[U]): IntU[U] = -x
-		}
-
-		def zero = 0.of[U]
-		def negate(x: IntU[U]): IntU[U] = -x
-		override def minus(x: IntU[U], y: IntU[U]): IntU[U] = x - y
-		def plus(x: IntU[U], y: IntU[U]): IntU[U] = x + y
-		def timesl(d: Int, x: IntU[U]): IntU[U] = x * d
-		
-	}
 
 	implicit def implicit__intUL[U<:MUnit] = new Module[IntU[U], Long] {
 
