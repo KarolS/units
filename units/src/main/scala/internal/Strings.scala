@@ -200,6 +200,6 @@ object Strings {
 		implicit headH:ToZ5[H#High], headM:ToZ5[H#Mid], headL:ToZ5[H#Low], tail:TStringName[T]
 		) = new TStringName[H~:T](CHARS(headH.toInt*5+headM.toInt)(headL.toInt)+tail.toString)
 	
-
+	def apply[S<:TString](implicit ev: TStringName[S]) = ev.toString
 
 }	
