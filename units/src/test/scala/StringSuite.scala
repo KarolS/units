@@ -99,7 +99,7 @@ class StringSuite extends FunSuite {
 		assert(Strings[_z] === "z")
 	}
 
-	test("Long strings typelevel should work") {
+	test("Long typelevel strings should work") {
 		assert(Strings[
 			_Q~:_u~:_i~:_c~:_k
 			~:_B~:_r~:_o~:_w~:_n
