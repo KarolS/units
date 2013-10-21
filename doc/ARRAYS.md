@@ -12,6 +12,7 @@ val DoubleUArray(a,b,c) = arr
 arr.head          // 1 m
 arr(1)            // 2 m
 arr(2) = 9.of     // arr(2) is no longer 5.5 m, now it's 9 m
+arr.foreach(x => println(x.mkString))
 ```
 
 You can create a new array in several ways:

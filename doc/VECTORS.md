@@ -51,11 +51,16 @@ And finally, you can convert them:
 
 ``` scala
 (1, 0).of[metre].convert[centimetre]   // (100, 0).of[centimetre]
-(1, 1).o
 ```
 
 Vector arrays
 -------------
+
+To facilitate compact storing of vectors, there are available classes: `Vector2AArray`, `Vector2UArray`, `Vector3AArray`, `Vector3UArray`. They store the vector array as an array od `Double` values. A single vector occupies a contiguous chunk of memory to minimalise cache misses.
+
+All of the array classes implement `IndexedSeq` and can be used like standard collection classes.
+
+They can be created in several ways:
 
 ``` scala
 import stasiak.karol.units.arrays._

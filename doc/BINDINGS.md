@@ -37,7 +37,7 @@ Currently, only Spire 0.3.x is supported.
 
 Artefact `units-spire` provides implementations of following typeclasses:
 
-* for `IntU`: `Module[IntU[U], Int]`, `Module[IntU[U], Long]`
+* for `IntU`: `Module[IntU[U], Long]`
 
 * for `DoubleU`: `VectorSpace[DoubleU[U], Double]`
 
