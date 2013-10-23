@@ -96,7 +96,7 @@ class Vector2AArrayBuilder[A<:AffineSpace] extends Builder[Vector2A[A], Vector2A
 	def result() = new Vector2AArray[A](underlying.result())
 }
 
-/** Mutable fixed-size array of unboxed `Vector2A`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.Vector2A]]. */
 final class Vector2AArray[A<:AffineSpace] private[arrays] (
 	private[arrays] val underlying: Array[Double]
 	)

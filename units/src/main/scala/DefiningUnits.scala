@@ -21,6 +21,13 @@ SOFTWARE.
 */
 package stasiak.karol.units
 
+/**
+	Package containing helper types and methods for defining new units and ratios between units.
+
+	Usage:
+
+	`import stasiak.karol.units.defining._`
+*/
 package object defining {
 	import language.higherKinds
 	import language.implicitConversions
@@ -143,7 +150,7 @@ package object defining {
 	type _deg = AChar[TZ5_2, TZ5_3, TZ5_0]
 	/** angular minute sign (’) */
 	type _min = AChar[TZ5_2, TZ5_3, TZ5_1]
-	/** angular second sign (̈́”) */
+	/** angular second sign (”) */
 	type _sec = AChar[TZ5_2, TZ5_3, TZ5_2]
 
 	/** percent sign (%) */

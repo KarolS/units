@@ -44,7 +44,12 @@ object WithU {
 	}.asInstanceOf[Ordering[WithU[N,U]]]
 }
 
-/** A value with a unit of measure.*/
+/**
+	A value with a unit of measure.
+
+	'''Warning: this is an experimental feature
+	and may be subject to removal or severe redesign.'''
+*/
 case class WithU[N, U<:MUnit](val value:N) extends AnyVal {
 
 	@inline
@@ -55,10 +60,10 @@ case class WithU[N, U<:MUnit](val value:N) extends AnyVal {
 
 	/** Add a value with the same unit. */
 	def +(i: WithU[N,U])(implicit n: Numeric[N]) = WithU[N,U](n.plus(value,i.value))
-	
+
 	/** Subtract a value with the same unit. */
 	def -(i: WithU[N,U])(implicit n: Numeric[N]) = WithU[N,U](n.minus(value,i.value))
-	
+
 
 	/** Negate this value. */
 	def unary_-(implicit n: Numeric[N]) = WithU[N,U](n.negate(value))
@@ -66,7 +71,7 @@ case class WithU[N, U<:MUnit](val value:N) extends AnyVal {
 
 	/** Multiply by a value with a unit. */
 	def *[V<:MUnit](i: WithU[N,V])(implicit n: Numeric[N]) =
-		WithU[N,U#Mul[V]](n.times(value,i.value))	
+		WithU[N,U#Mul[V]](n.times(value,i.value))
 	/** Multiply by a dimensionless value. */
 	def times(i: N)(implicit n: Numeric[N]) =
 		WithU[N,U](n.times(value,i))

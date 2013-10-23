@@ -70,7 +70,7 @@ class IntUArrayBuilder[U<:MUnit] extends Builder[IntU[U], IntUArray[U]] {
 	def clear() = underlying.clear
 	def result() = new IntUArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed `IntU`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.IntU]]. */
 final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Long])
 	extends IndexedSeq[IntU[U]]
 	with ArrayLike[IntU[U], IntUArray[U]]{

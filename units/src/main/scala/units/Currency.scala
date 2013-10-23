@@ -245,15 +245,15 @@ object Currency {
 	/** Short names for some currencies. Only those that have unique abbreviations were used.*/
 	object Short {
 
-		/** Short alias for Czech koruna */
+		/** Short alias for Czech koruna (CZK) */
 		type Kč = CZK
-		/** Short alias for Lithuanian lit */
+		/** Short alias for Lithuanian lit (LTL) */
 		type Lt = LTL
-		/** Short alias for Latvian lat */
+		/** Short alias for Latvian lat (LVL) */
 		type Lv = LVL
-		/** Short alias for Polish zloty */
+		/** Short alias for Polish zloty (PLN) */
 		type zł = PLN
-		/** Short alias for Chinese yuan */
+		/** Short alias for Chinese yuan (CNY) */
 		type 元 = CNY
 		
 	}

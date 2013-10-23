@@ -34,13 +34,20 @@ import scala.math
 
 /** Supertype of all units of measure. */
 trait MUnit {
+	/**
+		@see stasiak.karol.units./
+		@see [[stasiak.karol.units._1]]
+	*/
 	type Invert <: MUnit
 	type Get[U<:TSingleUnit] <:TInteger
 	type MulSingle[S<:TUnitPowerPair] <: MUnit
+	/** @see stasiak.karol.units.× */
 	type Mul[S<:MUnit] <: MUnit
 	type Sqrt <:MUnit
 	type Cbrt <:MUnit
+	/** @see [[stasiak.karol.units.square]] */
 	type IsSquare <: TBool
+	/** @see [[stasiak.karol.units.cube]] */
 	type IsCube <: TBool
 	type ToPower[Exp<:TInteger] <: MUnit
 	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit

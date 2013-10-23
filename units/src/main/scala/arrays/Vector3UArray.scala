@@ -98,7 +98,7 @@ class Vector3UArrayBuilder[U<:MUnit] extends Builder[Vector3U[U], Vector3UArray[
 	}
 	def result() = new Vector3UArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed `Vector3U`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.Vector3U]]. */
 final class Vector3UArray[U<:MUnit] private[arrays] (
 	private[arrays] val underlying: Array[Double]
 	)

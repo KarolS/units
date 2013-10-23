@@ -267,6 +267,7 @@ object SI {
 	type hectoliter = hectolitre
 
 
+	/** Shorter symbols for some SI units. */
 	object Short {
 		type km = kilometre
 		type m  = metre

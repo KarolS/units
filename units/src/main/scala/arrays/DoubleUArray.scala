@@ -70,7 +70,7 @@ class DoubleUArrayBuilder[U<:MUnit] extends Builder[DoubleU[U], DoubleUArray[U]]
 	def clear() = underlying.clear
 	def result() = new DoubleUArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed `DoubleU`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.DoubleU]]. */
 final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Double])
 	extends IndexedSeq[DoubleU[U]]
 	with ArrayLike[DoubleU[U], DoubleUArray[U]]{

@@ -44,7 +44,12 @@ object WithA {
 	}.asInstanceOf[Ordering[WithA[N,A]]]
 }
 
-/** A value with a unit of measure.*/
+/**
+	A value within an affine space.
+
+	'''Warning: this is an experimental feature
+	and may be subject to removal or severe redesign.'''
+*/
 case class WithA[N, A<:AffineSpace](val value:N) extends AnyVal {
 
 	@inline
@@ -55,13 +60,13 @@ case class WithA[N, A<:AffineSpace](val value:N) extends AnyVal {
 
 	/** Add a value with the same unit. */
 	def +(i: WithU[N,A#Unit])(implicit n: Numeric[N]) = WithA[N,A](n.plus(value,i.value))
-	
+
 	/** Subtract a value with the same unit. */
 	def -(i: WithU[N,A#Unit])(implicit n: Numeric[N]) = WithA[N,A](n.minus(value,i.value))
 
 	/** Subtract a value with the same unit. */
 	def --(i: WithA[N,A])(implicit n: Numeric[N]) = WithU[N,A#Unit](n.minus(value,i.value))
-	
+
 	@inline def fromZero = new WithU[N,A#Unit](value)
 
 	def < (i: WithA[N,A])(implicit o:Ordering[N]) = o.compare(value,i.value) <  0

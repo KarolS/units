@@ -182,6 +182,7 @@ object Information {
 	implicit val implicit__bit_to_nat  = one[bit ].contains(log(2))[nat]
 	implicit val implicit__byte_to_nat = one[byte].contains(log(2)*8)[nat]
 
+	/** Shorter symbols for some units of information. */
 	object Short {
 		type B = byte
 		type kB = kilobyte

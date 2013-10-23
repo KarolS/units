@@ -31,9 +31,16 @@ import stasiak.karol.units.internal.UnitImpl._
 import stasiak.karol.units.internal.Conversions._
 import stasiak.karol.units.internal.AffineSpaces._
 
-/** Supertype of all affine spaces. */
+/**
+	Supertype of all affine spaces.
+
+	Affine space is similar to a vector space, but it does not contain a distinguished origin point.
+	In order to manipulate points from the affine space, we have to pick the origin (aka the zero point) ourselves.
+
+	Examples of affine spaces are temperature scales, time, (physical) space, and so on.
+*/
 trait AffineSpace {
-	/** Marker type representing the zero point. */
+	/** Marker type representing the zero point. This type does not have to have any instances */
 	type Zero
 	/** Unit used in this space. */
 	type Unit <: MUnit

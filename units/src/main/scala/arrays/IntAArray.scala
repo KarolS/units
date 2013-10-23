@@ -70,7 +70,7 @@ class IntAArrayBuilder[A<:AffineSpace] extends Builder[IntA[A], IntAArray[A]] {
 	def clear() = underlying.clear
 	def result() = new IntAArray[A](underlying.result())
 }
-/** Mutable fixed-size array of unboxed `IntA`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.IntA]]. */
 final class IntAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Long])
 	extends IndexedSeq[IntA[A]]
 	with ArrayLike[IntA[A], IntAArray[A]]{

@@ -70,7 +70,7 @@ class DoubleAArrayBuilder[A<:AffineSpace] extends Builder[DoubleA[A], DoubleAArr
 	def clear() = underlying.clear
 	def result() = new DoubleAArray[A](underlying.result())
 }
-/** Mutable fixed-size array of unboxed `DoubleA`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.DoubleA]]. */
 final class DoubleAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Double])
 	extends IndexedSeq[DoubleA[A]]
 	with ArrayLike[DoubleA[A], DoubleAArray[A]]{

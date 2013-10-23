@@ -21,6 +21,11 @@ SOFTWARE.
 */
 package stasiak.karol
 
+/**
+	Main package of the library.
+
+	Importing `stasiak.karol.units._` brings into scope most of its features.
+*/
 package object units {
 	import language.higherKinds
 	import language.implicitConversions
@@ -124,7 +129,7 @@ package object units {
 		@inline
 		def giga[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
-		
+
 	}
 
 	/** Extention methods for Double. */
@@ -260,7 +265,7 @@ package object units {
 		@inline
 		def atto [U<:MUnit] = new DoubleU[U](value/1000000000000000000.0)
 	}
-		
+
 	@inline
 	implicit def implicit_oneDoubleAffineSpaceConverter[U<:AffineSpace] = new DoubleAffineSpaceConverter[U,U](_)
 	@inline

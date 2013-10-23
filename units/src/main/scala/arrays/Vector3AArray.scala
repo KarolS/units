@@ -100,7 +100,7 @@ class Vector3AArrayBuilder[A<:AffineSpace] extends Builder[Vector3A[A], Vector3A
 	def result() = new Vector3AArray[A](underlying.result())
 }
 
-/** Mutable fixed-size array of unboxed `Vector3A`. */
+/** Mutable fixed-size array of unboxed [[stasiak.karol.units.Vector3A]]. */
 final class Vector3AArray[A<:AffineSpace] private[arrays] (
 	private[arrays] val underlying: Array[Double]
 	)
