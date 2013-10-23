@@ -63,9 +63,9 @@ class BaseDoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal {
 	@inline
 	def ><[Y<:MUnit](that: BaseIntRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
 	@inline
-	def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio/that.ratio)
+	def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[V,Y](that.ratio/ratio)
 	@inline
-	def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[Y,V](ratio.toDouble/that.ratio)
+	def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[V,Y](that.ratio/ratio)
 	@inline
 	def >>[Y<:MUnit](that: BaseDoubleRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
 	@inline
