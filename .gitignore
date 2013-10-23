@@ -19,8 +19,12 @@ units-slick/target/
 
 # not supported yet
 units-breeze/
+units-pickling
 units-saddle/
+units-scala-activerecord/
 units-shapeless/
+units-sjson/
+units-specs2/
 units-squeryl/
 
 lib_managed/

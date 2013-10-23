@@ -1,6 +1,21 @@
 units - CHANGELOG
 =================
 
+version 0.0.9
+-------------
+
+* General: Increased maximum unit system size from 7 to 8.
+
+* General: Added support for `WithU` in systems.
+
+* General: Changed semantics of `BaseIntRatio.<>` and `BaseDoubleRatio.<>`.
+
+* Units: Added 13 new US Customary and Imperial units.
+
+* Testing: More unit tests.
+
+* Spire: removed `Module[IntU[U],Int]` implementation (`Module[IntU[U],Long]` is still available)
+
 version 0.0.8
 -------------
 
