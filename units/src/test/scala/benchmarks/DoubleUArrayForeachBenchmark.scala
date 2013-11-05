@@ -32,7 +32,7 @@ class DoubleUArrayForeachBenchmark extends SimpleBenchmark {
 
 	override def setUp (){
 		var i = 0
-		while (i<1000) {
+		while (i < 1000) {
 			array(i) = i*i
 			arrayW(i) = (i*i).of[metre]
 			i += 1

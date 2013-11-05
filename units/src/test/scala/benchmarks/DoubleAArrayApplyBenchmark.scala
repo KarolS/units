@@ -38,22 +38,22 @@ class DoubleAArrayApplyBenchmark extends SimpleBenchmark {
 		val zero = 0.0
 		for(x<-0 until reps){
 			var i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				array(i) = i*i
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += array(i) - zero
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				array(i) = i*i
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += array(i) - zero
 				i += 1
 			}
@@ -66,22 +66,22 @@ class DoubleAArrayApplyBenchmark extends SimpleBenchmark {
 		val zero = 0.0.at[CelsiusScale]
 		for(x<-0 until reps){
 			var i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				arrayW(i) = (i*i).at[CelsiusScale]
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += arrayW(i) -- zero
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				arrayW(i) = (i*i).at[CelsiusScale]
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += arrayW(i) -- zero
 				i += 1
 			}

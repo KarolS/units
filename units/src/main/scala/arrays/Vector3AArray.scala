@@ -173,7 +173,7 @@ final class Vector3AArray[A<:AffineSpace] private[arrays] (
 		var sz = 0.0
 		var i = 0
 		var l = length
-		while(i<l){
+		while(i < l){
 			sx += underlying(3*i)
 			sy += underlying(3*i + 1)
 			sz += underlying(3*i + 2)			

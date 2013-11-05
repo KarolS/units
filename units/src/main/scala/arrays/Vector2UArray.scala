@@ -150,7 +150,7 @@ final class Vector2UArray[U<:MUnit] private[arrays] (
 		var sy = 0.0
 		var i = 0
 		var l = length
-		while(i<l){
+		while(i < l){
 			sx += underlying(2*i)
 			sy += underlying(2*i + 1)		
 		}

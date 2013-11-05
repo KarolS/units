@@ -37,22 +37,22 @@ class DoubleUArrayApplyBenchmark extends SimpleBenchmark {
 		var result = 0.0
 		for(x<-0 until reps){
 			var i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				array(i) = i*i
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += array(i)
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				array(i) = i*i
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += array(i)
 				i += 1
 			}
@@ -64,22 +64,22 @@ class DoubleUArrayApplyBenchmark extends SimpleBenchmark {
 		var result = 0.0.of[metre]
 		for(x<-0 until reps){
 			var i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				arrayW(i) = (i*i).of[metre]
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += arrayW(i)
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				arrayW(i) = (i*i).of[metre]
 				i += 1
 			}
 			i = 0
-			while (i<1000) {
+			while (i < 1000) {
 				result += arrayW(i)
 				i += 1
 			}

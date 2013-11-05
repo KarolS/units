@@ -34,7 +34,7 @@ class SingleBenchmark extends SimpleBenchmark {
 	def timeRaw(reps: Int) = {
 		var result = 0L
 		var i = 0
-		while (i<reps) {
+		while (i < reps) {
 			i += 1
 			result += i
 		}
@@ -44,7 +44,7 @@ class SingleBenchmark extends SimpleBenchmark {
 	def timeWithUnits(reps: Int) = {
 		var result = 0.of[metre]
 		var i = 0
-		while (i<reps) {
+		while (i < reps) {
 			i += 1
 			result += i.of[metre]
 		}
