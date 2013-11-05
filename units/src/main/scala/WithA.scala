@@ -37,11 +37,11 @@ import scala.math
 import scala.math.{Numeric, Fractional}
 
 object WithA {
-	// TODO: circumvent erasure-related problems
-	implicit def _orderingInstance[N, A<:AffineSpace](implicit o:Ordering[N]) = new Ordering[Any]{
-		override def compare(x:Any, y:Any) =
-			o.compare(x.asInstanceOf[WithA[N,A]].value, y.asInstanceOf[WithA[N,A]].value)
-	}.asInstanceOf[Ordering[WithA[N,A]]]
+	implicit def _orderingInstance[N, A<:AffineSpace](implicit o:Ordering[N]): Ordering[WithA[N,A]] =
+		new Ordering[WithA[N,A]]{
+			override def compare(x:WithA[N,A], y:WithA[N,A]) =
+				o.compare(x.value, y.value)
+		}
 }
 
 /**
@@ -50,7 +50,7 @@ object WithA {
 	'''Warning: this is an experimental feature
 	and may be subject to removal or severe redesign.'''
 */
-case class WithA[N, A<:AffineSpace](val value:N) extends AnyVal {
+case class WithA[@specialized N, A<:AffineSpace](val value:N) {
 
 	@inline
 	def mkString(implicit name: UnitName[A#Unit]) = value.toString + name.toString
