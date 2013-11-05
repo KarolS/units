@@ -21,8 +21,8 @@ SOFTWARE.
 */
 
 import com.google.caliper.SimpleBenchmark
-import stasiak.karol.units._
-import stasiak.karol.units.SI._
+import stasiak.units._
+import stasiak.units.SI._
 
 class SingleBenchmark extends SimpleBenchmark {
 

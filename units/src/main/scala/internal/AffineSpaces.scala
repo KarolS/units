@@ -19,11 +19,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.internal
+package stasiak.units.internal
 
 object AffineSpaces {
 	import UnitImpl._
-	import stasiak.karol.units._
+	import stasiak.units._
 	
 	trait DefineAffineSpace[Z, U<:MUnit] extends AffineSpace{
 		/** Arbitrary marker type identifying the zero point on the scale.*/

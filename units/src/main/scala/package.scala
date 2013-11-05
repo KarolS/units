@@ -19,27 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol
+package stasiak
 
 /**
 	Main package of the library.
 
-	Importing `stasiak.karol.units._` brings into scope most of its features.
+	Importing `stasiak.units._` brings into scope most of its features.
 */
 package object units {
 	import language.higherKinds
 	import language.implicitConversions
-	import stasiak.karol.units.internal.ratios._
-	import stasiak.karol.units.internal.UnitName
-	import stasiak.karol.units.internal.UnitImpl
-	import stasiak.karol.units.internal.UnitImpl._
-	import stasiak.karol.units.internal.Strings._
-	import stasiak.karol.units.internal.Conversions
-	import stasiak.karol.units.internal.Conversions._
-	import stasiak.karol.units.internal.SingleUnits._
-	import stasiak.karol.units.internal.Integers._
-	import stasiak.karol.units.internal.AffineSpaces
-	import stasiak.karol.units.internal.AffineSpaces._
+	import stasiak.units.internal.ratios._
+	import stasiak.units.internal.UnitName
+	import stasiak.units.internal.UnitImpl
+	import stasiak.units.internal.UnitImpl._
+	import stasiak.units.internal.Strings._
+	import stasiak.units.internal.Conversions
+	import stasiak.units.internal.Conversions._
+	import stasiak.units.internal.SingleUnits._
+	import stasiak.units.internal.Integers._
+	import stasiak.units.internal.AffineSpaces
+	import stasiak.units.internal.AffineSpaces._
 
 	type @@[N, U<:MUnit] = WithU[N,U]
 
@@ -58,10 +58,10 @@ package object units {
 
 	/** Unit dimensionless values have, which is 1.*/
 	type _1 = TDimensionless
-	type DoubleRatio[U<:MUnit, V<:MUnit] = stasiak.karol.units.internal.ratios.DoubleRatio[U,V]
-	type IntRatio[U<:MUnit, V<:MUnit] = stasiak.karol.units.internal.ratios.IntRatio[U,V]
-	type DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.karol.units.internal.ratios.DoubleAffineSpaceConverter[T1, T2]
-	type IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.karol.units.internal.ratios.IntAffineSpaceConverter[T1, T2]
+	type DoubleRatio[U<:MUnit, V<:MUnit] = stasiak.units.internal.ratios.DoubleRatio[U,V]
+	type IntRatio[U<:MUnit, V<:MUnit] = stasiak.units.internal.ratios.IntRatio[U,V]
+	type DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.units.internal.ratios.DoubleAffineSpaceConverter[T1, T2]
+	type IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.units.internal.ratios.IntAffineSpaceConverter[T1, T2]
 
 	@inline
 	implicit class UnitNameBuilder(override val toString:String) extends AnyVal{

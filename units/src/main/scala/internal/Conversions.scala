@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.internal
+package stasiak.units.internal
 
 object Conversions {
 	import language.higherKinds
@@ -29,8 +29,8 @@ object Conversions {
 	import Strings._
 	import SingleUnits._
 	import UnitImpl._
-	import stasiak.karol.units.MUnit
-	import stasiak.karol.units.internal.ratios._
+	import stasiak.units.MUnit
+	import stasiak.units.internal.ratios._
 
 
 	@inline

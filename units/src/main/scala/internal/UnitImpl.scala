@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.internal
+package stasiak.units.internal
 
 object UnitImpl {
 	import language.higherKinds
@@ -28,7 +28,7 @@ object UnitImpl {
 	import Integers._
 	import Strings._
 	import SingleUnits._
-	import stasiak.karol.units.MUnit
+	import stasiak.units.MUnit
 
 	sealed trait TUnitPowerPair extends MUnit {
 		type UnitName <: TSingleUnit

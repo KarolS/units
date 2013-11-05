@@ -19,13 +19,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.utils
+package stasiak.units.utils
 
 object TimeUtils {
 	
-	import stasiak.karol.units.SI._
-	import stasiak.karol.units._
-	import stasiak.karol.units.defining._
+	import stasiak.units.SI._
+	import stasiak.units._
+	import stasiak.units.defining._
 	import scala.concurrent.duration.{Duration=>CD}
 	import java.util.concurrent.{TimeUnit=>TU}
 	import language.implicitConversions

@@ -19,11 +19,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.constants
+package stasiak.units.constants
 
-import stasiak.karol.units._
-import stasiak.karol.units.SI._
-import stasiak.karol.units.SI.Short._
+import stasiak.units._
+import stasiak.units.SI._
+import stasiak.units.SI.Short._
 
 /** Common constants used in physics. */
 object Physical {

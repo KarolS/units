@@ -19,19 +19,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
 import language.higherKinds
 import language.implicitConversions
-import stasiak.karol.units.internal.ratios._
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
-import stasiak.karol.units.internal.AffineSpaces._
-import stasiak.karol.units.internal.UnitName
+import stasiak.units.internal.ratios._
+import stasiak.units.internal.Bools._
+import stasiak.units.internal.Integers._
+import stasiak.units.internal.Strings._
+import stasiak.units.internal.SingleUnits._
+import stasiak.units.internal.UnitImpl._
+import stasiak.units.internal.Conversions._
+import stasiak.units.internal.AffineSpaces._
+import stasiak.units.internal.UnitName
 
 object IntA {
 	private type Aff = DefineAffineSpace[Nothing, _1]

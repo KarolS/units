@@ -19,15 +19,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units_tests
+package stasiak.units_tests
 
 import org.scalatest.FunSuite
-import stasiak.karol.units._
+import stasiak.units._
 import defining._
 import SI._
 import USCustomary._
-import stasiak.karol.units._
-import stasiak.karol.units.internal.UnionType._
+import stasiak.units._
+import stasiak.units.internal.UnionType._
 
 class UnitConversionSuite extends FunSuite {
 

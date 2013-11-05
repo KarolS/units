@@ -41,16 +41,16 @@ Quick showcase
 ==============
 
 ``` scala
-import stasiak.karol.units._
-import stasiak.karol.units.defining._
+import stasiak.units._
+import stasiak.units.defining._
 
 type USD = DefineUnit[_U~:_S~:_D] 
 type EUR = DefineUnit[_E~:_U~:_R] 
 
 implicit val EUR_to_USD = one[EUR].contains(1.25)[USD]
 
-import stasiak.karol.units.SI._
-import stasiak.karol.units.USCustomary._
+import stasiak.units.SI._
+import stasiak.units.USCustomary._
 
 val priceInUSA     =  200.of[USD/square[foot]]
 val priceInGermany = 1500.of[EUR/square[metre]]
@@ -85,8 +85,8 @@ Defining units
 You define a unit using `DefineUnit` type constructor with a type-level string as a parameter.
 
 ``` scala
-import stasiak.karol.units._
-import stasiak.karol.units.defining._
+import stasiak.units._
+import stasiak.units.defining._
 
 type metre = DefineUnit[_m]
 type second = DefineUnit[_s]
@@ -132,7 +132,7 @@ implicit val kgm_to_kgcm = m_to_cm.times[kilogram]
 implicit val mps_to_cmps = m_to_cm.dividedBy[second]
 ```
 
-See sources for `stasiak.karol.units.SI` and `stasiak.karol.units.USCustomary` objects for more examples.
+See sources for `stasiak.units.SI` and `stasiak.units.USCustomary` objects for more examples.
 
 
 Using values with units
@@ -141,7 +141,7 @@ Using values with units
 All code below assumes the following is imported:
 
 ``` scala
-import stasiak.karol.units._
+import stasiak.units._
 ```
 
 You can create a value with a unit:
@@ -313,8 +313,8 @@ AffineSpace is defined as a pair containing a zero point and a unit.
 
 
 ``` scala
-import stasiak.karol.units._
-import stasiak.karol.units.defining._
+import stasiak.units._
+import stasiak.units.defining._
 
 type celsius_deg = DefineUnit[_deg~:_C]
 sealed trait CelsiusZero

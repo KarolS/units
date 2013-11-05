@@ -19,15 +19,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
 /**
 	US customary and British units and their conversions to SI.
 */
 object USCustomary {
-	import stasiak.karol.units._
-	import stasiak.karol.units.defining._
-	import stasiak.karol.units.SI._
+	import stasiak.units._
+	import stasiak.units.defining._
+	import stasiak.units.SI._
 
 	type thou = DefineUnit[_t~:_h]
 	type point = DefineUnit[_p~:_t]

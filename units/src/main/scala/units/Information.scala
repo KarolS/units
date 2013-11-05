@@ -19,12 +19,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
 /** Units of information. */
 object Information {
-	import stasiak.karol.units._
-	import stasiak.karol.units.defining._
+	import stasiak.units._
+	import stasiak.units.defining._
 	import scala.math._
 
 	type nat = DefineUnit[_n~:_a~:_t]

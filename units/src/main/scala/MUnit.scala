@@ -19,35 +19,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
 import language.higherKinds
 import language.implicitConversions
 import language.existentials
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Conversions._
+import stasiak.units.internal.Bools._
+import stasiak.units.internal.Integers._
+import stasiak.units.internal.Strings._
+import stasiak.units.internal.SingleUnits._
+import stasiak.units.internal.UnitImpl._
+import stasiak.units.internal.Conversions._
 import scala.math
 
 /** Supertype of all units of measure. */
 trait MUnit {
 	/**
-		@see stasiak.karol.units./
-		@see [[stasiak.karol.units._1]]
+		@see stasiak.units./
+		@see [[stasiak.units._1]]
 	*/
 	type Invert <: MUnit
 	type Get[U<:TSingleUnit] <:TInteger
 	type MulSingle[S<:TUnitPowerPair] <: MUnit
-	/** @see stasiak.karol.units.× */
+	/** @see stasiak.units.× */
 	type Mul[S<:MUnit] <: MUnit
 	type Sqrt <:MUnit
 	type Cbrt <:MUnit
-	/** @see [[stasiak.karol.units.square]] */
+	/** @see [[stasiak.units.square]] */
 	type IsSquare <: TBool
-	/** @see [[stasiak.karol.units.cube]] */
+	/** @see [[stasiak.units.cube]] */
 	type IsCube <: TBool
 	type ToPower[Exp<:TInteger] <: MUnit
 	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit

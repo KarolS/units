@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units
+package stasiak.units
 
 import org.scalacheck._
 import language.implicitConversions

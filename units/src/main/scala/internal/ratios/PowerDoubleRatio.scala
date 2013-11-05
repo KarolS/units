@@ -19,19 +19,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.internal.ratios
-import stasiak.karol.units.internal._
-import stasiak.karol.units.internal.Conversions._
-import stasiak.karol.units._
-import stasiak.karol.units.internal.UnitImpl
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.Conversions
-import stasiak.karol.units.internal.Conversions._
-import stasiak.karol.units.internal.SingleUnits._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.AffineSpaces
-import stasiak.karol.units.internal.AffineSpaces._
+package stasiak.units.internal.ratios
+import stasiak.units.internal._
+import stasiak.units.internal.Conversions._
+import stasiak.units._
+import stasiak.units.internal.UnitImpl
+import stasiak.units.internal.UnitImpl._
+import stasiak.units.internal.Strings._
+import stasiak.units.internal.Conversions
+import stasiak.units.internal.Conversions._
+import stasiak.units.internal.SingleUnits._
+import stasiak.units.internal.Integers._
+import stasiak.units.internal.AffineSpaces
+import stasiak.units.internal.AffineSpaces._
 import scala.annotation.implicitNotFound
 
 @implicitNotFound(msg="Cannot find a ratio to convert ${U} inside ${V}. Are you sure ${U} is a simple unit?")

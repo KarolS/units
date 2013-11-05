@@ -19,10 +19,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
-import stasiak.karol.units.SI._
-import stasiak.karol.units.SI.Short._
+import stasiak.units.SI._
+import stasiak.units.SI.Short._
 import org.joda.time._
 import language.implicitConversions
 

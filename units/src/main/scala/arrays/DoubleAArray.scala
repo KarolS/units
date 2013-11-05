@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.arrays
+package stasiak.units.arrays
 
-import stasiak.karol.units._
+import stasiak.units._
 import scala.collection.mutable._
 
 object DoubleAArray {
@@ -70,7 +70,7 @@ class DoubleAArrayBuilder[A<:AffineSpace] extends Builder[DoubleA[A], DoubleAArr
 	def clear() = underlying.clear
 	def result() = new DoubleAArray[A](underlying.result())
 }
-/** Mutable fixed-size array of unboxed [[stasiak.karol.units.DoubleA]]. */
+/** Mutable fixed-size array of unboxed [[stasiak.units.DoubleA]]. */
 final class DoubleAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Double])
 	extends IndexedSeq[DoubleA[A]]
 	with ArrayLike[DoubleA[A], DoubleAArray[A]]{

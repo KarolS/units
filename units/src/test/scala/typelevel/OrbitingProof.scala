@@ -20,10 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units.typelevel
+package stasiak.units.typelevel
 
-import stasiak.karol.units._
-import stasiak.karol.units.defining._
+import stasiak.units._
+import stasiak.units.defining._
 
 // This trait has only to compile
 sealed trait OrbitingProof {

@@ -1,4 +1,4 @@
-package stasiak.karol.units
+package stasiak.units
 
 import sbt._
 import Keys._

@@ -20,10 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units
+package stasiak.units
 
 import org.scalatest._
-import stasiak.karol.units.slick1Support._
+import stasiak.units.slick1Support._
 import SI._
 import USCustomary._
 import scala.slick.driver.H2Driver.simple._

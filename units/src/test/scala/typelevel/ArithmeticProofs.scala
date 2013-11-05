@@ -19,10 +19,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.typelevel
+package stasiak.units.typelevel
 
-import stasiak.karol.units.internal.Bools._
-import stasiak.karol.units.internal.Integers._
+import stasiak.units.internal.Bools._
+import stasiak.units.internal.Integers._
 
 // This trait has only to compile
 sealed trait ArithmeticProofs{

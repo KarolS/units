@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units
+package stasiak.units
 
 import scalaz.{Ordering, Monoid, Show, Order, Equal}
 

@@ -21,9 +21,9 @@ SOFTWARE.
 */
 
 import com.google.caliper.SimpleBenchmark
-import stasiak.karol.units._
-import stasiak.karol.units.SI._
-import stasiak.karol.units.arrays._
+import stasiak.units._
+import stasiak.units.SI._
+import stasiak.units.arrays._
 
 class DoubleUArrayApplyBenchmark extends SimpleBenchmark {
 

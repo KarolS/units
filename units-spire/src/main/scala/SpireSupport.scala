@@ -20,11 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units
+package stasiak.units
 
 import spire.algebra._
 import spire.math._
-import stasiak.karol.units._
+import stasiak.units._
 import language.implicitConversions
 
 package object spireSupport {

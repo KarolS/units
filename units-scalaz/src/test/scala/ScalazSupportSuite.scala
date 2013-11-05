@@ -20,10 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package stasiak.karol.units
+package stasiak.units
 
 import org.scalatest.FunSuite
-import stasiak.karol.units.scalazSupport._
+import stasiak.units.scalazSupport._
 import SI._
 import USCustomary._
 import scalaz._

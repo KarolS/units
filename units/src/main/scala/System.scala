@@ -23,13 +23,13 @@ SOFTWARE.
 // This file is generated automatically, don't bother modifying.
 // Modify generateSystem.scala.py instead.
 
-package stasiak.karol.units
+package stasiak.units
 
-import stasiak.karol.units._
-import stasiak.karol.units.internal.Integers._
-import stasiak.karol.units.internal.Strings._
-import stasiak.karol.units.internal.UnitImpl._
-import stasiak.karol.units.internal.SingleUnits._
+import stasiak.units._
+import stasiak.units.internal.Integers._
+import stasiak.units.internal.Strings._
+import stasiak.units.internal.UnitImpl._
+import stasiak.units.internal.SingleUnits._
 
 
 object System1 {

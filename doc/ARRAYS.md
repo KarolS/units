@@ -1,7 +1,7 @@
 Using arrays
 ============
 
-Sadly, Scala 2.10's arrays of value classes are boxed. As an alternative, `stasiak.karol.units.arrays` package provides classes `DoubleUArray[U]`, `DoubleAArray[A]`, `IntUArray[U]`, and `IntAArray[A]`.
+Sadly, Scala 2.10's arrays of value classes are boxed. As an alternative, `stasiak.units.arrays` package provides classes `DoubleUArray[U]`, `DoubleAArray[A]`, `IntUArray[U]`, and `IntAArray[A]`.
 
 All of them implement `IndexedSeq` and can be used like standard collection classes:
 

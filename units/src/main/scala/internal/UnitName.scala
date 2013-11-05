@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.internal
+package stasiak.units.internal
 import language.higherKinds
 import language.implicitConversions
 import Bools._
@@ -27,7 +27,7 @@ import Integers._
 import Strings._
 import SingleUnits._
 import UnitImpl._
-import stasiak.karol.units.MUnit
+import stasiak.units.MUnit
 import scala.annotation.implicitNotFound
 
 @implicitNotFound(msg="Cannot find a human-friendly name for unit ${U}")

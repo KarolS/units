@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units.arrays
+package stasiak.units.arrays
 
-import stasiak.karol.units._
+import stasiak.units._
 import scala.collection.mutable._
 
 object Vector3AArray {
@@ -100,7 +100,7 @@ class Vector3AArrayBuilder[A<:AffineSpace] extends Builder[Vector3A[A], Vector3A
 	def result() = new Vector3AArray[A](underlying.result())
 }
 
-/** Mutable fixed-size array of unboxed [[stasiak.karol.units.Vector3A]]. */
+/** Mutable fixed-size array of unboxed [[stasiak.units.Vector3A]]. */
 final class Vector3AArray[A<:AffineSpace] private[arrays] (
 	private[arrays] val underlying: Array[Double]
 	)

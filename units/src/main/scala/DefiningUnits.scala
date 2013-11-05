@@ -19,27 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.karol.units
+package stasiak.units
 
 /**
 	Package containing helper types and methods for defining new units and ratios between units.
 
 	Usage:
 
-	`import stasiak.karol.units.defining._`
+	`import stasiak.units.defining._`
 */
 package object defining {
 	import language.higherKinds
 	import language.implicitConversions
-	import stasiak.karol.units.internal.ratios._
-	import stasiak.karol.units.internal.UnitImpl._
-	import stasiak.karol.units.internal.Strings
-	import stasiak.karol.units.internal.Strings._
-	import stasiak.karol.units.internal.Integers._
-	import stasiak.karol.units.internal.Conversions._
-	import stasiak.karol.units.internal.AffineSpaces
-	import stasiak.karol.units.internal.AffineSpaces._
-	import stasiak.karol.units.internal.SingleUnits._
+	import stasiak.units.internal.ratios._
+	import stasiak.units.internal.UnitImpl._
+	import stasiak.units.internal.Strings
+	import stasiak.units.internal.Strings._
+	import stasiak.units.internal.Integers._
+	import stasiak.units.internal.Conversions._
+	import stasiak.units.internal.AffineSpaces
+	import stasiak.units.internal.AffineSpaces._
+	import stasiak.units.internal.SingleUnits._
 
 	/** Helper for defining unit ratios. Syntax: `one[kilometre].contains(1000)[metre]` */
 	@inline def one[U<:MUnit] = new OneBuilder[U]
