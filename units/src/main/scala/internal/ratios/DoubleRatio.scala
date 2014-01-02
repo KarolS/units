@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,19 +19,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.internal.ratios
-import stasiak.units.internal._
-import stasiak.units.internal.Conversions._
-import stasiak.units._
-import stasiak.units.internal.UnitImpl
-import stasiak.units.internal.UnitImpl._
-import stasiak.units.internal.Strings._
-import stasiak.units.internal.Conversions
-import stasiak.units.internal.Conversions._
-import stasiak.units.internal.SingleUnits._
-import stasiak.units.internal.Integers._
-import stasiak.units.internal.AffineSpaces
-import stasiak.units.internal.AffineSpaces._
+package io.github.karols.units.internal.ratios
+import io.github.karols.units.internal._
+import io.github.karols.units.internal.Conversions._
+import io.github.karols.units._
+import io.github.karols.units.internal.UnitImpl
+import io.github.karols.units.internal.UnitImpl._
+import io.github.karols.units.internal.Strings._
+import io.github.karols.units.internal.Conversions
+import io.github.karols.units.internal.Conversions._
+import io.github.karols.units.internal.SingleUnits._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.AffineSpaces
+import io.github.karols.units.internal.AffineSpaces._
 import scala.annotation.implicitNotFound
 
 @implicitNotFound(msg="Cannot find a ratio to convert from ${U} to ${V}")

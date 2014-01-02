@@ -19,48 +19,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+package io.github.karols.units.typelevel
 
-import com.google.caliper.SimpleBenchmark
 import io.github.karols.units._
-import io.github.karols.units.SI._
-import io.github.karols.units.arrays._
+import io.github.karols.units.defining._
 
-class IntAArrayForeachBenchmark extends SimpleBenchmark {
+// This trait has only to compile
+sealed trait BasicUnitArithmeticProofs {
 
-	val array = new Array[Long](1000)
-	val arrayW = new IntAArray[CelsiusScale](1000);
+  type a = DefineUnit[_a]
+  type b = DefineUnit[_b]
+  type c = DefineUnit[_c]
 
-	override def setUp (){
-		var i = 0
-		while (i < 1000) {
-			array(i) = i*i
-			arrayW(i) = (i*i).at[CelsiusScale]
-			i += 1
-		}
-	}
+  implicitly[inverse[inverse[a]] =:= a]
+  implicitly[power4[a] =:= square[square[a]]]
+  implicitly[power5[a] =:= (a × square[square[a]])]
 
-	override def tearDown(){}
+  implicitly[inverseSquare[a] =:= square[inverse[a]]]
+  implicitly[inverseSquare[a] =:= inverse[square[a]]]
+  implicitly[inverseCube[a] =:= cube[inverse[a]]]
+  implicitly[inverseCube[a] =:= inverse[cube[a]]]
+  implicitly[inversePower4[a] =:= power4[inverse[a]]]
+  implicitly[inversePower4[a] =:= inverse[power4[a]]]
+  implicitly[inversePower5[a] =:= power5[inverse[a]]]
+  implicitly[inversePower5[a] =:= inverse[power5[a]]]
 
-	def timeRaw(reps: Int) = {
-		var result = 0L
-		val zero = 0L
-		for(x<-0 until 2*reps){
-			array.foreach {
-				result += _ - zero
-			}
-		}
-		result
-	}
-	
-	def timeWithUnits(reps: Int) = {
-		var result = 0.at[CelsiusScale]
-		val zero = 0.at[CelsiusScale]
-		for(x<-0 until 2*reps){
-			arrayW.foreach {
-				result += _ -- zero
-			}
-		}
-		result.value
-	}
-
+  implicitly[(inversePower4[a] × power5[a]) =:= a]
+  implicitly[(inverseCube[a] × power4[a]) =:= a]
+  implicitly[(inverseSquare[a] × cube[a]) =:= a]
+  implicitly[(inverse[a] × square[a]) =:= a]
 }

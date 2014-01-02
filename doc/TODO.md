@@ -1,35 +1,25 @@
 TODO:
 =====
 
-For 0.1:
+For 0.1.x (all 0.1.x are going to be backward-compatible up to 0.1.0):
 
-* **move everything from `stasiak.karol.units` package to `stasiak.units`**
+* add instances for `WithU` and `WithA`
 
-* provide partial Scala 2.11 support
-
-* rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
-
-* write more documentation
+* fix found bugs
 
 ---
 
-For 0.2 and beyond:
+For 0.2:
 
 * provide full Scala 2.11 support
 
-* improve explicit polymorphism
+* add [Pickling](https://github.com/scala/pickling) integration
 
 * improve two-way affine space conversions
-
-* figure out what to do with `WithU` and `WithA` and their incompatibility with typeclasses
 
 * optimize compilation times
 
 * test Proguard compatibility
-
-* add [Pickling](https://github.com/scala/pickling) integration
-
-* add `java.time` integration (JDK 8)
 
 * add more units of measure
 
@@ -37,7 +27,9 @@ For 0.2 and beyond:
 
 * write more benchmarks
 
-* optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless), [Slick 2](https://github.com/slick/slick) and [Squeryl](https://github.com/max-l/Squeryl) integration
+* write more documentation
+
+* optionally: rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
 
 * optionally: add runtime dynamic units
 
@@ -45,5 +37,14 @@ For 0.2 and beyond:
 
 * optionally: consider removing unnecessary features
 
-* and finally: add more new features
+---
 
+For 0.3 and beyond:
+
+* improve explicit polymorphism
+
+* add `java.time` integration (JDK 8)
+
+* optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless), [Slick 2](https://github.com/slick/slick) and [Squeryl](https://github.com/max-l/Squeryl) integration
+
+* and finally: add more new features

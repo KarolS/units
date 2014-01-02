@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.internal
+package io.github.karols.units.internal
 import language.higherKinds
 import language.implicitConversions
 import Bools._
@@ -27,7 +27,7 @@ import Integers._
 import Strings._
 import SingleUnits._
 import UnitImpl._
-import stasiak.units.MUnit
+import io.github.karols.units.MUnit
 import scala.annotation.implicitNotFound
 
 @implicitNotFound(msg="Cannot find a human-friendly name for unit ${U}")

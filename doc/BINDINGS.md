@@ -26,14 +26,14 @@ Artefact `units-scalaz` provides implementations of following typeclasses:
 
 * for `Vector3A`: `Equal`, `Show`
 
-Usage: `import stasiak.units.scalazSupport._`
+Usage: `import io.github.karols.units.scalazSupport._`
 
 Spire
 -----
 
 [Spire project page.](https://github.com/non/spire)
 
-Currently, only Spire 0.3.x is supported.
+Currently, only Spire 0.6.x is supported.
 
 Artefact `units-spire` provides implementations of following typeclasses:
 
@@ -45,7 +45,7 @@ Artefact `units-spire` provides implementations of following typeclasses:
 
 * for `Vector3U`: `VectorSpace[Vector3U[U], Double]`
 
-Usage: `import stasiak.units.spireSupport._`
+Usage: `import io.github.karols.units.spireSupport._`
 
 Scalacheck
 ----------
@@ -56,7 +56,7 @@ Currently, only Scalacheck 1.10.x is supported.
 
 Artefact `units-scalacheck` provides implementations of `Choose[IntU[U]]`, `Choose[DoubleU[U]]`, `Choose[IntA[A]]` and `Choose[DoubleA[A]]`.
 
-Usage: `import stasiak.units.scalacheckSupport._`
+Usage: `import io.github.karols.units.scalacheckSupport._`
 
 Joda Time
 ---------
@@ -67,18 +67,18 @@ Currently, only Joda Time 2.1 and above is supported.
 
 Artefact `units-joda` provides implicit conversions from and to `Duration`, `Seconds`, `Minutes`, and `Hours` classes.
 
-Usage: `import stasiak.units.jodaSupport._`
+Usage: `import io.github.karols.units.jodaSupport._`
 
 Algebird
 --------
 
 [Algebird project page.](https://github.com/twitter/algebird)
 
-Currently, only Algebird 0.1.13 is supported.
+Currently, only Algebird 0.3.x is supported.
 
 Artefact `units-algebird` provides implementations of `Monoid`, `Group` and `VectorSpace` for `IntU`, `DoubleU`, `Vector2U` and `Vector3U` (except for `VectorSpace` for `IntU`).
 
-Usage: `import stasiak.units.algebirdSupport._`
+Usage: `import io.github.karols.units.algebirdSupport._`
 
 Slick
 -----
@@ -89,4 +89,4 @@ Currently, only Slick 1.0.x is supported. Support for Slick 2.0 will follow afte
 
 Artefact `units-slick` provides implementations of column mappings for `IntU`, `IntA`, `DoubleU` and `DoubleA`.
 
-Usage: `import stasiak.units.slick1Support`
+Usage: `import io.github.karols.units.slick1Support`

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,12 +19,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.typelevel
+package io.github.karols.units.typelevel
 
-import stasiak.units._
-import stasiak.units.defining._
-import stasiak.units.SI._
-import stasiak.units.USCustomary._
+import io.github.karols.units._
+import io.github.karols.units.defining._
+import io.github.karols.units.SI._
+import io.github.karols.units.USCustomary._
 
 // This trait has only to compile
 sealed trait SystemsProof{
@@ -53,8 +53,8 @@ sealed trait SystemsProof{
 		val MPS(result) = position(MPS[L](x0), MPS[L/T](v0), MPS[L/square[T]](a), MPS[T](t))
 	}
 	{
-		import stasiak.units.Mechanical._
-		import stasiak.units.SI._
+		import io.github.karols.units.Mechanical._
+		import io.github.karols.units.SI._
 		def position(x0: DoubleU[length], v0: DoubleU[speed], a: DoubleU[acceleration], t:DoubleU[time]) =
 			x0 + v0*t + a*t*t/2
 

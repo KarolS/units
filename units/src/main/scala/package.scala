@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,27 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak
+package io.github.karols
 
 /**
 	Main package of the library.
 
-	Importing `stasiak.units._` brings into scope most of its features.
+	Importing `io.github.karols.units._` brings into scope most of its features.
 */
 package object units {
 	import language.higherKinds
 	import language.implicitConversions
-	import stasiak.units.internal.ratios._
-	import stasiak.units.internal.UnitName
-	import stasiak.units.internal.UnitImpl
-	import stasiak.units.internal.UnitImpl._
-	import stasiak.units.internal.Strings._
-	import stasiak.units.internal.Conversions
-	import stasiak.units.internal.Conversions._
-	import stasiak.units.internal.SingleUnits._
-	import stasiak.units.internal.Integers._
-	import stasiak.units.internal.AffineSpaces
-	import stasiak.units.internal.AffineSpaces._
+	import io.github.karols.units.internal.ratios._
+	import io.github.karols.units.internal.UnitName
+	import io.github.karols.units.internal.UnitImpl
+	import io.github.karols.units.internal.UnitImpl._
+	import io.github.karols.units.internal.Strings._
+	import io.github.karols.units.internal.Conversions
+	import io.github.karols.units.internal.Conversions._
+	import io.github.karols.units.internal.SingleUnits._
+	import io.github.karols.units.internal.Integers._
+	import io.github.karols.units.internal.AffineSpaces
+	import io.github.karols.units.internal.AffineSpaces._
 
 	type @@[N, U<:MUnit] = WithU[N,U]
 
@@ -49,19 +49,33 @@ package object units {
 	type ×[U<:MUnit, V<:MUnit] = U#Mul[V]
 	/** Unit multiplication.*/
 	type ><[U<:MUnit, V<:MUnit] = U#Mul[V]
+
 	/** Takes unit to the second power.*/
 	type square[U<:MUnit] = U#ToPower[P2]
 	/** Takes unit to the third power.*/
 	type cube[U<:MUnit] = U#ToPower[P3]
+	/** Takes unit to the fourth power.*/
+	type power4[U<:MUnit] = U#ToPower[P4]
+	/** Takes unit to the fifth power.*/
+	type power5[U<:MUnit] = U#ToPower[P5]
+
 	/** Gets inverse of a unit. `inverse[second]` is equivalent to `hertz`.*/
 	type inverse[U<:MUnit] = U#Invert
+	/** Gets inverse of the second power a unit. */
+	type inverseSquare[U<:MUnit] = U#ToPower[N2]
+	/** Gets inverse of the third power a unit. */
+	type inverseCube[U<:MUnit] = U#ToPower[N3]
+	/** Gets inverse of the fourth power a unit. */
+	type inversePower4[U<:MUnit] = U#ToPower[N4]
+	/** Gets inverse of the fifth power a unit. */
+	type inversePower5[U<:MUnit] = U#ToPower[N5]
 
 	/** Unit dimensionless values have, which is 1.*/
 	type _1 = TDimensionless
-	type DoubleRatio[U<:MUnit, V<:MUnit] = stasiak.units.internal.ratios.DoubleRatio[U,V]
-	type IntRatio[U<:MUnit, V<:MUnit] = stasiak.units.internal.ratios.IntRatio[U,V]
-	type DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.units.internal.ratios.DoubleAffineSpaceConverter[T1, T2]
-	type IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = stasiak.units.internal.ratios.IntAffineSpaceConverter[T1, T2]
+	type DoubleRatio[U<:MUnit, V<:MUnit] = io.github.karols.units.internal.ratios.DoubleRatio[U,V]
+	type IntRatio[U<:MUnit, V<:MUnit] = io.github.karols.units.internal.ratios.IntRatio[U,V]
+	type DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = io.github.karols.units.internal.ratios.DoubleAffineSpaceConverter[T1, T2]
+	type IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace] = io.github.karols.units.internal.ratios.IntAffineSpaceConverter[T1, T2]
 
 	@inline
 	implicit class UnitNameBuilder(override val toString:String) extends AnyVal{

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,9 @@ SOFTWARE.
 */
 
 import com.google.caliper.SimpleBenchmark
-import stasiak.units._
-import stasiak.units.SI._
-import stasiak.units.arrays._
+import io.github.karols.units._
+import io.github.karols.units.SI._
+import io.github.karols.units.arrays._
 
 class DoubleAArrayApplyBenchmark extends SimpleBenchmark {
 

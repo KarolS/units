@@ -1,6 +1,15 @@
 units - CHANGELOG
 =================
 
+version 0.1.0
+-------------
+
+* General: **Renamed the main package from `stasiak.karol.units` to `io.github.karols.units`.**
+
+* General: added `power4`, `power5`, `inverseSquare`, `inverseCube`, `inversePower4` and `inversePower5` to `io.github.karols.units`
+
+* General: Redesigned `WithU` and `WithA`.
+
 version 0.0.9
 -------------
 

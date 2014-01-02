@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.arrays
+package io.github.karols.units.arrays
 
-import stasiak.units._
+import io.github.karols.units._
 import scala.collection.mutable._
 
 object DoubleAArray {
@@ -70,7 +70,7 @@ class DoubleAArrayBuilder[A<:AffineSpace] extends Builder[DoubleA[A], DoubleAArr
 	def clear() = underlying.clear
 	def result() = new DoubleAArray[A](underlying.result())
 }
-/** Mutable fixed-size array of unboxed [[stasiak.units.DoubleA]]. */
+/** Mutable fixed-size array of unboxed [[io.github.karols.units.DoubleA]]. */
 final class DoubleAArray[A<:AffineSpace] private[arrays] (private[arrays] val underlying: Array[Double])
 	extends IndexedSeq[DoubleA[A]]
 	with ArrayLike[DoubleA[A], DoubleAArray[A]]{

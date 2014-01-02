@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.arrays
+package io.github.karols.units.arrays
 
-import stasiak.units._
+import io.github.karols.units._
 import scala.collection.mutable._
 
 object Vector2UArray {
@@ -94,7 +94,7 @@ class Vector2UArrayBuilder[U<:MUnit] extends Builder[Vector2U[U], Vector2UArray[
 	}
 	def result() = new Vector2UArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed [[stasiak.units.Vector2U]]. */
+/** Mutable fixed-size array of unboxed [[io.github.karols.units.Vector2U]]. */
 final class Vector2UArray[U<:MUnit] private[arrays] (
 	private[arrays] val underlying: Array[Double]
 	)

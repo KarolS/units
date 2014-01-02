@@ -85,11 +85,11 @@ val workday = 8.of[hour]
 MKS[T](workday.convert[second])   // explicit conversion required
 ```
 
-A subset of generic units is defined in `stasiak.units.Mechanical`. By using it, the example above could be rewritten as:
+A subset of generic units is defined in `io.github.karols.units.Mechanical`. By using it, the example above could be rewritten as:
 
 ``` scala
-import stasiak.units.Mechanical._
-import stasiak.units.SI._
+import io.github.karols.units.Mechanical._
+import io.github.karols.units.SI._
 
 def position(x0: DoubleU[length], v0: DoubleU[speed], a: DoubleU[acceleration], t:DoubleU[time]) = 
 	x0 + v0*t + a*t*t/2

@@ -63,7 +63,7 @@ All of the array classes implement `IndexedSeq` and can be used like standard co
 They can be created in several ways:
 
 ``` scala
-import stasiak.units.arrays._
+import io.github.karols.units.arrays._
 
 Vector2UArray.of[metre]((1,2), (4,5))
 

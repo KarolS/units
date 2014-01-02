@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.arrays
+package io.github.karols.units.arrays
 
-import stasiak.units._
+import io.github.karols.units._
 import scala.collection.mutable._
 
 object IntUArray {
@@ -55,9 +55,9 @@ object IntUArray {
 		val elemValue = elem.value
 		new IntUArray(Array.fill(n)(elemValue))
 	}
-	
+
 	def unapplySeq[U<:MUnit](arr: IntUArray[U]) = Some(arr)
-	
+
 	//TODO: more
 }
 class IntUArrayBuilder[U<:MUnit] extends Builder[IntU[U], IntUArray[U]] {
@@ -70,7 +70,7 @@ class IntUArrayBuilder[U<:MUnit] extends Builder[IntU[U], IntUArray[U]] {
 	def clear() = underlying.clear
 	def result() = new IntUArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed [[stasiak.units.IntU]]. */
+/** Mutable fixed-size array of unboxed [[io.github.karols.units.IntU]]. */
 final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Long])
 	extends IndexedSeq[IntU[U]]
 	with ArrayLike[IntU[U], IntUArray[U]]{
@@ -88,8 +88,12 @@ final class IntUArray[U<:MUnit] private[arrays] (private[arrays] val underlying:
 	def update(index: Int, elem: IntU[U]) {
 		underlying(index) = elem.value
 	}
-	
+
 	/** The sum of all values in the array */
 	def sum = IntU[U](underlying.sum)
+
+
+	/** The average of all values in the array */
+	def avg = DoubleU[U](underlying.sum.toDouble/underlying.length)
 
 }

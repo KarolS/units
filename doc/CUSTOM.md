@@ -6,8 +6,8 @@ Custom types with units
 Since 0.0.8, you can create add units to any type `N` you want. It will support arithmetic operations if there is an implementation of `Numeric[N]` and comparisons if there's `Ordering[N]`.
 
 ```scala
-import stasiak.units._
-import stasiak.units.SI._
+import io.github.karols.units._
+import io.github.karols.units.SI._
 
 val x: WithU[BigInt, metre] = BigInt(100).of[metre]
 val y: WithU[BigInt, metre] = BigInt(50).of[metre]

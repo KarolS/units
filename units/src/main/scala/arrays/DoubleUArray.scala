@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.arrays
+package io.github.karols.units.arrays
 
-import stasiak.units._
+import io.github.karols.units._
 import scala.collection.mutable._
 
 object DoubleUArray {
@@ -49,13 +49,13 @@ object DoubleUArray {
 	def fill[U<:MUnit](n: Int)(elem: =>DoubleU[U]) = {
 		new DoubleUArray(Array.fill(n)(elem.value))
 	}
-	
+
 	/** Returns an array that contains a constant element a number of times. */
 	def fillUniform[U<:MUnit](n: Int)(elem: DoubleU[U]) = {
 		val elemValue = elem.value
 		new DoubleUArray(Array.fill(n)(elemValue))
 	}
-	
+
 	def unapplySeq[U<:MUnit](arr: DoubleUArray[U]) = Some(arr)
 
 	//TODO: more
@@ -70,7 +70,7 @@ class DoubleUArrayBuilder[U<:MUnit] extends Builder[DoubleU[U], DoubleUArray[U]]
 	def clear() = underlying.clear
 	def result() = new DoubleUArray[U](underlying.result())
 }
-/** Mutable fixed-size array of unboxed [[stasiak.units.DoubleU]]. */
+/** Mutable fixed-size array of unboxed [[io.github.karols.units.DoubleU]]. */
 final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlying: Array[Double])
 	extends IndexedSeq[DoubleU[U]]
 	with ArrayLike[DoubleU[U], DoubleUArray[U]]{
@@ -88,7 +88,7 @@ final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlyi
 	def update(index: Int, elem: DoubleU[U]) {
 		underlying(index) = elem.value
 	}
-	
+
 	def zip(that: DoubleUArray[U]) = {
 		val newLength = length min that.length
 		val array = new Array[Double](newLength*2)
@@ -98,8 +98,11 @@ final class DoubleUArray[U<:MUnit] private[arrays] (private[arrays] val underlyi
 		}
 		new DoubleUArray[U](array)
 	}
-	
+
 	/** The sum of all values in the array */
 	def sum = DoubleU[U](underlying.sum)
+
+	/** The average of all values in the array */
+	def avg = DoubleU[U](underlying.sum/underlying.length)
 
 }

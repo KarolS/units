@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,10 +19,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.typelevel
+package io.github.karols.units.typelevel
 
-import stasiak.units.internal.Bools._
-import stasiak.units.internal.Integers._
+import io.github.karols.units.internal.Bools._
+import io.github.karols.units.internal.Integers._
 
 // This trait has only to compile
 sealed trait ArithmeticProofs{

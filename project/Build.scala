@@ -1,4 +1,4 @@
-package stasiak.units
+package io.github.karols.units
 
 import sbt._
 import Keys._
@@ -7,36 +7,38 @@ import sbt.Defaults._
 object UnitsBuild extends Build {
 	
 
-	val VERSION = "0.0.9-SNAPSHOT"
-	
+	val VERSION = "0.1.0"
+
 
 	type Sett = Project.Setting[_]
 
 	// settings common for all projects
 
 	lazy val baseSettings: Seq[Sett] = Defaults.defaultSettings ++ Seq[Sett](
-	    organization := "stasiak.karol",
+	    organization := "io.github.karols",
 	    version := VERSION,
 	    scalaVersion := "2.10.0",
 	    crossScalaVersions := Seq("2.10.0"),
-		pomIncludeRepository := {
+	    publishMavenStyle := true,
+	    pomIncludeRepository := {
 	      x => false
 	    },
+	    licenses := Seq("MIT License" -> url("http://opensource.org/licenses/MIT")),
+	    homepage := Some(url("http://www.github.com/KarolS/units")),
 	    pomExtra := (
-	        <licenses>
-	          <license>
-	            <name>MIT License</name>
-	            <url>http://opensource.org/licenses/MIT</url>
-	          </license>
-	        </licenses>
+	        <scm>
+	          <url>git@github.com:KarolS/units.git</url>
+	          <connection>scm:git:git@github.com:KarolS/units.git</connection>
+	        </scm>
 	        <developers>
 	          <developer>
 	            <id>KarolS</id>
 	            <name>Karol Stasiak</name>
-	            <url>http://github.com/KarolS</url>
+	            <email>karol.m.stasiak+units@gmail.com</email>
+	            <url>http://karols.github.io</url>
 	          </developer>
 	        </developers>
-		)
+	    )
     )
 
 	// dependencies
@@ -45,17 +47,17 @@ object UnitsBuild extends Build {
 
 	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "[7.0.0,7.1)"
 
-	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.3.0,0.4)"
+	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.6,0.7)"
 	
-	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "0.1.13"
+	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "[0.3.0,0.4)"
 
 	lazy val SLICK = "com.typesafe.slick" %% "slick" % "[1.0.0,1.1)"
 
 	lazy val JODA_TIME = "joda-time" % "joda-time" % "[2.1,3)"
 
-	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "[1.2,2)" % "provided"
+	lazy val JODA_CONVERT = "org.joda" % "joda-convert" % "1.2" % "provided"
 
-	lazy val SCALATEST_TEST = "org.scalatest" % "scalatest_2.10" % "[2.0.M5b,2.1)" % "test"
+	lazy val SCALATEST_TEST = "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
 
 	lazy val CALIPER_TEST = "com.google.caliper" % "caliper" % "0.5-rc1" % "test"
 

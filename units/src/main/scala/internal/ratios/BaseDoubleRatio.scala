@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,55 +19,134 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units.internal.ratios
-import stasiak.units.internal._
-import stasiak.units.internal.Conversions._
-import stasiak.units._
-import stasiak.units.internal.UnitImpl
-import stasiak.units.internal.UnitImpl._
-import stasiak.units.internal.Strings._
-import stasiak.units.internal.Conversions
-import stasiak.units.internal.Conversions._
-import stasiak.units.internal.SingleUnits._
-import stasiak.units.internal.Integers._
-import stasiak.units.internal.AffineSpaces
-import stasiak.units.internal.AffineSpaces._
+package io.github.karols.units.internal.ratios
+import io.github.karols.units.internal._
+import io.github.karols.units.internal.Conversions._
+import io.github.karols.units._
+import io.github.karols.units.internal.UnitImpl
+import io.github.karols.units.internal.UnitImpl._
+import io.github.karols.units.internal.Strings._
+import io.github.karols.units.internal.Conversions
+import io.github.karols.units.internal.Conversions._
+import io.github.karols.units.internal.SingleUnits._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.AffineSpaces
+import io.github.karols.units.internal.AffineSpaces._
 
 class BaseDoubleRatio[U<:MUnit, V<:MUnit](val ratio: Double) extends AnyVal {
+
+	/**
+	Converts a ratio between U and V into ratio between U×Y and V×Y
+	*/
 	@inline
 	def times[Y<:MUnit] =
 		new BaseDoubleRatio[U#Mul[Y],V#Mul[Y]](ratio)
+
+	/**
+	Converts a ratio between U and V into ratio between U/Y and V/Y
+	*/
 	@inline
 	def dividedBy[Y<:MUnit] =
 		new BaseDoubleRatio[U#Mul[Y#Invert],V#Mul[Y#Invert]](ratio)
+
+	/**
+	Converts a ratio between U and V into ratio between Y/U and Y/V
+	*/
+	@inline
+	def dividing[Y<:MUnit] =
+		new BaseDoubleRatio[Y#Mul[U#Invert],Y#Mul[V#Invert]](1.0/ratio)
+
+	/**
+	Converts a ratio between U and V into ratio between 1/U and 1/V
+	*/
 	@inline
 	def invert = new BaseDoubleRatio[V,U](1.0/ratio)
+
+	/**
+	Converts a ratio between U and V into ratio between U^2 and V^2
+	*/
 	@inline
 	def pow2 = this * this
+
+	/**
+	Converts a ratio between U and V into ratio between U^3 and V^3
+	*/
 	@inline
 	def pow3 = this * this * this
+
+	/**
+	Converts a ratio between U and V into ratio between U^4 and V^4
+	*/
+	@inline
+	def pow4 = this * this * this * this
+
+	/**
+	Converts a ratio between U and V into ratio between U^5 and V^5
+	*/
+	@inline
+	def pow5 = this * this * this * this * this
+
+	/**
+		Converts ratios between U and V and between X and Y into ratio between U×X and V×Y
+	*/
 	@inline
 	def *[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
+
+	/**
+		Converts ratios between U and V and between X and Y into ratio between U×X and V×Y
+	*/
 	@inline
 	def *[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X],V#Mul[Y]](ratio*that.ratio)
+
+	/**
+		Converts ratios between U and V and between X and Y into ratio between U×X and V×Y
+	*/
 	@inline
 	def /[X<:MUnit, Y<:MUnit](that: BaseIntRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
+
+	/**
+		Converts ratios between U and V and between X and Y into ratio between U×X and V×Y
+	*/
 	@inline
 	def /[X<:MUnit, Y<:MUnit](that: BaseDoubleRatio[X,Y]) =
 		new BaseDoubleRatio[U#Mul[X#Invert],V#Mul[Y#Invert]](ratio/that.ratio)
+
+	/**
+		Converts ratios between U and V and between Y and V into ratio between U and Y
+	*/
 	@inline
 	def ><[Y<:MUnit](that: BaseDoubleRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
+
+	/**
+		Converts ratios between U and V and between Y and V into ratio between U and Y
+	*/
 	@inline
 	def ><[Y<:MUnit](that: BaseIntRatio[Y,V]) = new BaseDoubleRatio[U,Y](ratio/that.ratio)
+
+	/**
+		Converts ratios between U and V and between Y and V into ratio between U and Y
+	*/
 	@inline
 	def <>[Y<:MUnit](that: BaseDoubleRatio[U,Y]) = new BaseDoubleRatio[V,Y](that.ratio/ratio)
+
+	/**
+		Converts ratios between U and V and between Y and V into ratio between U and Y
+	*/
 	@inline
 	def <>[Y<:MUnit](that: BaseIntRatio[U,Y]) = new BaseDoubleRatio[V,Y](that.ratio/ratio)
+
+	/**
+		Converts ratios between U and V and between V and Y into ratio between U and Y
+	*/
 	@inline
 	def >>[Y<:MUnit](that: BaseDoubleRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
+
+	/**
+		Converts ratios between U and V and between V and Y into ratio between U and Y
+	*/
 	@inline
 	def >>[Y<:MUnit](that: BaseIntRatio[V,Y]) = new BaseDoubleRatio[U,Y](ratio*that.ratio)
 }

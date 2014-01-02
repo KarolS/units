@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,19 +19,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package stasiak.units
+package io.github.karols.units
 
 import language.higherKinds
 import language.implicitConversions
-import stasiak.units.internal.ratios._
-import stasiak.units.internal.Bools._
-import stasiak.units.internal.Integers._
-import stasiak.units.internal.Strings._
-import stasiak.units.internal.SingleUnits._
-import stasiak.units.internal.UnitImpl._
-import stasiak.units.internal.Conversions._
-import stasiak.units.internal.AffineSpaces._
-import stasiak.units.internal.UnitName
+import io.github.karols.units.internal.ratios._
+import io.github.karols.units.internal.Bools._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.Strings._
+import io.github.karols.units.internal.SingleUnits._
+import io.github.karols.units.internal.UnitImpl._
+import io.github.karols.units.internal.Conversions._
+import io.github.karols.units.internal.AffineSpaces._
+import io.github.karols.units.internal.UnitName
 
 object DoubleA {
 	private type Aff = DefineAffineSpace[Nothing, _1]

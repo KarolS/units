@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013 Karol M. Stasiak
+Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,13 @@ SOFTWARE.
 // This file is generated automatically, don't bother modifying.
 // Modify generateSystem.scala.py instead.
 
-package stasiak.units
+package io.github.karols.units
 
-import stasiak.units._
-import stasiak.units.internal.Integers._
-import stasiak.units.internal.Strings._
-import stasiak.units.internal.UnitImpl._
-import stasiak.units.internal.SingleUnits._
+import io.github.karols.units._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.Strings._
+import io.github.karols.units.internal.UnitImpl._
+import io.github.karols.units.internal.SingleUnits._
 
 
 object System1 {
