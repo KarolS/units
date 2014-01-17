@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+package benchmarks
+
 import com.google.caliper.SimpleBenchmark
 import io.github.karols.units._
 import io.github.karols.units.SI._

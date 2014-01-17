@@ -5,20 +5,21 @@ import Keys._
 import sbt.Defaults._
 
 object UnitsBuild extends Build {
-	
 
-	val VERSION = "0.1.0"
+
+	val VERSION = "0.2-SNAPSHOT"
 
 
 	type Sett = Project.Setting[_]
 
 	// settings common for all projects
 
-	lazy val baseSettings: Seq[Sett] = Defaults.defaultSettings ++ Seq[Sett](
+	lazy val baseSettings: Seq[Sett] =
+		Defaults.defaultSettings ++ /*ScoverageSbtPlugin.instrumentSettings ++ */Seq[Sett](
 	    organization := "io.github.karols",
 	    version := VERSION,
-	    scalaVersion := "2.10.0",
-	    crossScalaVersions := Seq("2.10.0"),
+	    scalaVersion := "2.10.3",
+	    crossScalaVersions := Seq("2.10.3"),
 	    publishMavenStyle := true,
 	    pomIncludeRepository := {
 	      x => false
@@ -41,6 +42,18 @@ object UnitsBuild extends Build {
 	    )
     )
 
+	lazy val benchmarkSettings = baseSettings ++ Seq[Sett](
+			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
+			benchmarks := {
+				val base = (scalaSource in Test).value
+				(sources in Test).value.map {
+					IO.relativize(base, _).get.replace(java.io.File.separator,".").replace(".scala", "")
+				}.filter(_.endsWith("Benchmark"))
+			},
+			benchmark := benchmarkTaskInitTask.value(benchmarks.value),
+			benchmarkOnly := benchmarkTaskInitTask.value( Def.spaceDelimited("<arg>").parsed )
+		)
+
 	// dependencies
 
 	lazy val SCALACHECK = "org.scalacheck" %% "scalacheck" % "[1.10.0,1.11)"
@@ -48,7 +61,7 @@ object UnitsBuild extends Build {
 	lazy val SCALAZ = "org.scalaz" %% "scalaz-core" % "[7.0.0,7.1)"
 
 	lazy val SPIRE = "org.spire-math" %% "spire" % "[0.6,0.7)"
-	
+
 	lazy val ALGEBIRD = "com.twitter" %% "algebird-core" % "[0.3.0,0.4)"
 
 	lazy val SLICK = "com.typesafe.slick" %% "slick" % "[1.0.0,1.1)"
@@ -70,26 +83,8 @@ object UnitsBuild extends Build {
 	lazy val __units: Project = Project(
 		id  = "units",
 		base = file("units"),
-		settings = baseSettings ++ Seq[Sett](
-			name := "units",
-			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
-			// Benchmarking code based on work by Алексей Носков (https://github.com/alno/sbt-caliper)
-			benchmark <<= benchmarkTaskInit.zip(sources in Test) {
-				case (runTask, srcsTask) =>
-					(runTask :^: srcsTask :^: KNil) map {
-						case run :+: srcs :+: HNil =>
-							run { srcs map { _.base } filter { _.endsWith("Benchmark") } }
-				}
-			},
-			benchmarkOnly <<= sbt.inputTask { (argTask: TaskKey[Seq[String]]) =>
-				benchmarkTaskInit.zip(argTask) {
-				case (runTask, argTask) =>
-					(runTask :^: argTask :^: KNil) map {
-						case run :+: args :+: HNil =>
-							run { args }
-					}
-				}
-			}
+		settings = benchmarkSettings ++ Seq[Sett](
+			name := "units"
 		)
 	) aggregate(
 		scalazIntegration,
@@ -100,32 +95,13 @@ object UnitsBuild extends Build {
 		slick1Integration
 	)
 
-	lazy val __units11: Project = Project(
-		id  = "units-211",
-		base = file("units"),
-		settings = baseSettings ++ Seq[Sett](
-			name := "units-211",
-			libraryDependencies ++= Seq(SCALATEST_TEST, CALIPER_TEST),
-			crossScalaVersions := Seq("2.11.0-M3"),
-			// Benchmarking code based on work by Алексей Носков (https://github.com/alno/sbt-caliper)
-			benchmark <<= benchmarkTaskInit.zip(sources in Test) {
-				case (runTask, srcsTask) =>
-					(runTask :^: srcsTask :^: KNil) map {
-						case run :+: srcs :+: HNil =>
-							run { srcs map { _.base } filter { _.endsWith("Benchmark") } }
-				}
-			},
-			benchmarkOnly <<= sbt.inputTask { (argTask: TaskKey[Seq[String]]) =>
-				benchmarkTaskInit.zip(argTask) {
-				case (runTask, argTask) =>
-					(runTask :^: argTask :^: KNil) map {
-						case run :+: args :+: HNil =>
-							run { args }
-					}
-				}
-			}
-		)
-	)
+	// lazy val __units11: Project = Project(
+	// 	id  = "units-211",
+	// 	base = file("units"),
+	// 	settings = benchmarkSettings ++ Seq[Sett](
+	// 		name := "units-211"
+	// 	)
+	// )
 
 	lazy val scalazIntegration: Project = Project(
 		id = "units-scalaz",
@@ -136,7 +112,7 @@ object UnitsBuild extends Build {
 		),
 		dependencies = Seq(__units)
 	)
-	
+
 	lazy val spireIntegration: Project = Project(
 		id = "units-spire",
 		base = file("units-spire"),
@@ -187,32 +163,64 @@ object UnitsBuild extends Build {
 		dependencies = Seq(__units)
 	)
 
-
-
 	val benchmark = TaskKey[Unit]("benchmark", "Executes all benchmarks.")
 	val benchmarkOnly = InputKey[Unit]("benchmark-only", "Executes specified benchmarks.")
+	val benchmarks = TaskKey[Seq[String]]("benchmarks",
+		"Seq of class names to benchmark. By default all class names are based on items in the Test classpath with names that end with 'Benchmark'")
 
-	protected def benchmarkTaskInit: Project.Initialize[Task[Seq[String] => Unit]] = (
-		fullClasspath in Test, scalaInstance, javaHome, javaOptions, baseDirectory, outputStrategy, streams
-	) map {
-		(cpa, si, jhome, jopts, dir, strategy, s) =>
-		// cpa.files foreach (println(_))
-		val cp = "-classpath" :: Path.makeString(cpa.files) :: Nil
-		val fr = new ForkRun(
-			ForkOptions(scalaJars = si.jars,
-				javaHome = jhome,
-				runJVMOptions = jopts ++ cp,
-				outputStrategy = strategy,
-				workingDirectory = Some(dir) ))
-		
-		{ args: Seq[String] =>
-			if (args.isEmpty)
-				println("No benchmarks specified - nothing to run")
-			else{
-				val lo = args.map(a=> fr.run("com.google.caliper.Runner", Build.data(cpa), Seq(a), s.log))
-				val result = if (lo.exists(_ isEmpty)) None else Some(lo.map(_.get).foldLeft("")(_+"\n"+_))
-				sbt.toError(result)
-			}
+	private[this] def forkOptions: Def.Initialize[Task[ForkOptions]] =
+		(fullClasspath in Test, baseDirectory, javaOptions, outputStrategy, envVars, javaHome, connectInput) map {
+			(tcp, base, options, strategy, env, javaHomeDir, connectIn) =>
+				// bootJars is empty by default because only jars on the user's classpath should be on the boot classpath
+				val cp = "-classpath" :: Path.makeString(tcp.files) :: Nil
+				ForkOptions(
+					bootJars = Nil,
+					javaHome = javaHomeDir,
+					connectInput = connectIn,
+					outputStrategy = strategy,
+					runJVMOptions = options ++ cp,
+					workingDirectory = Some(base),
+					envVars = env)
 		}
+
+	private def benchmarkTaskInitTask: Def.Initialize[Task[Seq[String] => Unit]] = Def.task {
+		val cpa = (fullClasspath in Test).value
+		val forkOpts = forkOptions.value
+		val out = streams.value
+		val fr = new ForkRun(forkOpts)
+		// val opts = (caliperOptions in cappi).value
+		({ benchmarks: Seq[String] =>
+			if (benchmarks.isEmpty) println("No benchmarks specified - nothing to run")
+			else benchmarks.map( b =>
+				sbt.toError(fr.run("com.google.caliper.Runner",
+					Attributed.data(cpa), Seq(b), out.log)))
+		})
 	}
+
+	// val benchmark = TaskKey[Unit]("benchmark", "Executes all benchmarks.")
+	// val benchmarkOnly = InputKey[Unit]("benchmark-only", "Executes specified benchmarks.")
+
+	// protected def benchmarkTaskInit: Project.Initialize[Task[Seq[String] => Unit]] = (
+	// 	fullClasspath in Test, scalaInstance, javaHome, javaOptions, baseDirectory, outputStrategy, streams
+	// ) map {
+	// 	(cpa, si, jhome, jopts, dir, strategy, s) =>
+	// 	// cpa.files foreach (println(_))
+	// 	val cp = "-classpath" :: Path.makeString(cpa.files) :: Nil
+	// 	val fr = new ForkRun(
+	// 		ForkOptions(bootJars = si.jars,
+	// 			javaHome = jhome,
+	// 			runJVMOptions = jopts ++ cp,
+	// 			outputStrategy = strategy,
+	// 			workingDirectory = Some(dir) ))
+
+	// 	{ args: Seq[String] =>
+	// 		if (args.isEmpty)
+	// 			println("No benchmarks specified - nothing to run")
+	// 		else{
+	// 			val lo = args.map(a=> fr.run("com.google.caliper.Runner", Build.data(cpa), Seq(a), s.log))
+	// 			val result = if (lo.exists(_ isEmpty)) None else Some(lo.map(_.get).foldLeft("")(_+"\n"+_))
+	// 			sbt.toError(result)
+	// 		}
+	// 	}
+	// }
 }
