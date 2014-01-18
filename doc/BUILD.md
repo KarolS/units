@@ -1,6 +1,8 @@
 Compiling
 =========
 
+To build `units` 0.1.x, you need sbt 0.12.x.
+
 To compile the code, run `sbt` and execute:
 
 	compile
