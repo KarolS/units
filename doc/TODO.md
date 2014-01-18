@@ -1,17 +1,11 @@
 TODO:
 =====
 
-For 0.1.x (all 0.1.x are going to be backward-compatible up to 0.1.0):
-
-* add instances for `WithU` and `WithA`
-
-* fix found bugs
-
----
-
-For 0.2:
+For 0.2.x (all 0.1.x are going to be backward-compatible up to 0.2.0):
 
 * provide full Scala 2.11 support
+
+* add instances for `WithU` and `WithA`
 
 * add [Pickling](https://github.com/scala/pickling) integration
 
@@ -36,6 +30,8 @@ For 0.2:
 * optionally: make the library more IDE-friendly
 
 * optionally: consider removing unnecessary features
+
+* fix found bugs
 
 ---
 
