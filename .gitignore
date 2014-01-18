@@ -4,6 +4,8 @@
 *.md~
 .gitignore~
 .scala~
+*.sh~
+*.py~
 *.scala~
 
 # sbt specific

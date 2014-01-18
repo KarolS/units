@@ -1,5 +1,3 @@
-package io.github.karols.units
-
 import sbt._
 import Keys._
 import sbt.Defaults._
@@ -15,7 +13,7 @@ object UnitsBuild extends Build {
 	// settings common for all projects
 
 	lazy val baseSettings: Seq[Sett] =
-		Defaults.defaultSettings ++ /*ScoverageSbtPlugin.instrumentSettings ++ */Seq[Sett](
+		Defaults.defaultSettings ++ ScoverageSbtPlugin.instrumentSettings ++ Seq[Sett](
 	    organization := "io.github.karols",
 	    version := VERSION,
 	    scalaVersion := "2.10.3",

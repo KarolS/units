@@ -1,4 +1,3 @@
+resolvers += Classpaths.sbtPluginReleases
 
-// resolvers += Classpaths.sbtPluginReleases
-
-// addSbtPlugin("com.sksamuel.scoverag" %% "sbt-scoverage" % "0.95.7")
+addSbtPlugin("com.sksamuel.scoverage" %% "sbt-scoverage" % "0.95.7")
