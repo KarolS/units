@@ -1,7 +1,7 @@
 TODO:
 =====
 
-For 0.2.x (all 0.1.x are going to be backward-compatible up to 0.2.0):
+For 0.2.x (all 0.2.x are going to be backward-compatible up to 0.2.0):
 
 * provide full Scala 2.11 support
 
