@@ -1,6 +1,12 @@
 units - CHANGELOG
 =================
 
+
+version 0.1.1
+-------------
+
+* FIXED: conversion between `volt` and `volt_repr`, and between `ohm` and `ohm_repr`
+
 version 0.1.0
 -------------
 
