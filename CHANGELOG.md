@@ -6,11 +6,13 @@ version 0.2.0
 
 * General: **Scala 2.11 support.**
 
-* Algebird support: Dropped temporarily. Waiting for 2.11 support in Algebird.
+* Spire integration: added `Numeric[N] => Module[WithU[N, U],N]` implementation.
 
-* Slick support: Dropped permanently. Slick 1 is obsolete and Slick 2 doesn't allow for creating mappings between types without knowing which driver you're using. See [this document](doc/SLICK.md) for more info.
+* Algebird integration: Dropped temporarily. Waiting for 2.11 support in Algebird.
 
-* Threeten backport support: Added implicit conversions for `Duration`.
+* Slick integration: Dropped permanently. Slick 1 is obsolete and Slick 2 doesn't allow for creating mappings between types without knowing which driver you're using. See [this document](doc/SLICK.md) for more info.
+
+* Threeten backport integration: Added implicit conversions for `Duration`.
 
 version 0.1.1
 -------------
@@ -39,7 +41,7 @@ version 0.0.9
 
 * Testing: More unit tests.
 
-* Spire: removed `Module[IntU[U],Int]` implementation (`Module[IntU[U],Long]` is still available)
+* Spire integration: removed `Module[IntU[U],Int]` implementation (`Module[IntU[U],Long]` is still available)
 
 version 0.0.8
 -------------

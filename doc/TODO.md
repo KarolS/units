@@ -7,6 +7,8 @@ For 0.2.x (all 0.2.x are going to be backward-compatible up to 0.2.0):
 
 * add [Pickling](https://github.com/scala/pickling) integration
 
+* add ScalaCheck 1.11.x support
+
 * improve two-way affine space conversions
 
 * optimize compilation times
@@ -39,6 +41,6 @@ For 0.3 and beyond:
 
 * add `java.time` integration (JDK 8)
 
-* optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless), [Slick 2](https://github.com/slick/slick) and [Squeryl](https://github.com/max-l/Squeryl) integration
+* optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless) and [Squeryl](https://github.com/max-l/Squeryl) integration
 
 * and finally: add more new features

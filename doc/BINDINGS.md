@@ -69,24 +69,19 @@ Artefact `units-joda` provides implicit conversions from and to `Duration`, `Sec
 
 Usage: `import io.github.karols.units.jodaSupport._`
 
+Dropped external library support
+================================
+
 Algebird
 --------
 
 [Algebird project page.](https://github.com/twitter/algebird)
 
-**Algebird is not supported in 0.2.x. Units 0.1.1 supports Algebird 0.3.x.**
-
-Artefact `units-algebird` provides implementations of `Monoid`, `Group` and `VectorSpace` for `IntU`, `DoubleU`, `Vector2U` and `Vector3U` (except for `VectorSpace` for `IntU`).
-
-Usage: `import io.github.karols.units.algebirdSupport._`
+Algebird is not supported in 0.2.x. Units 0.1.1 supports Algebird 0.3.x. If Algebird gets a release for Scala 2.11, the support will be resumed.
 
 Slick
 -----
 
 [Slick project page.](http://slick.typesafe.com)
 
-**Slick is not supported in 0.2.x. Units 0.1.1 supports Slick 1.0.x.** See also: [How to use Slick 2 with Units](SLICK.md).
-
-Artefact `units-slick` provides implementations of column mappings for `IntU`, `IntA`, `DoubleU` and `DoubleA`.
-
-Usage: `import io.github.karols.units.slick1Support`
+Slick is not supported in 0.2.x. Units 0.1.1 supports Slick 1.0.x. See also: [How to use Slick 2 with Units](SLICK.md).
