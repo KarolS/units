@@ -23,20 +23,15 @@ package io.github.karols.units
 
 import io.github.karols.units.SI._
 import io.github.karols.units.SI.Short._
-import scala.slick.lifted._
+import org.threeten.bp._
 import language.implicitConversions
 
-package object slick1Support {
+package object threetenbpSupport {
+	implicit def implicit__msToDuration(x: IntU[ms]) = Duration.ofMillis(x.value)
+	implicit def implicit__sToDuration(x: IntU[s]) = Duration.ofSeconds(x.value)
+	implicit def implicit__minToDuration(x: IntU[minute]) = Duration.ofMinutes(x.value)
+	implicit def implicit__hourToDuration(x: IntU[hour]) = Duration.ofHours(x.value)
+	implicit def implicit__dayToDuration(x: IntU[day]) = Duration.ofDays(x.value)
 
-	implicit def implicit__intUTypeMapper[U<:MUnit] =
-		MappedTypeMapper.base[IntU[U], Long](_.value, _.of[U])
-
-	implicit def implicit__doubleUTypeMapper[U<:MUnit] =
-		MappedTypeMapper.base[DoubleU[U], Double](_.value, _.of[U])
-
-	implicit def implicit__intATypeMapper[A<:AffineSpace] =
-		MappedTypeMapper.base[IntA[A], Long](_.value, _.at[A])
-
-	implicit def implicit__doubleATypeMapper[A<:AffineSpace] =
-		MappedTypeMapper.base[DoubleA[A], Double](_.value, _.at[A])
+	implicit def implicit__durationToMs(x: Duration) = x.toMillis.of[ms]
 }

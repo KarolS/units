@@ -33,7 +33,7 @@ Spire
 
 [Spire project page.](https://github.com/non/spire)
 
-Currently, only Spire 0.6.x is supported.
+Currently, only Spire 0.7.x is supported. For 0.6.x support, see Units 0.1.1.
 
 Artefact `units-spire` provides implementations of following typeclasses:
 
@@ -74,7 +74,7 @@ Algebird
 
 [Algebird project page.](https://github.com/twitter/algebird)
 
-Currently, only Algebird 0.3.x is supported.
+**Algebird is not supported in 0.2.x. Units 0.1.1 supports Algebird 0.3.x.**
 
 Artefact `units-algebird` provides implementations of `Monoid`, `Group` and `VectorSpace` for `IntU`, `DoubleU`, `Vector2U` and `Vector3U` (except for `VectorSpace` for `IntU`).
 
@@ -85,7 +85,7 @@ Slick
 
 [Slick project page.](http://slick.typesafe.com)
 
-Currently, only Slick 1.0.x is supported. Support for Slick 2.0 will follow after its stable release.
+**Slick is not supported in 0.2.x. Units 0.1.1 supports Slick 1.0.x.** See also: [How to use Slick 2 with Units](SLICK.md).
 
 Artefact `units-slick` provides implementations of column mappings for `IntU`, `IntA`, `DoubleU` and `DoubleA`.
 

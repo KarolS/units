@@ -89,7 +89,7 @@ object SI {
 	implicit val implicit__watt_alias = alias[watt, watt_repr]
 	implicit val implicit__hertz_alias = alias[hertz, hertz_repr]
 	implicit val implicit__coulomb_alias = alias[coulomb, coulomb_repr]
-	implicit val implicit__volt_alias = alias[ohm, ohm_repr]
+	implicit val implicit__volt_alias = alias[volt, volt_repr]
 	implicit val implicit__ohm_alias = alias[ohm, ohm_repr]
 	implicit val implicit__pascal_alias = alias[pascal, pascal_repr]
 	implicit val implicit__farad_alias = alias[farad, farad_repr]

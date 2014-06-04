@@ -3,8 +3,6 @@ TODO:
 
 For 0.2.x (all 0.2.x are going to be backward-compatible up to 0.2.0):
 
-* provide full Scala 2.11 support
-
 * add instances for `WithU` and `WithA`
 
 * add [Pickling](https://github.com/scala/pickling) integration

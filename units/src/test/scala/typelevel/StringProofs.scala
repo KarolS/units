@@ -33,36 +33,36 @@ import io.github.karols.units.USCustomary._
 
 // This trait has only to compile
 sealed trait StringProofs{
-	implicitly[True  =:= _f#Equals[_f]]
-	implicitly[False =:= _e#Equals[_f]]
-	implicitly[False =:= _g#Equals[_f]]
-	implicitly[False =:= _h#Equals[_f]]
-	implicitly[False =:= _j#Equals[_f]]
-	implicitly[False =:= _A#Equals[_f]]
-	implicitly[False =:= _n#Equals[_f]]
+	// implicitly[True  =:= _f#Equals[_f]]
+	// implicitly[False =:= _e#Equals[_f]]
+	// implicitly[False =:= _g#Equals[_f]]
+	// implicitly[False =:= _h#Equals[_f]]
+	// implicitly[False =:= _j#Equals[_f]]
+	// implicitly[False =:= _A#Equals[_f]]
+	// implicitly[False =:= _n#Equals[_f]]
 
-	implicitly[True  =:= _n#MatchEmptyNonempty[False, ({type L[H<:TChar,T<:TString]=True})#L, TBool]]
+	// implicitly[True  =:= _n#MatchEmptyNonempty[False, ({type L[H<:TChar,T<:TString]=True})#L, TBool]]
 
-	implicitly[True  =:= TZ5_0#EqualZ5[TZ5_0]]
-	implicitly[True  =:= TZ5_1#EqualZ5[TZ5_1]]
-	implicitly[True  =:= TZ5_2#EqualZ5[TZ5_2]]
-	implicitly[False =:= TZ5_0#EqualZ5[TZ5_4]]
+	// implicitly[True  =:= TZ5_0#EqualZ5[TZ5_0]]
+	// implicitly[True  =:= TZ5_1#EqualZ5[TZ5_1]]
+	// implicitly[True  =:= TZ5_2#EqualZ5[TZ5_2]]
+	// implicitly[False =:= TZ5_0#EqualZ5[TZ5_4]]
 
-	implicitly[True  =:= TZ5_1#GreaterThanZ5[TZ5_0]]
-	implicitly[True  =:= TZ5_2#GreaterThanZ5[TZ5_1]]
-	implicitly[True  =:= TZ5_3#GreaterThanZ5[TZ5_2]]
-	implicitly[True  =:= TZ5_4#GreaterThanZ5[TZ5_3]]
-	implicitly[False =:= TZ5_1#GreaterThanZ5[TZ5_2]]
-	implicitly[False =:= TZ5_1#GreaterThanZ5[TZ5_3]]
+	// implicitly[True  =:= TZ5_1#GreaterThanZ5[TZ5_0]]
+	// implicitly[True  =:= TZ5_2#GreaterThanZ5[TZ5_1]]
+	// implicitly[True  =:= TZ5_3#GreaterThanZ5[TZ5_2]]
+	// implicitly[True  =:= TZ5_4#GreaterThanZ5[TZ5_3]]
+	// implicitly[False =:= TZ5_1#GreaterThanZ5[TZ5_2]]
+	// implicitly[False =:= TZ5_1#GreaterThanZ5[TZ5_3]]
 
-	implicitly[True  =:= _e#LessOrEqualChar[_f]]
-	implicitly[True  =:= _f#LessOrEqualChar[_f]]
-	implicitly[False =:= _g#LessOrEqualChar[_f]]
+	// implicitly[True  =:= _e#LessOrEqualChar[_f]]
+	// implicitly[True  =:= _f#LessOrEqualChar[_f]]
+	// implicitly[False =:= _g#LessOrEqualChar[_f]]
 
-	implicitly[True  =:= _e#EqualChar[_e]];
+	// implicitly[True  =:= _e#EqualChar[_e]];
 
-	implicitly[True  =:= _e#LessOrEqual[_f]]
-	implicitly[True  =:= _f#LessOrEqual[_f]]
-	implicitly[False =:= _g#LessOrEqual[_f]]
+	// implicitly[True  =:= _e#LessOrEqual[_f]]
+	// implicitly[True  =:= _f#LessOrEqual[_f]]
+	// implicitly[False =:= _g#LessOrEqual[_f]]
 
 }

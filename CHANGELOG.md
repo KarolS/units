@@ -1,6 +1,22 @@
 units - CHANGELOG
 =================
 
+version 0.2.0
+-------------
+
+* General: **Scala 2.11 support.**
+
+* Algebird support: Dropped temporarily. Waiting for 2.11 support in Algebird.
+
+* Slick support: Dropped permanently. Slick 1 is obsolete and Slick 2 doesn't allow for creating mappings between types without knowing which driver you're using. See [this document](doc/SLICK.md) for more info.
+
+* Threeten backport support: Added implicit conversions for `Duration`.
+
+version 0.1.1
+-------------
+
+* FIXED: conversion between `volt` and `volt_repr`, and between `ohm` and `ohm_repr`
+
 version 0.1.0
 -------------
 
