@@ -34,19 +34,19 @@ class WithASuite extends FunSuite {
 	test("Addition should work") {
 		val i = BigDecimal(1).at[CelsiusScale]
 		val j = BigDecimal(2).of[celsius_deg]
-		val sum: WithA[BigDecimal,CelsiusScale] = i+j
+		val sum: WithA[BigDecimal,CelsiusScale] = i + j
 		assert(sum === BigDecimal(3).at[CelsiusScale])
 	}
 	test("Subtraction should work") {
 		val i = BigInt(1).at[CelsiusScale]
 		val j = BigInt(2).of[celsius_deg]
-		val sum: WithA[BigInt,CelsiusScale] = i-j
+		val sum: WithA[BigInt,CelsiusScale] = i - j
 		assert(sum === BigInt(-1).at[CelsiusScale])
 	}
 	test("Difference should work") {
 		val i = BigInt(1).at[CelsiusScale]
 		val j = BigInt(2).at[CelsiusScale]
-		val diff: BigInt @@ celsius_deg = i--j
+		val diff: BigInt @@ celsius_deg = i -- j
 		assert(diff === BigInt(-1).of[celsius_deg])
 	}
 	test("Sorting should work"){

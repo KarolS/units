@@ -104,11 +104,11 @@ class StringSuite extends FunSuite {
 			_Q~:_u~:_i~:_c~:_k
 			~:_B~:_r~:_o~:_w~:_n
 			~:_F~:_o~:_x
-			~:_J~:_u~:_m~:_p~:_e~:_d
+			~:_J~:_u~:_m~:_p~:_s
 			~:_O~:_v~:_e~:_r
 			~:_T~:_h~:_e
 			~:_L~:_a~:_z~:_y
 			~:_D~:_o~:_g]
-			=== "QuickBrownFoxJumpedOverTheLazyDog")
+			=== "QuickBrownFoxJumpsOverTheLazyDog")
 	}
 }
