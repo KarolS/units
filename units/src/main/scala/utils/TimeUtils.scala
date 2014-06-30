@@ -22,7 +22,7 @@ SOFTWARE.
 package io.github.karols.units.utils
 
 object TimeUtils {
-	
+
 	import io.github.karols.units.SI._
 	import io.github.karols.units._
 	import io.github.karols.units.defining._
@@ -30,15 +30,26 @@ object TimeUtils {
 	import java.util.concurrent.{TimeUnit=>TU}
 	import language.implicitConversions
 
-	/** 1970-01-01 */
+	/** The epoch starting on 1970-01-01 */
 	sealed trait UnixEpoch
 
 	type UnixEpochSeconds = DefineAffineSpace[UnixEpoch, second]
 	type UnixEpochMillis  = DefineAffineSpace[UnixEpoch, millisecond]
 	type UnixEpochNanos   = DefineAffineSpace[UnixEpoch, nanosecond]
 
+	/** The epoch used by `System.nanoTime()` */
+	sealed trait NanoTimeEpoch
+
+	type NanoTimeEpochNanos = DefineAffineSpace[NanoTimeEpoch, nanosecond]
+
 	/** Current time in Unix Epoch. */
 	def currentTimeMillis(): IntA[UnixEpochMillis] = System.currentTimeMillis().at[UnixEpochMillis]
+
+	/**
+		Current time in nanoTime Epoch.
+		@see java.lang.System.nanoTime()
+	*/
+	def nanoTime(): IntA[NanoTimeEpochNanos] = System.nanoTime().at[NanoTimeEpochNanos]
 
 	/** Sleep for a given amount of time. */
 	def sleep[U<:MUnit](time: IntU[U])(implicit ev: DoubleRatio[U, millisecond]){

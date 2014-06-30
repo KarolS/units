@@ -108,11 +108,12 @@ class IntATranslation[A<:AffineSpace, B<:AffineSpace](
 	val backwardInt = (b:Long) => (b - vector.value)
 }
 
-/*
+/**
 	A two-way linears conversion between affine spaces.
 	`a1` and `b1` are the same value on different scales.
 	`a2` and `b2` are the same value on different scales.
 	Requires `a1 != a2` and `b1 != b2`
+	Instances of this class should be implicit.
 */
 class DoubleATwoValues[A<:AffineSpace, B<:AffineSpace](
 	a1: DoubleA[A], b1: DoubleA[B],

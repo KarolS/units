@@ -46,18 +46,31 @@ object DoubleA {
 /** Double-precision floating-point value representing a point in a 1-dimensional affine space.*/
 case class DoubleA[A<:AffineSpace](val value: Double) extends AnyVal {
 
+	/** Adds a difference value with the same unit. */
 	@inline def +(i: IntU[A#Unit])    = new DoubleA[A](value + i.value)
+	/** Subtracts a difference value with the same unit. */
 	@inline def -(i: IntU[A#Unit])    = new DoubleA[A](value - i.value)
+	/** Adds a difference value with the same unit. */
 	@inline def +(i: DoubleU[A#Unit]) = new DoubleA[A](value + i.value)
+	/** Subtracts a difference value with the same unit. */
 	@inline def -(i: DoubleU[A#Unit]) = new DoubleA[A](value - i.value)
-	
+
+	/** Calculates a difference between two points in the affine space */
 	@inline def --(i: IntA[A]) = new DoubleU[A#Unit](value - i.value)
+	/** Calculates a difference between two points in the affine space */
 	@inline def --(i: DoubleA[A]) = new DoubleU[A#Unit](value - i.value)
-	
+
+	/**
+		Converts this point to another affine space,
+		with the same zero point, but different unit.
+	*/
 	@inline
 	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) =
 		new DoubleA[DefineAffineSpace[A#Zero, U]](value * ev.ratio)
 
+	/**
+		Converts this point to another affine space.
+	*/
 	@inline
 	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) =
 		new DoubleA[B](ev.f(value))

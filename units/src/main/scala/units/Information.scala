@@ -32,29 +32,49 @@ object Information {
 	type bit = DefineUnit[_b]
 	type byte= DefineUnit[_B]
 
+	/** 1000 bits */
 	type kilobit = DefineUnit[_k~:_b]
+	/** 1000 bytes */
 	type kilobyte= DefineUnit[_k~:_B]
+	/** 1024 bits */
 	type kibibit = DefineUnit[_K~:_i~:_b]
+	/** 1024 bytes */
 	type kibibyte= DefineUnit[_K~:_i~:_B]
 
+	/** 1000000 bits */
 	type megabit = DefineUnit[_M~:_b]
+	/** 1000000 bytes */
 	type megabyte= DefineUnit[_M~:_B]
+	/** 1048576 bits */
 	type mebibit = DefineUnit[_M~:_i~:_b]
+	/** 1048576 bytes */
 	type mebibyte= DefineUnit[_M~:_i~:_B]
 
+	/** 1000000000 bits */
 	type gigabit = DefineUnit[_G~:_b]
+	/** 1000000000 bytes */
 	type gigabyte= DefineUnit[_G~:_B]
+	/** 1073741824 bits */
 	type gibibit = DefineUnit[_G~:_i~:_b]
+	/** 1073741824 bytes */
 	type gibibyte= DefineUnit[_G~:_i~:_B]
 
+	/** 1000000000000 bits */
 	type terabit = DefineUnit[_T~:_b]
+	/** 1000000000000 bytes */
 	type terabyte= DefineUnit[_T~:_B]
+	/** 1099511627776 bits */
 	type tebibit = DefineUnit[_T~:_i~:_b]
+	/** 1099511627776 bytes */
 	type tebibyte= DefineUnit[_T~:_i~:_B]
 
+	/** 1000000000000000 bits */
 	type petabit = DefineUnit[_P~:_b]
+	/** 1000000000000000 bytes */
 	type petabyte= DefineUnit[_P~:_B]
+	/** 1125899906842624 bits */
 	type pebibit = DefineUnit[_P~:_i~:_b]
+	/** 1125899906842624 bytes */
 	type pebibyte= DefineUnit[_P~:_i~:_B]
 
 	implicit val implicit__B_to_b = one[byte].contains(8)[bit]

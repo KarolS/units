@@ -46,23 +46,46 @@ object IntA {
 /** 64-bit signed integer representing a point in a 1-dimensional affine space.*/
 case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 
+	/** Adds a difference value with the same unit. */
 	@inline def +(i: IntU[A#Unit])    = new IntA[A](value + i.value)
+	/** Subtracts a difference value with the same unit. */
 	@inline def -(i: IntU[A#Unit])    = new IntA[A](value - i.value)
+	/** Adds a difference value with the same unit. */
 	@inline def +(i: DoubleU[A#Unit]) = new DoubleA[A](value.toDouble + i.value)
+	/** Subtracts a difference value with the same unit. */
 	@inline def -(i: DoubleU[A#Unit]) = new DoubleA[A](value.toDouble - i.value)
 
+	/** Calculates a difference between two points in the affine space */
 	@inline def --(i: IntA[A])    = new IntU[A#Unit](value - i.value)
+	/** Calculates a difference between two points in the affine space */
 	@inline def --(i: DoubleA[A]) = new DoubleU[A#Unit](value.toDouble - i.value)
 
+	/**
+		Converts this point to another affine space,
+		with the same zero point, but different unit.
+	*/
 	@inline
 	def changeUnitInt[U<:MUnit](implicit ev: IntRatio[A#Unit, U]) =
 		new IntA[DefineAffineSpace[A#Zero, U]](value * ev.ratio)
+
+	/**
+		Converts this point to another affine space,
+		with the same zero point, but different unit.
+	*/
 	@inline
 	def changeUnit[U<:MUnit](implicit ev: DoubleRatio[A#Unit, U]) =
 		new DoubleA[DefineAffineSpace[A#Zero, U]](value.toDouble * ev.ratio)
+
+	/**
+		Converts this point to another affine space.
+	*/
 	@inline
 	def convertToInt[B<:AffineSpace](implicit ev: IntAffineSpaceConverter[A,B]) =
 		new IntA[B](ev.f(value))
+
+	/**
+		Converts this point to another affine space.
+	*/
 	@inline
 	def convert[B<:AffineSpace](implicit ev: DoubleAffineSpaceConverter[A,B]) =
 		new DoubleA[B](ev.f(value.toDouble))
@@ -70,7 +93,7 @@ case class IntA[A<:AffineSpace](val value: Long) extends AnyVal{
 	@inline def fromZero = new IntU[A#Unit](value)
 
 	@inline def mkString(implicit name: UnitName[A#Unit]) = value.toString + name.toString
-	
+
 	@inline def toDouble = new DoubleA[A](value.toDouble)
 
 	@inline def < (i: IntA[A]) = value <  i.value
