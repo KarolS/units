@@ -2,10 +2,15 @@ units - CHANGELOG
 =================
 
 
+version 0.1.2
+-------------
+
+* FIXED: `SI.TimeInHours` is now actually in hours.
+
 version 0.1.1
 -------------
 
-* FIXED: conversion between `volt` and `volt_repr`, and between `ohm` and `ohm_repr`
+* FIXED: conversion between `volt` and `volt_repr`, and between `ohm` and `ohm_repr`.
 
 version 0.1.0
 -------------

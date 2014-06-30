@@ -33,7 +33,7 @@ object SI {
 	val LengthInCentimeters = System1[length, centimetre]
 	val LengthInKilometres = System1[length, kilometre]
 	val LengthInKilometers = System1[length, kilometre]
-	val TimeInHours = System1[time, second]
+	val TimeInHours = System1[time, hour]
 	val TimeInSeconds = System1[time, second]
 	val MassInGrams = System1[mass, gram]
 	val MassInKilograms = System1[mass, kilogram]
