@@ -1,19 +1,19 @@
 TODO:
 =====
 
-For 0.2.x (all 0.2.x are going to be backward-compatible up to 0.2.0):
+All 0.2.x are going to be backward-compatible up to 0.2.0, they will contain only bugfixes and/or new minor features.
 
-* add instances for `WithU` and `WithA`
+---
 
-* add [Pickling](https://github.com/scala/pickling) integration
+For 0.3.x
+
+* fix found bugs
+
+* add `java.time` integration (JDK 8)
 
 * add ScalaCheck 1.11.x support
 
-* improve two-way affine space conversions
-
-* optimize compilation times
-
-* test Proguard compatibility
+* add [Pickling](https://github.com/scala/pickling) integration
 
 * add more units of measure
 
@@ -23,23 +23,23 @@ For 0.2.x (all 0.2.x are going to be backward-compatible up to 0.2.0):
 
 * write more documentation
 
-* optionally: rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
-
 * optionally: add runtime dynamic units
-
-* optionally: make the library more IDE-friendly
 
 * optionally: consider removing unnecessary features
 
-* fix found bugs
+* optionally: make the library more IDE-friendly
+
+* optionally: rearrange `TChar`s, so that lexical sorting of unit names yields natural-looking compound units
 
 ---
 
-For 0.3 and beyond:
+For 0.4 and beyond:
 
 * improve explicit polymorphism
 
-* add `java.time` integration (JDK 8)
+* optimize compilation times
+
+* test Proguard compatibility
 
 * optionally: add [Breeze](https://github.com/dlwh/breeze), [Saddle](https://github.com/saddle/saddle), [Shapeless](https://github.com/milessabin/shapeless) and [Squeryl](https://github.com/max-l/Squeryl) integration
 
