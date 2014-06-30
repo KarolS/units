@@ -11,12 +11,19 @@ object UnitsBuild extends Build {
 	// settings common for all projects
 
 	lazy val baseSettings: Seq[Sett] =
-		Defaults.defaultSettings ++ Seq[Sett](
+		Defaults.defaultSettings ++ xerial.sbt.Sonatype.sonatypeSettings ++ Seq[Sett](
 	    organization := "io.github.karols",
 	    version := VERSION,
 	    scalaVersion := "2.10.4",
 	    crossScalaVersions := Seq("2.10.4", "2.11.1"),
 	    publishMavenStyle := true,
+	    publishTo := {
+			val nexus = "https://oss.sonatype.org/"
+			if (isSnapshot.value)
+				Some("snapshots" at nexus + "content/repositories/snapshots")
+			else
+				Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+		},
 	    pomIncludeRepository := {
 	      x => false
 	    },

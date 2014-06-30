@@ -4,6 +4,7 @@
 *.md~
 .gitignore~
 .scala~
+.history
 *.sh~
 *.py~
 *.scala~
