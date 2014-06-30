@@ -144,6 +144,7 @@ object Currency {
 	/** Lithuanian lit */
 	type LTL = DefineUnit[_L~:_T~:_L]
 	/** Latvian lat */
+	@deprecated
 	type LVL = DefineUnit[_L~:_V~:_L]
 	/** Moroccan dirham */
 	type MAD = DefineUnit[_M~:_A~:_D]
@@ -250,6 +251,7 @@ object Currency {
 		/** Short alias for Lithuanian lit (LTL) */
 		type Lt = LTL
 		/** Short alias for Latvian lat (LVL) */
+		@deprecated
 		type Lv = LVL
 		/** Short alias for Polish zloty (PLN) */
 		type zł = PLN

@@ -4,6 +4,7 @@
 *.md~
 .gitignore~
 .scala~
+.history
 *.sh~
 *.py~
 *.scala~
@@ -18,10 +19,12 @@ units-scalacheck/target/
 units-scalaz/target/
 units-spire/target/
 units-slick/target/
+units-slick2/target/
+units-threetenbp/target/
 
 # not supported yet
 units-breeze/
-units-pickling
+units-pickling/
 units-saddle/
 units-scala-activerecord/
 units-shapeless/

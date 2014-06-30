@@ -23,6 +23,7 @@ package io.github.karols.units
 
 import io.github.karols.units.SI._
 import io.github.karols.units.SI.Short._
+import scala.math.Numeric
 import com.twitter.algebird._
 import language.implicitConversions
 
@@ -44,6 +45,17 @@ package object algebirdSupport {
 			override def negate(x: IntU[U]) = -x
 			override def minus(x: IntU[U], y: IntU[U]) = x - y
 		}
+
+	implicit def implicit__withUInstance[N, U<:MUnit](implicit n: Numeric[N]) =
+		new Monoid[Any] with Group[Any] {
+			def zero: Any = n.zero.of[U]
+			def plus(x: Any, y: Any): Any =
+				x.asInstanceOf[WithU[N,U]] + y.asInstanceOf[WithU[N,U]]
+			override def negate(x: Any): Any = -x.asInstanceOf[WithU[N,U]]
+			override def minus(x: Any, y: Any): Any =
+				x.asInstanceOf[WithU[N,U]] - y.asInstanceOf[WithU[N,U]]
+		}.asInstanceOf[Monoid[WithU[N,U]] with Group[WithU[N,U]]]
+
 	implicit def implicit__vector2UInstancep[U<:MUnit] =
 		new Monoid[Vector2U[U]] with Group[Vector2U[U]] with VectorSpace[Double, ({type T[Ign]=Vector2U[U]})#T] {
 			implicit def field: Field[Double] = implicitly[Field[Double]]

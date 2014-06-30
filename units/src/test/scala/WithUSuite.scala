@@ -34,19 +34,19 @@ class WithUSuite extends FunSuite {
 	test("Addition should work") {
 		val i = BigDecimal(1).of[metre]
 		val j = BigDecimal(2).of[metre]
-		val sum: BigDecimal @@ metre = i+j
+		val sum: BigDecimal @@ metre = i + j
 		assert(sum === BigDecimal(3).of[metre])
 	}
 	test("Subtraction should work") {
 		val i = BigInt(1).of[metre]
 		val j = BigInt(2).of[metre]
-		val diff: BigInt @@ metre = i-j
+		val diff: BigInt @@ metre = i - j
 		assert(diff === BigInt(-1).of[metre])
 	}
 	test("Multiplication should work") {
 		val i = BigInt(1).of[metre]
 		val j = BigInt(2).of[metre]
-		val product: BigInt @@ square[metre] = i*j
+		val product: BigInt @@ square[metre] = i * j
 		assert(product === BigInt(2).of[square[metre]])
 	}
 	test("Sorting should work"){

@@ -5,7 +5,7 @@ units
 
 Published under MIT License.
 
-Current version: 0.1.2
+Current version: 0.2.0
 ----------------------
 
 [Changelog.](CHANGELOG.md)

@@ -22,7 +22,11 @@ SOFTWARE.
 package io.github.karols.units
 
 /**
-	Package containing helper types and methods for defining new units and ratios between units.
+	Package containing helper types and methods for defining new units
+	and ratios between units.
+
+	It also contains a set of type-level characters,
+	used for defining type-level unit identifiers.
 
 	Usage:
 
@@ -44,20 +48,55 @@ package object defining {
 	/** Helper for defining unit ratios. Syntax: `one[kilometre].contains(1000)[metre]` */
 	@inline def one[U<:MUnit] = new OneBuilder[U]
 
-	/** Defines a unit of measure identified by given type-level string. */	
+	/** Defines a unit of measure identified by given type-level string. */
 	type DefineUnit[S<:TString] = ASingleUnit[S]^P1
+
 	/** Defines a 1-dimensional affine space using given unit and starting at given zero point.*/
 	type DefineAffineSpace[Z, U<:MUnit] = AffineSpaces.DefineAffineSpace[Z, U]
 
 	/** String constructor. Separate type-level characters with `~:` to create a type-level string. */
 	type ~:[H<:TChar,T<:TString] = Strings.~:[H,T]
-	
+
+	/**
+		Creates a one-way affine space converter.
+		You should store it in an implicit val.
+	*/
 	@inline
 	def convertAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Double => Double) =
 		new DoubleAffineSpaceConverter[T1,T2](f)
+
+	/**
+		Creates a one-way integer affine space converter.
+		You should store it in an implicit val.
+	*/
 	@inline
 	def convertIntAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Long => Long) =
 		new IntAffineSpaceConverter[T1,T2](f)
+
+	/**
+		Creates a two-way affine space converter,
+		based on two points x and y defined in two affine spaces.
+		You should store it in an implicit val.
+	*/
+	@inline
+	def matchingAffineSpacePoints[A<:AffineSpace, B<:AffineSpace](
+		xA: DoubleA[A], xB: DoubleA[B],
+		yA: DoubleA[A], yB: DoubleA[B]
+	) = new DoubleATwoValues[A,B](xA, xB, yA, yB)
+
+	/**
+		Creates a two-way affine space converter,
+		based on one points defined in two affine spaces.
+		The affine spaces should have the same base unit.
+		This defines a translation – a conversion that
+		simply shifts values by a constant displacement.
+		You should store it in an implicit val.
+	*/
+	@inline
+	def matchingAffineSpacePoint[A<:AffineSpace, B<:AffineSpace](
+		xA: DoubleA[A], xB: DoubleA[B]
+	)(implicit ev: A#Unit =:= B#Unit) =
+		new DoubleATranslation[A,B]((xA.value - xB.value).of[A#Unit])
 
 	@inline
 	def productInt[F1<:MUnit,F2<:MUnit,T1<:MUnit,T2<:MUnit](
@@ -67,7 +106,7 @@ package object defining {
 	def product[F1<:MUnit,F2<:MUnit,T1<:MUnit,T2<:MUnit](
 		implicit r1: DoubleRatio[F1,T2], r2: DoubleRatio[F2,T2]
 		) = new BaseDoubleRatio[F1#Mul[F2], T1#Mul[T2]](r1.ratio * r2.ratio)
-	
+
 	@inline def alias[F<:MUnit, T<:MUnit] = new UnitAlias[F,T]
 
 	/** commercial at sign (@) */

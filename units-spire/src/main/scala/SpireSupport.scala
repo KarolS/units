@@ -24,6 +24,7 @@ package io.github.karols.units
 
 import spire.algebra._
 import spire.math._
+import scala.math.Numeric
 import io.github.karols.units._
 import language.implicitConversions
 
@@ -47,6 +48,45 @@ package object spireSupport {
 		override def divr(x: DoubleU[U], d: Double) = x dividedBy d
 	}
 
+	implicit def implicit__withU[N,U<:MUnit](implicit n: Numeric[N]) = new Module[Any, N] {
+
+		implicit def scalar: Ring[N] = Ring[N]
+
+		override def additive: AbGroup[Any] = new AbGroup[Any] {
+			def id: Any = n.zero.of[U].asInstanceOf[Any]
+			def op(x: Any, y: Any): Any =
+				x.asInstanceOf[WithU[N,U]] + y.asInstanceOf[WithU[N,U]]
+			def inverse(x: Any): Any = -x.asInstanceOf[WithU[N,U]]
+		}
+
+		def zero: Any = n.zero.of[U]
+		def negate(x: Any): Any = -x.asInstanceOf[WithU[N,U]]
+		override def minus(x: Any, y: Any): Any =
+			x.asInstanceOf[WithU[N,U]] - y.asInstanceOf[WithU[N,U]]
+		def plus(x: Any, y: Any): Any =
+			x.asInstanceOf[WithU[N,U]] + y.asInstanceOf[WithU[N,U]]
+		def timesl(d: N, x: Any): Any = x.asInstanceOf[WithU[N,U]] * d
+
+	}.asInstanceOf[Module[WithU[N,U],N]]
+
+	implicit def intUI[U<:MUnit] = new Module[IntU[U], Int] {
+
+		implicit def scalar: Ring[Int] = Ring[Int]
+
+		override def additive: AbGroup[IntU[U]] = new AbGroup[IntU[U]] {
+			def id = 0.of[U]
+			def op(x: IntU[U], y: IntU[U]): IntU[U] = x + y
+			def inverse(x: IntU[U]): IntU[U] = -x
+		}
+
+		def zero = 0.of[U]
+		def negate(x: IntU[U]): IntU[U] = -x
+		override def minus(x: IntU[U], y: IntU[U]): IntU[U] = x - y
+		def plus(x: IntU[U], y: IntU[U]): IntU[U] = x + y
+		def timesl(d: Int, x: IntU[U]): IntU[U] = x * d
+
+	}
+
 	implicit def implicit__intUL[U<:MUnit] = new Module[IntU[U], Long] {
 
 		implicit def scalar: Ring[Long] = Ring[Long]
@@ -62,7 +102,7 @@ package object spireSupport {
 		override def minus(x: IntU[U], y: IntU[U]): IntU[U] = x - y
 		def plus(x: IntU[U], y: IntU[U]): IntU[U] = x + y
 		def timesl(d: Long, x: IntU[U]): IntU[U] = x times d
-		
+
 	}
 
 	implicit def implicit__vector3U[U<:MUnit] = new VectorSpace[Vector3U[U], Double] {

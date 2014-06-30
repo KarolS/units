@@ -27,18 +27,30 @@ object SI {
 	import defining._
 	import Mechanical._
 
+	/** A system with a single unit: metre, used to measure length */
 	val LengthInMetres = System1[length, metre]
+	/** A system with a single unit: metre, used to measure length */
 	val LengthInMeters = System1[length, metre]
+	/** A system with a single unit: centimetre, used to measure length */
 	val LengthInCentimetres = System1[length, centimetre]
+	/** A system with a single unit: centimetre, used to measure length */
 	val LengthInCentimeters = System1[length, centimetre]
+	/** A system with a single unit: kilometre, used to measure length */
 	val LengthInKilometres = System1[length, kilometre]
+	/** A system with a single unit: kilometre, used to measure length */
 	val LengthInKilometers = System1[length, kilometre]
+	/** A system with a single unit: hour, used to measure time */
 	val TimeInHours = System1[time, hour]
+	/** A system with a single unit: second, used to measure time */
 	val TimeInSeconds = System1[time, second]
+	/** A system with a single unit: gram, used to measure mass */
 	val MassInGrams = System1[mass, gram]
+	/** A system with a single unit: kilogram, used to measure mass */
 	val MassInKilograms = System1[mass, kilogram]
 
+	/** Standard metre-kilogram-second mechanical system */
 	val MKS = LengthInMetres & MassInKilograms & TimeInSeconds
+	/** Centimetre-gram-second mechanical system */
 	val CGS = LengthInCentimetres & MassInGrams & TimeInSeconds
 
 	type metre = DefineUnit[_m]
@@ -250,9 +262,9 @@ object SI {
 	type KelvinScale = DefineAffineSpace[KelvinZero, kelvin]
 	type CelsiusScale = DefineAffineSpace[CelsiusZero, celsius_deg]
 
-	implicit val implicit__fromCelsiusToKelvin = convertAffineSpace[CelsiusScale,KelvinScale]{ _ + 273.15 }
-	implicit val implicit__fromKelvinToCelsius = convertAffineSpace[KelvinScale,CelsiusScale]{ _ - 273.15 }
-
+	implicit val implicit__celsiusKelvin = matchingAffineSpacePoints(
+		-273.15.at[CelsiusScale], 0.at[KelvinScale],
+		0.at[CelsiusScale], 273.15.at[KelvinScale])
 
 	// alternative spelling
 	type nanometer  = nanometre
