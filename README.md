@@ -14,6 +14,10 @@ Current version: 0.2.0
 
 [Build instructions.](doc/BUILD.md)
 
+Available at Maven Central:
+
+    libraryDependencies += "io.github.karols" %% "units" % "0.2.0"
+
 Features
 --------
 
