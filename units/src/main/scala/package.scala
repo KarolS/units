@@ -280,28 +280,4 @@ package object units {
 		def atto [U<:MUnit] = new DoubleU[U](value/1000000000000000000.0)
 	}
 
-	@inline
-	implicit def implicit_oneDoubleAffineSpaceConverter[U<:AffineSpace] = new DoubleAffineSpaceConverter[U,U](_)
-	@inline
-	implicit def implicit_oneIntAffineSpaceConverter[U<:AffineSpace] = new IntAffineSpaceConverter[U,U](_)
-
-	import defining._
-
-	@inline
-	implicit def implicit_twoWayDoubleAConverterF[A<:AffineSpace, B<:AffineSpace](
-		implicit ev: ReversibleDoubleAConversion[A,B]
-	) = new DoubleAffineSpaceConverter[A,B](ev.forward)
-	@inline
-	implicit def implicit_twoWayDoubleAConverterB[A<:AffineSpace, B<:AffineSpace](
-		implicit ev: ReversibleDoubleAConversion[A,B]
-	) = new DoubleAffineSpaceConverter[B,A](ev.backward)
-
-	@inline
-	implicit def implicit_twoWayIntAConverterF[A<:AffineSpace, B<:AffineSpace](
-		implicit ev: ReversibleIntAConversion[A,B]
-	) = new IntAffineSpaceConverter[A,B](ev.forwardInt)
-	@inline
-	implicit def implicit_twoWayIntAConverterB[A<:AffineSpace, B<:AffineSpace](
-		implicit ev: ReversibleIntAConversion[A,B]
-	) = new IntAffineSpaceConverter[B,A](ev.backwardInt)
 }

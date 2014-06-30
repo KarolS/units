@@ -35,12 +35,12 @@ import io.github.karols.units.internal.AffineSpaces._
 import io.github.karols.units.internal.SingleUnits._
 
 sealed trait ReversibleDoubleAConversion[A<:AffineSpace, B<:AffineSpace]{
-	val forward: Double=>Double
+	val forward:  Double=>Double
 	val backward: Double=>Double
 }
 
 sealed trait ReversibleIntAConversion[A<:AffineSpace, B<:AffineSpace]{
-	val forwardInt: Long=>Long
+	val forwardInt:  Long=>Long
 	val backwardInt: Long=>Long
 }
 
@@ -52,7 +52,7 @@ sealed trait ReversibleIntAConversion[A<:AffineSpace, B<:AffineSpace]{
 class DoubleATranslation[A<:AffineSpace, B<:AffineSpace](
 	val vector: DoubleU[A#Unit]
 )(implicit ev: A#Unit =:= B#Unit) extends ReversibleDoubleAConversion[A,B] {
-	val forward = (a:Double) => (a + vector.value)
+	val forward  = (a:Double) => (a + vector.value)
 	val backward = (b:Double) => (b - vector.value)
 }
 
@@ -71,7 +71,7 @@ class DoubleAScalingTranslation[A<:AffineSpace, B<:AffineSpace](
 		this(1.0.represent[A#Unit, B#Unit].value.of[B#Unit / A#Unit], vector)
 	}	
 
-	val forward = (a:Double) => (a*scale.value + vector.value)
+	val forward  = (a:Double) => (a*scale.value + vector.value)
 	val backward = (b:Double) => ((b - vector.value)/scale.value)
 }
 
@@ -90,7 +90,7 @@ class DoubleATranslationScaling[A<:AffineSpace, B<:AffineSpace](
 		this(vector, 1.0.represent[A#Unit, B#Unit].value.of[B#Unit / A#Unit])
 	}
 
-	val forward = (a:Double) => ((a + vector.value)*scale.value)
+	val forward  = (a:Double) => ((a + vector.value)*scale.value)
 	val backward = (b:Double) => (b / scale.value - vector.value)
 }
 
@@ -102,8 +102,24 @@ class DoubleATranslationScaling[A<:AffineSpace, B<:AffineSpace](
 class IntATranslation[A<:AffineSpace, B<:AffineSpace](
 	val vector: IntU[A#Unit]
 )(implicit ev: A#Unit =:= B#Unit) extends ReversibleDoubleAConversion[A,B] with ReversibleIntAConversion[A,B] {
-	val forward = (a:Double) => (a + vector.value)
+	val forward  = (a:Double) => (a + vector.value)
 	val backward = (b:Double) => (b - vector.value)
-	val forwardInt = (a:Long) => (a + vector.value)
+	val forwardInt  = (a:Long) => (a + vector.value)
 	val backwardInt = (b:Long) => (b - vector.value)
+}
+
+/*
+	A two-way linears conversion between affine spaces.
+	`a1` and `b1` are the same value on different scales.
+	`a2` and `b2` are the same value on different scales.
+	Requires `a1 != a2` and `b1 != b2`
+*/
+class DoubleATwoValues[A<:AffineSpace, B<:AffineSpace](
+	a1: DoubleA[A], b1: DoubleA[B],
+	a2: DoubleA[A], b2: DoubleA[B]
+) extends ReversibleDoubleAConversion[A,B] {
+	private val forwardRatio  = (b2.value - b1.value)/(a2.value - a1.value)
+	private val backwardRatio = (a2.value - a1.value)/(b2.value - b1.value)
+	val forward  = (a:Double) => (a - a1.value)*forwardRatio
+	val backward = (b:Double) => (b - b1.value)*backwardRatio
 }

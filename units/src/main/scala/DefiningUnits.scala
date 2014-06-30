@@ -58,6 +58,15 @@ package object defining {
 	@inline
 	def convertIntAffineSpace[T1<:AffineSpace, T2<:AffineSpace](f: Long => Long) =
 		new IntAffineSpaceConverter[T1,T2](f)
+	@inline
+	def matchingAffineSpacePoints[A<:AffineSpace, B<:AffineSpace](
+		a1: DoubleA[A], b1: DoubleA[B],
+		a2: DoubleA[A], b2: DoubleA[B]
+	) = new DoubleATwoValues[A,B](a1, b1, a2, b2)
+	@inline
+	def matchingAffineSpacePoint[A<:AffineSpace, B<:AffineSpace](
+		a1: DoubleA[A], b1: DoubleA[B]
+	)(implicit ev: A#Unit =:= B#Unit) = new DoubleATranslation[A,B](b1.value - a1.value)
 
 	@inline
 	def productInt[F1<:MUnit,F2<:MUnit,T1<:MUnit,T2<:MUnit](

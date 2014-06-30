@@ -23,6 +23,7 @@ package io.github.karols.units.internal.ratios
 import io.github.karols.units.internal._
 import io.github.karols.units.internal.Conversions._
 import io.github.karols.units._
+import io.github.karols.units.defining._
 import io.github.karols.units.internal.UnitImpl
 import io.github.karols.units.internal.UnitImpl._
 import io.github.karols.units.internal.Strings._
@@ -37,5 +38,17 @@ import scala.annotation.implicitNotFound
 class DoubleAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace](val f: Double => Double)
 
 object DoubleAffineSpaceConverter {
-	
+
+	@inline
+	implicit def implicit_twoWayDoubleAConverterF[A<:AffineSpace, B<:AffineSpace](
+		implicit ev: ReversibleDoubleAConversion[A,B]
+	) = new DoubleAffineSpaceConverter[A,B](ev.forward)
+
+	@inline
+	implicit def implicit_twoWayDoubleAConverterB[A<:AffineSpace, B<:AffineSpace](
+		implicit ev: ReversibleDoubleAConversion[A,B]
+	) = new DoubleAffineSpaceConverter[B,A](ev.backward)
+
+	@inline
+	implicit def implicit_oneDoubleAffineSpaceConverter[U<:AffineSpace] = new DoubleAffineSpaceConverter[U,U](_)
 }

@@ -250,8 +250,12 @@ object SI {
 	type KelvinScale = DefineAffineSpace[KelvinZero, kelvin]
 	type CelsiusScale = DefineAffineSpace[CelsiusZero, celsius_deg]
 
-	implicit val implicit__fromCelsiusToKelvin = convertAffineSpace[CelsiusScale,KelvinScale]{ _ + 273.15 }
-	implicit val implicit__fromKelvinToCelsius = convertAffineSpace[KelvinScale,CelsiusScale]{ _ - 273.15 }
+	implicit val implicit__celsiusKelvin = matchingAffineSpacePoints(
+		-273.15.at[CelsiusScale], 0.at[KelvinScale],
+		0.at[CelsiusScale], 273.15.at[KelvinScale])
+
+	// implicit val implicit__fromCelsiusToKelvin = convertAffineSpace[CelsiusScale,KelvinScale]{ _ + 273.15 }
+	// implicit val implicit__fromKelvinToCelsius = convertAffineSpace[KelvinScale,CelsiusScale]{ _ - 273.15 }
 
 
 	// alternative spelling
