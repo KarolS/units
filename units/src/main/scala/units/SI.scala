@@ -336,7 +336,7 @@ object SI {
 		type S  = siemens
 		type Wb = weber
 		type T  = tesla
-		type Hr = henry
+		type H = henry
 		type Bq = bequerel
 		type Gy = gray
 		type Sv = sievert
