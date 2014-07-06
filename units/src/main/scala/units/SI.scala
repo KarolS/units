@@ -323,6 +323,7 @@ object SI {
 		type cd   = candela
 		type kcal = kilocalorie
 
+		type K  = kelvin
 		type N  = newton
 		type J  = joule
 		type C  = coulomb
