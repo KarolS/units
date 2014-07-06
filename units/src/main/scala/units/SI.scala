@@ -390,8 +390,7 @@ object SI {
 		type µA = microampere
 		type nA = nanoampere
 
-		/** Will be removed in 0.3.0 */
-		@deprecated
+		@deprecated("Will be removed in 0.3.0", "0.2.1")
 		type Hr = henry
 		type H  = henry
 		type mH = millihenry
