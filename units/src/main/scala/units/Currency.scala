@@ -1,4 +1,4 @@
-/*
+
 Copyright (c) 2013-2014 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -144,7 +144,7 @@ object Currency {
 	/** Lithuanian lit */
 	type LTL = DefineUnit[_L~:_T~:_L]
 	/** Latvian lat */
-	@deprecated
+	@deprecated("Latvia switched to euro", "0.2.0")
 	type LVL = DefineUnit[_L~:_V~:_L]
 	/** Moroccan dirham */
 	type MAD = DefineUnit[_M~:_A~:_D]
@@ -251,13 +251,13 @@ object Currency {
 		/** Short alias for Lithuanian lit (LTL) */
 		type Lt = LTL
 		/** Short alias for Latvian lat (LVL) */
-		@deprecated
+		@deprecated("Latvia switched to euro", "0.2.0")
 		type Lv = LVL
 		/** Short alias for Polish zloty (PLN) */
 		type zł = PLN
 		/** Short alias for Chinese yuan (CNY) */
 		type 元 = CNY
-		
+
 	}
 
 }
