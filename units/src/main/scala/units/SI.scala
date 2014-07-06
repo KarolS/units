@@ -23,7 +23,7 @@ package io.github.karols.units
 
 /** SI units. */
 object SI {
-	
+
 	import defining._
 	import Mechanical._
 
@@ -152,7 +152,7 @@ object SI {
 	implicit val implicit__mm_to_um = one[millimetre].contains(1000)[micrometre]
 	implicit val implicit__mm_to_nm = one[millimetre].contains(1000000)[nanometre]
 	implicit val implicit__um_to_nm = one[micrometre].contains(1000)[nanometre]
-	
+
 	implicit val implicit__km_to_AA = one[kilometre ].contains(10000000000000L)[angstrom]
 	implicit val implicit__m_to_AA  = one[metre     ].contains(10000000000L)[angstrom]
 	implicit val implicit__cm_to_AA = one[centimetre].contains(100000000)[angstrom]
@@ -254,6 +254,67 @@ object SI {
 	type celsius_deg = DefineUnit[_deg~:_C]
 	implicit val implicit__kelvin_celsius_eq = alias[kelvin, celsius_deg]
 
+	// electrical units
+	type nanoampere  = DefineUnit[_n~:_A]
+	type microampere = DefineUnit[_mu~:_A]
+	type milliampere = DefineUnit[_m~:_A]
+
+	type nanohenry  = DefineUnit[_n~:_H]
+	type microhenry = DefineUnit[_mu~:_H]
+	type millihenry = DefineUnit[_m~:_H]
+
+	type nanoohm  = DefineUnit[_n~:_OMEGA]
+	type microohm = DefineUnit[_mu~:_OMEGA]
+	type milliohm = DefineUnit[_m~:_OMEGA]
+	type kiloohm  = DefineUnit[_k~:_OMEGA]
+	type megaohm  = DefineUnit[_M~:_OMEGA]
+
+	type nanovolt  = DefineUnit[_n~:_V]
+	type microvolt = DefineUnit[_mu~:_V]
+	type millivolt = DefineUnit[_m~:_V]
+	type kilovolt  = DefineUnit[_k~:_V]
+
+	implicit val implicit__A_to_nA   = one[ampere].contains(1000000000)[nanoampere]
+	implicit val implicit__A_to_µA   = one[ampere].contains(1000000)[microampere]
+	implicit val implicit__A_to_mA   = one[ampere].contains(1000)[milliampere]
+	implicit val implicit__mA_to_nA  = one[milliampere].contains(1000000)[nanoampere]
+	implicit val implicit__µA_to_nA  = one[microampere].contains(1000)[nanoampere]
+	implicit val implicit__mA_to_µA  = one[milliampere].contains(1000)[microampere]
+
+	implicit val implicit__H_to_nH   = one[henry].contains(1000000000)[nanohenry]
+	implicit val implicit__H_to_µH   = one[henry].contains(1000000)[microhenry]
+	implicit val implicit__H_to_mH   = one[henry].contains(1000)[millihenry]
+	implicit val implicit__mH_to_nH  = one[millihenry].contains(1000000)[nanohenry]
+	implicit val implicit__µH_to_nH  = one[microhenry].contains(1000)[nanohenry]
+	implicit val implicit__mH_to_µH  = one[millihenry].contains(1000)[microhenry]
+
+	implicit val implicit__Ω_to_nΩ   = one[ohm].contains(1000000000)[nanoohm]
+	implicit val implicit__Ω_to_µΩ   = one[ohm].contains(1000000)[microohm]
+	implicit val implicit__Ω_to_mΩ   = one[ohm].contains(1000)[milliohm]
+	implicit val implicit__mΩ_to_nΩ  = one[milliohm].contains(1000000)[nanoohm]
+	implicit val implicit__µΩ_to_nΩ  = one[microohm].contains(1000)[nanoohm]
+	implicit val implicit__mΩ_to_µΩ  = one[milliohm].contains(1000)[microohm]
+	implicit val implicit__kΩ_to_Ω   = one[kiloohm].contains(1000)[ohm]
+	implicit val implicit__kΩ_to_mΩ  = implicit__kΩ_to_Ω >> implicit__Ω_to_mΩ
+	implicit val implicit__kΩ_to_nΩ  = implicit__kΩ_to_Ω >> implicit__Ω_to_nΩ
+	implicit val implicit__kΩ_to_µΩ  = implicit__kΩ_to_Ω >> implicit__Ω_to_µΩ
+	implicit val implicit__MΩ_to_kΩ  = one[megaohm].contains(1000)[kiloohm]
+	implicit val implicit__MΩ_to_Ω   = implicit__MΩ_to_kΩ >> implicit__kΩ_to_Ω
+	implicit val implicit__MΩ_to_mΩ  = implicit__MΩ_to_kΩ >> implicit__kΩ_to_mΩ
+	implicit val implicit__MΩ_to_nΩ  = implicit__MΩ_to_kΩ >> implicit__kΩ_to_nΩ
+	implicit val implicit__MΩ_to_µΩ  = implicit__MΩ_to_kΩ >> implicit__kΩ_to_µΩ
+
+	implicit val implicit__V_to_nV   = one[volt].contains(1000000000)[nanovolt]
+	implicit val implicit__V_to_µV   = one[volt].contains(1000000)[microvolt]
+	implicit val implicit__V_to_mV   = one[volt].contains(1000)[millivolt]
+	implicit val implicit__mV_to_nV  = one[millivolt].contains(1000000)[nanovolt]
+	implicit val implicit__µV_to_nV  = one[microvolt].contains(1000)[nanovolt]
+	implicit val implicit__mV_to_µV  = one[millivolt].contains(1000)[microvolt]
+	implicit val implicit__kV_to_V   = one[kilovolt].contains(1000)[volt]
+	implicit val implicit__kV_to_mV  = implicit__kV_to_V >> implicit__V_to_mV
+	implicit val implicit__kV_to_nV  = implicit__kV_to_V >> implicit__V_to_nV
+	implicit val implicit__kV_to_µV  = implicit__kV_to_V >> implicit__V_to_µV
+
 	//temperature affine spaces
 
 	sealed trait KelvinZero
@@ -324,20 +385,43 @@ object SI {
 		type kcal = kilocalorie
 
 		type K  = kelvin
+		type A  = ampere
+		type mA = milliampere
+		type µA = microampere
+		type nA = nanoampere
+
+		/** Will be removed in 0.3.0 */
+		@deprecated
+		type Hr = henry
+		type H  = henry
+		type mH = millihenry
+		type µH = microhenry
+		type nH = nanohenry
+
+		type MΩ = megaohm
+		type kΩ = kiloohm
+		type Ω  = ohm
+		type mΩ = milliohm
+		type µΩ = microohm
+		type nΩ = nanoohm
+
+		type kV = kilovolt
+		type V  = volt
+		type mV = millivolt
+		type µV = microvolt
+		type nV = nanovolt
+
 		type N  = newton
 		type J  = joule
 		type C  = coulomb
-		type A  = ampere
+
 		type W  = watt
-		type V  = volt
-		type Ω  = ohm
 		type Hz = hertz
 		type Pa = pascal
 		type F  = farad
 		type S  = siemens
 		type Wb = weber
 		type T  = tesla
-		type Hr = henry
 		type Bq = bequerel
 		type Gy = gray
 		type Sv = sievert

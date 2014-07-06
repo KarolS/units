@@ -1,6 +1,11 @@
 units - CHANGELOG
 =================
 
+version 0.2.1
+-------------
+
+* Units: added 15 derived electrical units and 16 short symbols for SI units.
+
 version 0.2.0
 -------------
 
