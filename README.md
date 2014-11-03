@@ -16,7 +16,7 @@ Current version: 0.2.1
 
 Available at Maven Central:
 
-    libraryDependencies += "io.github.karols" %% "units" % "0.2.0"
+    libraryDependencies += "io.github.karols" %% "units" % "0.2.1"
 
 Features
 --------
