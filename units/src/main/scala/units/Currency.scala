@@ -246,6 +246,8 @@ object Currency {
 	/** Short names for some currencies. Only those that have unique abbreviations were used.*/
 	object Short {
 
+		/** Short alias for Euro (EUR) */
+		type €  = EUR
 		/** Short alias for Czech koruna (CZK) */
 		type Kč = CZK
 		/** Short alias for Lithuanian lit (LTL) */
