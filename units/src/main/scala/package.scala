@@ -127,22 +127,22 @@ package object units {
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
 		def hecto[U<:MUnit](implicit n:Numeric[N]) =
-			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+			WithU[N,U](n.times(underlyingValue,n.fromInt(100)))
 		@inline
 		def deka[U<:MUnit] (implicit n:Numeric[N]) =
 			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
 		@inline
 		def hekto[U<:MUnit](implicit n:Numeric[N]) =
-			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+			WithU[N,U](n.times(underlyingValue,n.fromInt(100)))
 		@inline
 		def kilo[U<:MUnit] (implicit n:Numeric[N]) =
-			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+			WithU[N,U](n.times(underlyingValue,n.fromInt(1000)))
 		@inline
 		def mega[U<:MUnit] (implicit n:Numeric[N]) =
-			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+			WithU[N,U](n.times(underlyingValue,n.fromInt(1000000)))
 		@inline
 		def giga[U<:MUnit] (implicit n:Numeric[N]) =
-			WithU[N,U](n.times(underlyingValue,n.fromInt(10)))
+			WithU[N,U](n.times(underlyingValue,n.fromInt(1000000000)))
 
 	}
 
