@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,26 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal.ratios
+import io.github.karols.units._
+import io.github.karols.units.defining._
+
+class IntAffineSpaceConverter[T1<:AffineSpace, T2<:AffineSpace](val f: Long => Long)
+
+object IntAffineSpaceConverter {
+
+	@inline
+	implicit def implicit_twoWayIntAConverterF[A<:AffineSpace, B<:AffineSpace](
+		implicit ev: ReversibleIntAConversion[A,B]
+	) = new IntAffineSpaceConverter[A,B](ev.forwardInt)
+
+	@inline
+	implicit def implicit_twoWayIntAConverterB[A<:AffineSpace, B<:AffineSpace](
+		implicit ev: ReversibleIntAConversion[A,B]
+	) = new IntAffineSpaceConverter[B,A](ev.backwardInt)
+
+	@inline
+	implicit def implicit_oneIntAffineSpaceConverter[U<:AffineSpace] = new IntAffineSpaceConverter[U,U](_)
+
+}

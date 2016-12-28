@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2013-2014 Karol M. Stasiak
+# Copyright (c) 2013-2016 Karol M. Stasiak
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -116,7 +116,7 @@ Represents a system of units of measurements consisting of '''+sz+''' units.
 if(__name__=='__main__'):
 	F = open("units/src/main/scala/System.scala", "w")
 	output('''/*
-Copyright (c) 2013-2014 Karol M. Stasiak
+Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -5,7 +5,7 @@ units
 
 Published under MIT License.
 
-Current version: 0.2.1
+Current version: 0.2.2
 ----------------------
 
 [Changelog.](CHANGELOG.md)
@@ -16,7 +16,7 @@ Current version: 0.2.1
 
 Available at Maven Central:
 
-    libraryDependencies += "io.github.karols" %% "units" % "0.2.1"
+    libraryDependencies += "io.github.karols" %% "units" % "0.2.2"
 
 Features
 --------
@@ -36,8 +36,6 @@ Main features:
 * many out-of-the-box supported units and their conversions
 
 * support for affine spaces
-
-* bindings for several Scala and Java libraries
 
 A quick comparison with the units of measure support in F# is [here](doc/FSHARP.md).
 
@@ -366,11 +364,6 @@ Using arrays
 -----------------
 
 [This section has been moved to a separate document.](doc/VECTORS.md)
-
-Third-party library support
----------------------------
-
-[This section has been moved to a separate document.](doc/BINDINGS.md)
 
 Implementation details
 ======================

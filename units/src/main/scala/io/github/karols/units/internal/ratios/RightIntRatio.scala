@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal.ratios
+import io.github.karols.units._
+
+import scala.annotation.implicitNotFound
+
+@implicitNotFound(msg="Cannot find an integer ratio to coalesce ${U} and ${V}")
+class RightIntRatio[U<:MUnit, V<:MUnit, W<:MUnit](val ratio: Long) extends AnyVal
+
+object RightIntRatio {
+	@inline
+	implicit def implicit_oneRightIntRatio[U<:MUnit] = new RightIntRatio[U,U,U](1)
+	@inline
+	implicit def implicit_rightIntRatio[U<:MUnit, V<:MUnit](implicit ev: IntRatio[U,V]) =
+		new RightIntRatio[U,V,V](1)
+	@inline
+	implicit def implicit_rightIntRatioRev[U<:MUnit, V<:MUnit](implicit ev: IntRatio[V,U]) =
+		new RightIntRatio[U,V,U](ev.ratio)
+
+}

@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,37 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units
+
+import language.higherKinds
+import language.implicitConversions
+import language.existentials
+import io.github.karols.units.internal.Bools._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.Strings._
+import io.github.karols.units.internal.SingleUnits._
+import io.github.karols.units.internal.UnitImpl._
+import io.github.karols.units.internal.Conversions._
+import scala.math
+
+/** Supertype of all units of measure. */
+trait MUnit {
+	/**
+		@see io.github.karols.units./
+		@see [[io.github.karols.units._1]]
+	*/
+	type Invert <: MUnit
+	type Get[U<:TSingleUnit] <:TInteger
+	type MulSingle[S<:TUnitPowerPair] <: MUnit
+	/** @see io.github.karols.units.× */
+	type Mul[S<:MUnit] <: MUnit
+	type Sqrt <:MUnit
+	type Cbrt <:MUnit
+	/** @see [[io.github.karols.units.square]] */
+	type IsSquare <: TBool
+	/** @see [[io.github.karols.units.cube]] */
+	type IsCube <: TBool
+	type ToPower[Exp<:TInteger] <: MUnit
+	type Substitute[S<:TSingleUnit, V<:MUnit] <: MUnit
+}

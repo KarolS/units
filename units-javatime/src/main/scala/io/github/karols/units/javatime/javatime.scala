@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,21 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units
+
+import java.time.Duration
+
+import io.github.karols.units._
+import io.github.karols.units.SI.Short.{ms, s}
+import io.github.karols.units.SI.{day, hour, minute}
+
+package object javatime {
+  implicit def implicit__msToDuration(x: IntU[ms]) = Duration.ofMillis(x.value)
+  implicit def implicit__sToDuration(x: IntU[s]) = Duration.ofSeconds(x.value)
+  implicit def implicit__minToDuration(x: IntU[minute]) = Duration.ofMinutes(x.value)
+  implicit def implicit__hourToDuration(x: IntU[hour]) = Duration.ofHours(x.value)
+  implicit def implicit__dayToDuration(x: IntU[day]) = Duration.ofDays(x.value)
+
+  implicit def implicit__durationToMs(x: Duration) = x.toMillis.of[ms]
+}

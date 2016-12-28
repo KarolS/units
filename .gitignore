@@ -8,6 +8,7 @@
 *.sh~
 *.py~
 *.scala~
+.idea
 
 # sbt specific
 dist/*

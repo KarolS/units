@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal
+
+object AffineSpaces {
+	import io.github.karols.units._
+	
+	trait DefineAffineSpace[Z, U<:MUnit] extends AffineSpace{
+		/** Arbitrary marker type identifying the zero point on the scale.*/
+		type Zero = Z
+		/** Unit of measurement used in this affine space. */
+		type Unit = U
+	}
+
+}

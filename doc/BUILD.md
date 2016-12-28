@@ -5,6 +5,7 @@ To build `units` 0.2.x, you need sbt 0.13.x.
 
 To compile the code, run `sbt` and execute:
 
+    project units
 	compile
 
 To package into JARs:
@@ -19,4 +20,6 @@ To run the unit tests:
 
 	test
 
-Prefix the command with a `+` to perform the action for both Scala 2.10 and 2.11.
+Prefix the command with a `+` to perform the action for both Scala 2.10, 2.11 and 2.12.
+
+To build `units-javatime`, use `project units-javatime` instead.

@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+
+package io.github.karols.units.benchmarks
+
+import com.google.caliper.SimpleBenchmark
+import io.github.karols.units._
+import io.github.karols.units.SI._
+
+class SingleBenchmark extends SimpleBenchmark {
+
+	var stuff = 0L
+	
+	override def setUp (){}
+	override def tearDown(){}
+
+	def timeRaw(reps: Int) = {
+		var result = 0L
+		var i = 0
+		while (i < reps) {
+			i += 1
+			result += i
+		}
+		result
+	}
+	
+	def timeWithUnits(reps: Int) = {
+		var result = 0.of[metre]
+		var i = 0
+		while (i < reps) {
+			i += 1
+			result += i.of[metre]
+		}
+		result.value
+	}
+
+}

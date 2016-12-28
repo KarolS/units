@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,21 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal
+
+object Lists {
+	import language.higherKinds
+	sealed trait TList {
+		type Head
+		type Tail <: TList
+	}
+	sealed trait TNil extends TList {
+		type Head = Nothing
+		type Tail = TNil
+	}
+	sealed trait TCons[H, T<:TList] extends TList {
+		type Head = H
+		type Tail = T
+	}
+}

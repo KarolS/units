@@ -1,6 +1,26 @@
 units - CHANGELOG
 =================
 
+version 0.2.2
+-------------
+
+* General: **Scala 2.12 support.**
+
+* Units: Added forty-something new currencies, mostly Africa and small islands. The coverage should be sufficient now.
+
+* Integration: `java.time` integration. 
+
+* Integration: dropped all the other integration libraries because of maintenance burden.
+
+* FIXED: `Vector[23]U#sum` and `Vector[23]A#avg` methods no longer hang.
+
+* FIXED: `hecto`/`hekto`, `kilo`, `mega` and `giga` methods for the `WithU` implicit converter.
+
+* FIXED: changed right quotes to primes for string representations of `_min` and `_sec`.
+
+* General: added `_RUPEE`, `_DONG`, `_digit_1`, `_e_acute`, `_epsilon`, `_dot`, `_period`, `_space`,
+parentheses and several subscript characters as available characters in string representations.
+
 version 0.2.1
 -------------
 

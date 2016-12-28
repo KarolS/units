@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,25 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal.ratios
+import io.github.karols.units._
+import io.github.karols.units.internal.Integers._
+import io.github.karols.units.internal.SingleUnits._
+import io.github.karols.units.internal.UnitImpl._
+
+import scala.annotation.implicitNotFound
+
+@implicitNotFound(msg="Cannot find an integer ratio to convert ${U} inside ${V}. Are you sure ${U} is a simple unit?")
+class PowerIntRatio[U<:TSingleUnit, Power<:TInteger, V<:MUnit, N<:TInteger](val ratio:Long) extends AnyVal
+
+object PowerIntRatio {
+	@inline
+	implicit def implicit_zeroPowerIntRatio[U<:TSingleUnit, V<:MUnit] =
+		new PowerIntRatio[U,P1,V,_0](1)
+	@inline
+	implicit def implicit_positivePowerIntRatio[U<:TSingleUnit, V<:MUnit, N<:TInteger](
+		implicit ev:IntRatio[U^P1,V], prev:PowerIntRatio[U,P1,V,N]
+		) = new PowerIntRatio[U,P1,V,Inc[N]](prev.ratio*ev.ratio)
+
+}

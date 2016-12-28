@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2013-2016 Karol M. Stasiak
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,3 +18,37 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+package io.github.karols.units.internal
+
+object SingleUnits {
+	import Bools._
+	import Strings._
+
+	import language.{higherKinds, implicitConversions}
+
+	/** Represents a defined unit raised to some non-zero power. */
+	trait TSingleUnit {
+		type Name <: TString
+		// type Get[V<:TSingleUnit] = If[V#Name === Name,
+		// 	P1,
+		// 	_0,
+		// Nat]
+		type Equals[That<:TSingleUnit] <: TBool
+		type LessEqualGreater[That<:TSingleUnit, Less<:Result, Equal<:Result, Greater<:Result, Result] <: Result
+ 	}
+ 	trait ASingleUnit[N<:TString] extends TSingleUnit {
+		type Name = N
+		type Equals[That<:TSingleUnit] = N === That#Name
+		type LessEqualGreater[That<:TSingleUnit, Less<:Result, Equal<:Result, Greater<:Result, Result] =
+			(N===That#Name)#DoIf[
+				Equal,
+				(N#LessOrEqual[That#Name])#DoIf2[
+					Less,
+					Greater,
+				Result],
+			Result]
+ 	}
+ 	type ====[X<:TSingleUnit,Y<:TSingleUnit] = X#Equals[Y]
+ 	
+}
